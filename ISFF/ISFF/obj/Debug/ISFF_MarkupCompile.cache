@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Program Files\Git\ISFF\ISFF\ISFF\Views\App.xaml
-2668249821
+4784181550
 
 15-1837899076
 16922260840
-Styles\StyleOrange.xaml;Views\MainWindow.xaml;
+Styles\StyleButtons.xaml;Styles\StyleOrange.xaml;Styles\StyleTextblocks.xaml;Views\MainWindow.xaml;
 
 False
 

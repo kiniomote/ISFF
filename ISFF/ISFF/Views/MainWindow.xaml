@@ -5,13 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ISFF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="800" Style="{DynamicResource WindowStyle}">
+        Title="MainWindow" Height="400" Width="800" Style="{DynamicResource WindowStyle}"
+        WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="400">
     <Grid>
         <StackPanel>
-            <Button Style="{DynamicResource ButtonStyle}">Продукты</Button>
-            <Button Style="{DynamicResource ButtonStyle}">Товары</Button>
-            <Button Style="{DynamicResource ButtonStyle}">Сотрудники</Button>
-            <Button Style="{DynamicResource ButtonStyle}">Заказы</Button>
+            <Button Style="{DynamicResource BigButtonStyle}">Продукты</Button>
+            <Button Style="{DynamicResource SmallButtonStyle}">Товары</Button>
+            <Button Style="{DynamicResource BigButtonStyle}">Сотрудники</Button>
+            <Button Style="{DynamicResource SmallButtonStyle}">Заказы</Button>
+            <TextBlock Style="{DynamicResource TextblockStyle}">FastF</TextBlock>
+            <TextBox Style="{DynamicResource TextboxStyle}">Go go go</TextBox>
+            <ComboBox Style="{DynamicResource ComboboxStyle}">Elae</ComboBox>
         </StackPanel>
     </Grid>
 </Window>

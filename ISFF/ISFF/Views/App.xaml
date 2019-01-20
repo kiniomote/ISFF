@@ -7,6 +7,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/StyleOrange.xaml" />
+                <ResourceDictionary Source="/Styles/StyleButtons.xaml" />
+                <ResourceDictionary Source="/Styles/StyleTextblocks.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
