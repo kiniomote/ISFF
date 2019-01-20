@@ -9,12 +9,12 @@ ISFF
 none
 false
 DEBUG;TRACE
-C:\Program Files\Git\ISFF\ISFF\ISFF\App.xaml
-11151548125
+C:\Program Files\Git\ISFF\ISFF\ISFF\Views\App.xaml
+2668249821
 
-19-2015444356
+19-108599909
 16922260840
-MainWindow.xaml;
+Styles\StyleOrange.xaml;Views\MainWindow.xaml;
 
 False
 

@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 
-namespace ISFF_v1._0
+namespace ISFF
 {
 	// Класс-посредник между между БД и программой с помощью технологии Entity Framework
 	public class ConnectionDB : DbContext
 	{
 		public ConnectionDB()
-		: base("Connection")
+		: base("DefaultConnection")
 		{ }
 
 		public DbSet<Employee> Employees { get; set; } // Таблица Сотрудники

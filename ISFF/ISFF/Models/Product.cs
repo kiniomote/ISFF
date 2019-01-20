@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ISFF_v1._0
+namespace ISFF
 {
 	public class Product
 	{
