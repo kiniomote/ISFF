@@ -21,6 +21,7 @@
     <SolidColorBrush x:Key="backgroundButtonNormal" Color="#f7fade"/>
     <SolidColorBrush x:Key="backgroundButtonMouseOver" Color="#FFF19E"/>
     <SolidColorBrush x:Key="backgroundTextblock" Color="#fefac0"/>
+    <SolidColorBrush x:Key="foregroundHeading" Color="#ffa834"/>
 
     <Style x:Key="WindowStyle" TargetType="Window">
         <Setter Property="Background" Value="{StaticResource backgroundWindow}"/>

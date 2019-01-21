@@ -5,7 +5,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border x:Name="bigButtonBorder" Margin="5"
+                    <Border x:Name="bigButtonBorder" Margin="2"
                             CornerRadius="15" BorderBrush="{StaticResource borderBrush}"
                             BorderThickness="5" Background="{StaticResource backgroundButtonNormal}"
                             MinWidth="150" MinHeight="70" MaxWidth="300" MaxHeight="150"
@@ -36,10 +36,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border x:Name="smallButtonBorder"  Margin="5"
+                    <Border x:Name="smallButtonBorder"  Margin="2"
                             CornerRadius="10" BorderBrush="{StaticResource borderBrush}"
                             BorderThickness="3" Background="{StaticResource backgroundButtonNormal}"
-                            MinWidth="100" MinHeight="30" MaxWidth="220" MaxHeight="70"
+                            MinWidth="100" MinHeight="35" MaxWidth="220" MaxHeight="70"
                             Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
                         <ContentControl Margin="5" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         Content="{TemplateBinding Content}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"

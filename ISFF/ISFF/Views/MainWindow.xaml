@@ -5,17 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ISFF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="800" Style="{DynamicResource WindowStyle}"
+        Title="ISFF" Height="400" Width="800" Style="{DynamicResource WindowStyle}"
         WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="400">
+    <Window.Resources>
+
+    </Window.Resources>
+
     <Grid>
-        <StackPanel>
-            <Button Style="{DynamicResource BigButtonStyle}">Продукты</Button>
-            <Button Style="{DynamicResource SmallButtonStyle}">Товары</Button>
-            <Button Style="{DynamicResource BigButtonStyle}">Сотрудники</Button>
-            <Button Style="{DynamicResource SmallButtonStyle}">Заказы</Button>
-            <TextBlock Style="{DynamicResource TextblockStyle}">FastF</TextBlock>
-            <TextBox Style="{DynamicResource TextboxStyle}">Go go go</TextBox>
-            <ComboBox Style="{DynamicResource ComboboxStyle}">Elae</ComboBox>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Canvas Grid.Row="0">
+            <GroupBox x:Name="loginGroupbox" Background="{DynamicResource backgroundTextblock}"
+                      BorderThickness="2" Padding="2 0 5 0" Canvas.Left="25" Canvas.Top="5" Width="290" Height="125"
+                      Header="Авторизация" FontFamily="Cambria" FontSize="16" BorderBrush="{StaticResource borderBrush}">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="35*"/>
+                            <ColumnDefinition Width="65*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource TextblockStyle}" Text="Login:" TextAlignment="Left" FontSize="18" Grid.Column="0"/>
+                        <TextBox Style="{StaticResource TextboxStyle}" Background="White" BorderThickness="1" Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="35*"/>
+                            <ColumnDefinition Width="65*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource TextblockStyle}" Text="Password:" TextAlignment="Left" FontSize="18" Grid.Column="0"/>
+                        <TextBox Style="{StaticResource TextboxStyle}" Background="White" BorderThickness="1" Grid.Column="1"/>
+                    </Grid>
+                    
+                    <Button x:Name="buttonLogin" Style="{StaticResource SmallButtonStyle}" Content="Вход" Margin="70 2 70 0"/>
+                </StackPanel>
+            </GroupBox>
+            <TextBlock FontFamily="/Resources/#Audiowide" FontSize="62" Foreground="{StaticResource foregroundHeading}" Text="IS FastFood"
+                       Canvas.Right="35" Canvas.Top="35"/>
+        </Canvas>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Button x:Name="buttonEmployees" Style="{StaticResource BigButtonStyle}" Content="Сотрудники" Margin="15 5 15 5"/>
+                <Button x:Name="buttonEmployeesLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
+                <Button x:Name="buttonEmployeesReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="45 5 45 5"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Button x:Name="buttonIngredients" Style="{StaticResource BigButtonStyle}" Content="Ингредиенты" Margin="15 5 15 5"/>
+                <Button x:Name="buttonIngredientsLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
+                <Button x:Name="buttonIngredientsReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="45 5 45 5"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2">
+                <Button x:Name="buttonProducts" Style="{StaticResource BigButtonStyle}" Content="Товары" Margin="15 5 15 5"/>
+                <Button x:Name="buttonProductsLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
+                <Button x:Name="buttonProductsReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="45 5 45 5"/>
+            </StackPanel>
+            <StackPanel Grid.Column="3">
+                <Button x:Name="buttonOrders" Style="{StaticResource BigButtonStyle}" Content="Заказы" Margin="15 5 15 5"/>
+                <Button x:Name="buttonOrdersLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
+                <Button x:Name="buttonOrdersReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="45 5 45 5"/>
+            </StackPanel>
+        </Grid>
+
+        <Button x:Name="buttonExit" Style="{StaticResource SmallButtonStyle}" Content="Выход"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
     </Grid>
 </Window>
