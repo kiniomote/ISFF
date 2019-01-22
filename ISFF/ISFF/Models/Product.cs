@@ -12,20 +12,20 @@ namespace ISFF
 		public int Id { get; set; } // Первичный ключ
 		public string Name { get; set; }
 		public double Price { get; set; }
-		public DateTime TimeCook { get; set; }
+		public double TimeCook { get; set; }
 		public int Weight { get; set; }
 		public string NameImage { get; set; }
 
-		// Внешний ключ с Order, связь много ко многим
-		public ICollection<Order> Orders { get; set; }
+        // Внешний ключ с DoseProduct, связь один ко многим
+        public ICollection<DoseProduct> DoseProducts { get; set; }
 
-		// Внешний ключ с Ingredient, связь много ко многим
-		public ICollection<Ingredient> Ingredients { get; set; }
+        // Внешний ключ с DoseIngredient, связь один ко многим
+        public ICollection<DoseIngredient> DoseIngredients { get; set; }
 
 		public Product()
 		{
-			Ingredients = new List<Ingredient>();
-			Orders = new List<Order>();
+            DoseIngredients = new List<DoseIngredient>();
+            DoseProducts = new List<DoseProduct>();
 		}
 	}
 }

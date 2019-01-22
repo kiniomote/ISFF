@@ -17,12 +17,12 @@ namespace ISFF
 		public int Demand { get; set; }
 		public double Price { get; set; }
 
-		// Внешний ключ с Product, связь много ко многим
-		public ICollection<Product> Products { get; set; }
+        // Внешний ключ с DoseIngredient, связь один ко многим
+        public ICollection<DoseIngredient> DoseIngredients { get; set; }
 
 		public Ingredient()
 		{
-			Products = new List<Product>();
+            DoseIngredients = new List<DoseIngredient>();
 		}
 	}
 }

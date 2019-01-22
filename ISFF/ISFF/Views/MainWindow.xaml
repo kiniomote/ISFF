@@ -45,6 +45,7 @@
             </GroupBox>
             <TextBlock FontFamily="/Resources/#Audiowide" FontSize="62" Foreground="{StaticResource foregroundHeading}" Text="IS FastFood"
                        Canvas.Right="35" Canvas.Top="35"/>
+            <Image Canvas.Top="108" Canvas.Right="35" Style="{StaticResource FigureStyle}"/>
         </Canvas>
 
         <Grid Grid.Row="1">

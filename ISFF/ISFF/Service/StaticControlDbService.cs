@@ -20,9 +20,34 @@ namespace ISFF
 			db.Ingredients.Load();
 			db.Products.Load();
 			db.Orders.Load();
-		} // Загрузка базы данных
+            db.Database.ExecuteSqlCommand(
+                "ALTER TABLE dbo.DoseIngredients " +
+                "ADD CONSTRAINT DoseIngredients_Ingredients " +
+                "FOREIGN KEY (IngredientId) " +
+                "REFERENCES dbo.Ingreients (Id) " +
+                "ON DELETE SET NULL");
+            db.Database.ExecuteSqlCommand(
+                "ALTER TABLE dbo.DoseIngredients " +
+                "ADD CONSTRAINT DoseIngredients_Products " +
+                "FOREIGN KEY (ProductId) " +
+                "REFERENCES dbo.Products (Id) " +
+                "ON DELETE SET NULL");
+            db.Database.ExecuteSqlCommand(
+                "ALTER TABLE dbo.DoseProducts " +
+                "ADD CONSTRAINT DoseProducts_Orders " +
+                "FOREIGN KEY (OrderId) " +
+                "REFERENCES dbo.Orders (Id) " +
+                "ON DELETE SET NULL");
+            db.Database.ExecuteSqlCommand(
+                "ALTER TABLE dbo.DoseProducts " +
+                "ADD CONSTRAINT DoseProducts_Products " +
+                "FOREIGN KEY (ProductId) " +
+                "REFERENCES dbo.Products (Id) " +
+                "ON DELETE SET NULL");
 
-		public static void SaveChangesDataBase()
+        } // Загрузка базы данных
+
+        public static void SaveChangesDataBase()
 		{
 			db.SaveChanges();
 		} // Сохранение изменений

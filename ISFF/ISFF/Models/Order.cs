@@ -14,12 +14,12 @@ namespace ISFF
 		public DateTime Time { get; set; }
 		public bool Ready { get; set; }
 
-		// Внешний ключ с Product, связь много ко многим
-		public ICollection<Product> Products { get; set; }
+        // Внешний ключ с DoseProduct, связь один ко многим
+        public ICollection<DoseProduct> DoseProducts { get; set; }
 
 		public Order()
 		{
-			Products = new List<Product>();
+            DoseProducts = new List<DoseProduct>();
 		}
 	}
 }

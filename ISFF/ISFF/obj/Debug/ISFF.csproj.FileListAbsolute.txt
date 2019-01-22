@@ -22,3 +22,9 @@ C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\ISFF.exe
 C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\ISFF.pdb
 C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Styles\StyleButtons.baml
 C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Styles\StyleTextblocks.baml
+C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\WindowEmployees.g.cs
+C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\WindowEmployees.baml
+C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\WindowIngredients.g.cs
+C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\WindowIngredients.baml
+C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\WindowProducts.g.cs
+C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\WindowProducts.baml
