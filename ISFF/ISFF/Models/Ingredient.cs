@@ -12,6 +12,7 @@ namespace ISFF
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public double AmountNow { get; set; }
+        public double Weight { get; set; }
 		public double AmountUsed { get; set; }
 		public string Quantily { get; set; }
 		public int Demand { get; set; }
