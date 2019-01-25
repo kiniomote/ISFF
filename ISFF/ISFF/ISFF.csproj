@@ -63,12 +63,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CommonCommands\AcceptAnswerCommandFactory.cs" />
+    <Compile Include="Commands\CommonCommands\NoAnswerCommandFactory.cs" />
     <Compile Include="Commands\ExtendedCommands\AddEmployeeCommandFactory.cs" />
     <Compile Include="Commands\ExtendedCommands\ExtendedRelayCommand.cs" />
     <Compile Include="Commands\ExtendedCommands\ExtendedRelayCommandFactory.cs" />
     <Compile Include="Commands\ExtendedCommands\EditEmployeeCommandFactory.cs" />
     <Compile Include="Commands\CommonCommands\CommonRelayCommandFactory.cs" />
     <Compile Include="Commands\CommonCommands\RemoveEmployeesCommandFactory.cs" />
+    <Compile Include="ViewModels\ParametrsViewModels\KitParametrsDialog.cs" />
+    <Compile Include="ViewModels\DialogViewModel.cs" />
+    <Compile Include="Views\DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ParametrsViewModels\KitParametrsEmployees.cs" />
     <Compile Include="ViewModels\EmployeesViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -90,6 +97,10 @@
     <Compile Include="Views\WindowOrders.xaml.cs">
       <DependentUpon>WindowOrders.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\DialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\StyleButtons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Program Files\Git\ISFF\ISFF\ISFF\Views\App.xaml
-81351015128
+9-1831700495
 
-31-1392563508
+36-1518698158
 171041019783
-Styles\StyleButtons.xaml;Styles\StyleOrange.xaml;Styles\StyleTextblocks.xaml;Views\MainWindow.xaml;Views\WindowEmployees.xaml;Views\WindowIngredients.xaml;Views\WindowProducts.xaml;Views\WindowOrders.xaml;
+Views\DialogWindow.xaml;Styles\StyleButtons.xaml;Styles\StyleOrange.xaml;Styles\StyleTextblocks.xaml;Views\MainWindow.xaml;Views\WindowEmployees.xaml;Views\WindowIngredients.xaml;Views\WindowProducts.xaml;Views\WindowOrders.xaml;
 
 False
 

@@ -68,7 +68,7 @@
                         Content="Удалить" Margin="40 5 0 5"/>
             </StackPanel>
             <Button x:Name="buttonBackToMainWindow" Style="{StaticResource SmallButtonStyle}"
-                        Content="Назад" Margin="180 2 180 5"/>
+                        Content="Назад" Margin="170 2 170 5"/>
         </StackPanel>
     </Grid>
 </Window>

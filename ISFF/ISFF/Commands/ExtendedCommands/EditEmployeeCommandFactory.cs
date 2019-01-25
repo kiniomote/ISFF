@@ -8,9 +8,13 @@ namespace ISFF
 {
     public class EditEmployeeCommandFactory : ExtendedRelayCommandFactory
     {
+        public const string TEXT_COMMAND = "Изменить";
+        public const string ALTERNATIVE_TEXT_COMMAND = "Подтвердить";
+        public const string TEXT_DIALOG_WINDOW = "Сохранить изменения?";
+
         public override string TextCommand()
         {
-            return "Изменить";
+            return TEXT_COMMAND;
         }
         public override bool State()
         {
@@ -21,8 +25,8 @@ namespace ISFF
             return param =>
             {
                 KitParametrsEmployees kitParametrs = param as KitParametrsEmployees;
-                if (kitParametrs != null)
-                    kitParametrs.IsReadOnly = false;
+                kitParametrs.IsReadOnly = false;
+                kitParametrs.TextEditButton = ALTERNATIVE_TEXT_COMMAND;
             };
         }
         public override Action<object> AlternativeExecute()
@@ -30,8 +34,16 @@ namespace ISFF
             return param =>
             {
                 KitParametrsEmployees kitParametrs = param as KitParametrsEmployees;
-                if (kitParametrs != null)
-                    kitParametrs.IsReadOnly = false;
+                DialogWindow dialogWindow = new DialogWindow(TEXT_DIALOG_WINDOW);
+                if (dialogWindow.ShowDialog() == true)
+                {
+                    kitParametrs.IsReadOnly = true;
+                    kitParametrs.TextAddButton = TEXT_COMMAND;
+                }
+                else
+                {
+
+                }
             };
         }
         public override Func<object, bool> CanExecute()

@@ -31,3 +31,5 @@ C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\WindowProducts.baml
 C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\WindowOrders.g.cs
 C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\WindowOrders.baml
+C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\DialogWindow.g.cs
+C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\DialogWindow.baml

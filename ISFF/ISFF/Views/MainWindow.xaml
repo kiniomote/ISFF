@@ -58,22 +58,22 @@
             <StackPanel Grid.Column="0">
                 <Button x:Name="buttonEmployees" Style="{StaticResource BigButtonStyle}" Content="Сотрудники" Margin="15 5 15 5"/>
                 <Button x:Name="buttonEmployeesLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
-                <Button x:Name="buttonEmployeesReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="45 5 45 5"/>
+                <Button x:Name="buttonEmployeesReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <Button x:Name="buttonIngredients" Style="{StaticResource BigButtonStyle}" Content="Ингредиенты" Margin="15 5 15 5"/>
                 <Button x:Name="buttonIngredientsLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
-                <Button x:Name="buttonIngredientsReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="45 5 45 5"/>
+                <Button x:Name="buttonIngredientsReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>
             </StackPanel>
             <StackPanel Grid.Column="2">
                 <Button x:Name="buttonProducts" Style="{StaticResource BigButtonStyle}" Content="Товары" Margin="15 5 15 5"/>
                 <Button x:Name="buttonProductsLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
-                <Button x:Name="buttonProductsReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="45 5 45 5"/>
+                <Button x:Name="buttonProductsReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>
             </StackPanel>
             <StackPanel Grid.Column="3">
                 <Button x:Name="buttonOrders" Style="{StaticResource BigButtonStyle}" Content="Заказы" Margin="15 5 15 5"/>
                 <Button x:Name="buttonOrdersLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
-                <Button x:Name="buttonOrdersReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="45 5 45 5"/>
+                <Button x:Name="buttonOrdersReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>
             </StackPanel>
         </Grid>
 

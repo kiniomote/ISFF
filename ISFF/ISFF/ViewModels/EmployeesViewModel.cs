@@ -9,20 +9,31 @@ namespace ISFF
 {
     public class EmployeesViewModel
     {
-        // Construct
+        //_______________________________
+
+        #region Conctruct
+
         public EmployeesViewModel()
         {
             KitParametrsEmployees = new KitParametrsEmployees();
-            EditEmployeeExtendedCommand = new ExtendedRelayCommand(new EditEmployeeCommandFactory());
             AddEmployeeExtendedCommand = new ExtendedRelayCommand(new AddEmployeeCommandFactory());
+            EditEmployeeExtendedCommand = new ExtendedRelayCommand(new EditEmployeeCommandFactory());
             RemoveEmployeeCommand = new CommonRelayCommand(new RemoveEmployeesCommandFactory());
         }
 
-        // Data class
+        #endregion
+
+        //_______________________________
+
+        #region DataClass
+
         public KitParametrsEmployees KitParametrsEmployees { get; set; }
 
-        // Commands
+        #endregion
+
         //_______________________________
+
+        #region Commands
 
         // Command add new employee in 
         public ExtendedRelayCommand AddEmployeeExtendedCommand { get; }
@@ -32,6 +43,8 @@ namespace ISFF
 
         // Command edit employee in Database
         public CommonRelayCommand RemoveEmployeeCommand { get; }
+
+        #endregion
 
         //_______________________________
     }
