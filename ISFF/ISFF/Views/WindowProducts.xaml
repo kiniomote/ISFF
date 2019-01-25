@@ -69,6 +69,18 @@
                             <DataGridTextColumn Binding="{Binding Path=Name}" Width="7*"/>
                             <DataGridTextColumn Binding="{Binding Path=AmountNow}" Width="2*"/>
                         </DataGrid.Columns>
+                        <DataGrid.RowDetailsTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Цена за 1 "/>
+                                    <TextBlock Text="{Binding Path=Quantily}"/>
+                                    <TextBlock Text=" "/>
+                                    <TextBlock Text="{Binding Path=Price}"/>
+                                    <TextBlock Text=". Есть "/>
+                                    <TextBlock Text="{Binding Path=AmountNow}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGrid.RowDetailsTemplate>
                     </DataGrid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button x:Name="buttonAddIngredientProduct" 

@@ -22,6 +22,7 @@ namespace ISFF
         public WindowEmployees()
         {
             InitializeComponent();
+            DataContext = new EmployeesViewModel();
         }
     }
 }
