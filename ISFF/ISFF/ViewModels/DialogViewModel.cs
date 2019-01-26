@@ -24,8 +24,7 @@ namespace ISFF
 
         public DialogViewModel(string text_message)
         {
-            KitParametrs = new KitParametrsDialog(ANSWER_CANCEL, text_message);
-            NoAnswerCommand = new CommonRelayCommand(new NoAnswerCommandFactory());
+            KitParametrs = new KitParametrsDialog(text_message);
         }
 
         #endregion
@@ -35,14 +34,6 @@ namespace ISFF
         #region Data
 
         public KitParametrsDialog KitParametrs { get; set; }
-
-        #endregion
-
-        //_______________________________
-
-        #region Commands
-
-        public CommonRelayCommand NoAnswerCommand { get; set; }
 
         #endregion
 

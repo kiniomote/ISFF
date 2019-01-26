@@ -19,10 +19,25 @@ namespace ISFF
     /// </summary>
     public partial class DialogWindow : Window
     {
+        public int Answer { get; set; }
+
         public DialogWindow(string text_message)
         {
             InitializeComponent();
             DataContext = new DialogViewModel(text_message);
+            Answer = DialogViewModel.ANSWER_CANCEL;
+        }
+
+        private void ButtonNo_Click(object sender, RoutedEventArgs e)
+        {
+            Answer = DialogViewModel.ANSWER_NO;
+            DialogResult = false;
+        }
+
+        private void ButtonYes_Click(object sender, RoutedEventArgs e)
+        {
+            Answer = DialogViewModel.ANSWER_YES;
+            DialogResult = true;
         }
     }
 }

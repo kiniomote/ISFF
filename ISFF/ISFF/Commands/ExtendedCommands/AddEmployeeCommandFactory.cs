@@ -26,7 +26,10 @@ namespace ISFF
             {
                 KitParametrsEmployees kitParametrs = param as KitParametrsEmployees;
                 kitParametrs.IsReadOnly = false;
-                kitParametrs.TextAddButton = ALTERNATIVE_TEXT_COMMAND;
+                kitParametrs.AddEmployeeExtendedCommand.TextCommand = ALTERNATIVE_TEXT_COMMAND;
+                kitParametrs.AddEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_ACCEPT;
+                kitParametrs.Employees.Insert(0, new Employee());
+                kitParametrs.SelectedEmployee = kitParametrs.Employees.First();
             };
         }
         public override Action<object> AlternativeExecute()
@@ -38,12 +41,18 @@ namespace ISFF
                 if(dialogWindow.ShowDialog() == true)
                 {
                     kitParametrs.IsReadOnly = true;
-                    kitParametrs.TextAddButton = TEXT_COMMAND;
-
+                    kitParametrs.AddEmployeeExtendedCommand.TextCommand = TEXT_COMMAND;
+                    kitParametrs.AddEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
                 }
                 else
                 {
-                    
+                    if (dialogWindow.Answer == DialogViewModel.ANSWER_NO)
+                    {
+                        kitParametrs.IsReadOnly = true;
+                        kitParametrs.AddEmployeeExtendedCommand.TextCommand = TEXT_COMMAND;
+                        kitParametrs.AddEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
+                        kitParametrs.Employees.Remove(kitParametrs.SelectedEmployee);
+                    }
                 }
             };
         }

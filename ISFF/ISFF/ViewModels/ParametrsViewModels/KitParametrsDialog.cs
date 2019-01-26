@@ -11,14 +11,12 @@ namespace ISFF
 {
     public class KitParametrsDialog : INotifyPropertyChanged
     {
-        public KitParametrsDialog(int default_answer, string text_message)
+        public KitParametrsDialog(string text_message)
         {
-            answer = default_answer;
             textMessage = text_message;
         }
 
         private string textMessage;
-        private int answer;
 
         public string TextMessage
         {
@@ -27,16 +25,6 @@ namespace ISFF
             {
                 textMessage = value;
                 OnPropertyChanged("TextMessage");
-            }
-        }
-
-        public int Answer
-        {
-            get { return answer; }
-            set
-            {
-                answer = value;
-                OnPropertyChanged("Answer");
             }
         }
 

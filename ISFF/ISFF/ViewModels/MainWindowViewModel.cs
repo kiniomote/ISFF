@@ -11,6 +11,29 @@ namespace ISFF
 {
     public class MainWindowViewModel
     {
+        //_______________________________
 
+        #region Conctruct
+
+        public MainWindowViewModel()
+        {
+            KitParametrsMainWindow = new KitParametrsMainWindow();
+        }
+
+        #endregion
+
+        //_______________________________
+
+        #region DataClass
+
+        public KitParametrsMainWindow KitParametrsMainWindow { get; set; }
+
+        #endregion
+
+        //_______________________________
+
+
+
+        //_______________________________
     }
 }

@@ -13,8 +13,7 @@ namespace ISFF
             return param =>
             {
                 KitParametrsEmployees kitParametrs = param as KitParametrsEmployees;
-                if (kitParametrs != null)
-                    kitParametrs.IsReadOnly = false;
+                kitParametrs.Employees.Remove(kitParametrs.SelectedEmployee);
             };
         }
         public override Func<object, bool> CanExecute()

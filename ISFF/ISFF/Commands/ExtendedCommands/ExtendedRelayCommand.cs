@@ -4,16 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
 
 namespace ISFF
 {
-    public class ExtendedRelayCommand : ICommand
+    public class ExtendedRelayCommand : ICommand, INotifyPropertyChanged
     {
+        #region Constants
+
         public const bool STATE_NORMAL = true;
         public const bool STATE_ACCEPT = false;
 
-        public string TextCommand { get; set; }
-        public bool State { get; set; }
+        #endregion
+
+        private string textCommand;
+        private bool state;
 
         private Action<object> execute_;
         private Action<object> alternativeExecute_;
@@ -30,8 +37,8 @@ namespace ISFF
             execute_ = factory.Execute();
             alternativeExecute_ = factory.AlternativeExecute();
             canExecute_ = factory.CanExecute();
-            State = factory.State();
-            TextCommand = factory.TextCommand();
+            state = factory.State();
+            textCommand = factory.TextCommand();
         }
 
         public bool CanExecute(object parameter)
@@ -41,10 +48,39 @@ namespace ISFF
 
         public void Execute(object parameter)
         {
-            if(State)
+            if(state)
                 execute_(parameter);
             else
                 alternativeExecute_(parameter);
+        }
+
+        //_______________________________
+
+        public string TextCommand
+        {
+            get { return textCommand; }
+            set
+            {
+                textCommand = value;
+                OnPropertyChanged("TextCommand");
+            }
+        }
+        public bool State
+        {
+            get { return state; }
+            set
+            {
+                state = value;
+                OnPropertyChanged("State");
+            }
+        }
+
+        //_______________________________
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

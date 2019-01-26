@@ -24,12 +24,13 @@
         <StackPanel Grid.Row="0">
             <ComboBox x:Name="comboboxSelectedEmployees" Style="{StaticResource ComboboxStyle}"
                       Width="350" Margin="0 10 0 10" Background="White" 
-                      ItemsSource="{Binding KitParametrsEmployees.Employees}" 
-                      SelectedItem="{Binding KitParametrsEmployees.SelectedEmployee}"
+                      DataContext="{Binding KitParametrsEmployees}"
+                      ItemsSource="{Binding Employees}" 
+                      SelectedItem="{Binding SelectedEmployee}"
                       DisplayMemberPath="Fio"/>
             <Button x:Name="buttonChangeEmployees" Style="{StaticResource SmallButtonStyle}"
-                    Content="{Binding KitParametrsEmployees.TextEditButton}" Margin="170 0 170 0"
-                    Command="{Binding EditEmployeeExtendedCommand}" 
+                    Content="{Binding KitParametrsEmployees.EditEmployeeExtendedCommand.TextCommand}" Margin="170 0 170 0"
+                    Command="{Binding KitParametrsEmployees.EditEmployeeExtendedCommand}" 
                     CommandParameter="{Binding KitParametrsEmployees}"/>
         </StackPanel>
 
@@ -54,16 +55,17 @@
             <Image Style="{StaticResource FigureStyle}" Margin="0 10 0 0"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="buttonAdd" Style="{StaticResource SmallButtonStyle}"
-                        Content="{Binding KitParametrsEmployees.TextAddButton}" Margin="0 5 40 5"
-                        Command="{Binding AddEmployeeExtendedCommand}" 
+                        Content="{Binding KitParametrsEmployees.AddEmployeeExtendedCommand.TextCommand}" Margin="0 5 40 5"
+                        Command="{Binding KitParametrsEmployees.AddEmployeeExtendedCommand}" 
                         CommandParameter="{Binding KitParametrsEmployees}"/>
                 <Button x:Name="buttonDelete" Style="{StaticResource SmallButtonStyle}"
                         Content="Удалить" Margin="40 5 0 5"
-                        Command="{Binding RemoveEmployeeCommand}" 
+                        Command="{Binding KitParametrsEmployees.RemoveEmployeeCommand}" 
                         CommandParameter="{Binding KitParametrsEmployees}"/>
             </StackPanel>
             <Button x:Name="buttonBackToMainWindow" Style="{StaticResource SmallButtonStyle}"
-                        Content="Назад" Margin="170 2 170 5"/>
+                    Content="Назад" Margin="170 2 170 5"
+                    IsCancel="True"/>
         </StackPanel>
     </Grid>
 </Window>

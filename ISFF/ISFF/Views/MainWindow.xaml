@@ -48,7 +48,7 @@
             <Image Canvas.Top="108" Canvas.Right="35" Style="{StaticResource FigureStyle}"/>
         </Canvas>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" DataContext="{Binding KitParametrsMainWindow}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -56,28 +56,28 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Button x:Name="buttonEmployees" Style="{StaticResource BigButtonStyle}" Content="Сотрудники" Margin="15 5 15 5"/>
+                <Button Command="{Binding OpenEmployeesWindowCommand}" Style="{StaticResource BigButtonStyle}" Content="Сотрудники" Margin="15 5 15 5"/>
                 <Button x:Name="buttonEmployeesLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
                 <Button x:Name="buttonEmployeesReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <Button x:Name="buttonIngredients" Style="{StaticResource BigButtonStyle}" Content="Ингредиенты" Margin="15 5 15 5"/>
+                <Button Command="{Binding OpenIngredientsWindowCommand}" Style="{StaticResource BigButtonStyle}" Content="Ингредиенты" Margin="15 5 15 5"/>
                 <Button x:Name="buttonIngredientsLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
                 <Button x:Name="buttonIngredientsReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>
             </StackPanel>
             <StackPanel Grid.Column="2">
-                <Button x:Name="buttonProducts" Style="{StaticResource BigButtonStyle}" Content="Товары" Margin="15 5 15 5"/>
+                <Button Command="{Binding OpenProductsWindowCommand}" Style="{StaticResource BigButtonStyle}" Content="Товары" Margin="15 5 15 5"/>
                 <Button x:Name="buttonProductsLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
                 <Button x:Name="buttonProductsReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>
             </StackPanel>
             <StackPanel Grid.Column="3">
-                <Button x:Name="buttonOrders" Style="{StaticResource BigButtonStyle}" Content="Заказы" Margin="15 5 15 5"/>
+                <Button Command="{Binding OpenOrdersWindowCommand}" Style="{StaticResource BigButtonStyle}" Content="Заказы" Margin="15 5 15 5"/>
                 <Button x:Name="buttonOrdersLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
                 <Button x:Name="buttonOrdersReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>
             </StackPanel>
         </Grid>
 
         <Button x:Name="buttonExit" Style="{StaticResource SmallButtonStyle}" Content="Выход"
-                HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
+                HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Click="ButtonExit_Click"/>
     </Grid>
 </Window>

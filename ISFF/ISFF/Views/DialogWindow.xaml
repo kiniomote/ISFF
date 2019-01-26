@@ -27,12 +27,12 @@
                    Grid.ColumnSpan="3"/>
         <Button x:Name="buttonYes" Content="Да"
                 Grid.Row="1" 
-                IsDefault="True"/>
+                IsDefault="True"
+                Click="ButtonYes_Click"/>
         <Button x:Name="buttonNo" Content="Нет"
                 Grid.Row="1" Grid.Column="1"
-                IsCancel="True" 
-                Command="{Binding NoAnswerCommand}"
-                CommandParameter="{Binding KitParametrs}"/>
+                IsCancel="True"
+                Click="ButtonNo_Click"/>
         <Button x:Name="buttonCancel" Content="Отмена"
                 Grid.Row="1" Grid.Column="2"
                 IsCancel="True"/>

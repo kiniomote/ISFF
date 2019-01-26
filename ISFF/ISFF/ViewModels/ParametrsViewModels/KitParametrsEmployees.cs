@@ -24,20 +24,41 @@ namespace ISFF
                 new Employee{ Id=4, Fio="Петров Петя Владимирович", IdNumber=67149, Post="Админ", Salary=40000, Exp=1},
                 new Employee{ Id=5, Fio="Сидоров Сережа Владимирович", IdNumber=99547, Post="Охрана", Salary=15000, Exp=15},
             };
-            textAddButton = AddEmployeeCommandFactory.TEXT_COMMAND;
-            textEditButton = EditEmployeeCommandFactory.TEXT_COMMAND;
+            AddEmployeeExtendedCommand = new ExtendedRelayCommand(new AddEmployeeCommandFactory());
+            EditEmployeeExtendedCommand = new ExtendedRelayCommand(new EditEmployeeCommandFactory());
+            RemoveEmployeeCommand = new CommonRelayCommand(new RemoveEmployeesCommandFactory());
+            selectedEmployee = null;
         }
 
         //_______________________________
 
+        #region DataClass
+
         private bool isReadOnly;
         private Employee selectedEmployee;
         public ObservableCollection<Employee> Employees { get; set; }
-        private string textAddButton { get; set; }
-        private string textEditButton { get; set; }
+
+        #endregion
 
         //_______________________________
 
+        #region Commands
+
+        // Command add new employee in 
+        public ExtendedRelayCommand AddEmployeeExtendedCommand { get; }
+
+        // Command edit employee in Database
+        public ExtendedRelayCommand EditEmployeeExtendedCommand { get; }
+
+        // Command remove employee from Database
+        public CommonRelayCommand RemoveEmployeeCommand { get; }
+
+        #endregion
+
+        //_______________________________
+
+        #region Propertyes
+            
         public bool IsReadOnly
         {
             get { return isReadOnly; }
@@ -58,25 +79,7 @@ namespace ISFF
             }
         }
 
-        public string TextAddButton
-        {
-            get { return textAddButton; }
-            set
-            {
-                textAddButton = value;
-                OnPropertyChanged("TextAddButton");
-            }
-        }
-
-        public string TextEditButton
-        {
-            get { return textEditButton; }
-            set
-            {
-                textEditButton = value;
-                OnPropertyChanged("TextEditButton");
-            }
-        }
+        #endregion
 
         //_______________________________
 
