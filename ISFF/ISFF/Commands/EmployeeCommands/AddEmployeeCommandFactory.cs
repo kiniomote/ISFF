@@ -30,6 +30,8 @@ namespace ISFF
                 kitParametrs.AddEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_ACCEPT;
                 kitParametrs.Employees.Insert(0, new Employee());
                 kitParametrs.SelectedEmployee = kitParametrs.Employees.First();
+                kitParametrs.IsEnableCollection = false;
+                kitParametrs.IsBusy = true;
             };
         }
         public override Action<object> AlternativeExecute()
@@ -41,6 +43,8 @@ namespace ISFF
                 if(dialogWindow.ShowDialog() == true)
                 {
                     kitParametrs.IsReadOnly = true;
+                    kitParametrs.IsEnableCollection = true;
+                    kitParametrs.IsBusy = false;
                     kitParametrs.AddEmployeeExtendedCommand.TextCommand = TEXT_COMMAND;
                     kitParametrs.AddEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
                 }
@@ -49,6 +53,8 @@ namespace ISFF
                     if (dialogWindow.Answer == DialogViewModel.ANSWER_NO)
                     {
                         kitParametrs.IsReadOnly = true;
+                        kitParametrs.IsEnableCollection = true;
+                        kitParametrs.IsBusy = false;
                         kitParametrs.AddEmployeeExtendedCommand.TextCommand = TEXT_COMMAND;
                         kitParametrs.AddEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
                         kitParametrs.Employees.Remove(kitParametrs.SelectedEmployee);
@@ -58,7 +64,17 @@ namespace ISFF
         }
         public override Func<object, bool> CanExecute()
         {
-            return null;
+            return param =>
+            {
+                bool enable = true;
+                if (param is KitParametrsEmployees kitParametrs)
+                {
+                    if (kitParametrs.IsBusy && kitParametrs.AddEmployeeExtendedCommand.State != ExtendedRelayCommand.STATE_ACCEPT)
+                        enable = false;
+                }
+
+                return enable;
+            };
         }
     }
 }

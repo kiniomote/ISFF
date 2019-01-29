@@ -22,6 +22,7 @@ namespace ISFF
         public WindowProducts()
         {
             InitializeComponent();
+            DataContext = new ProductsViewModel();
         }
     }
 }

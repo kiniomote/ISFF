@@ -27,7 +27,8 @@
                       DataContext="{Binding KitParametrsEmployees}"
                       ItemsSource="{Binding Employees}" 
                       SelectedItem="{Binding SelectedEmployee}"
-                      DisplayMemberPath="Fio"/>
+                      DisplayMemberPath="Fio"
+                      IsEnabled="{Binding IsEnableCollection}" />
             <Button x:Name="buttonChangeEmployees" Style="{StaticResource SmallButtonStyle}"
                     Content="{Binding KitParametrsEmployees.EditEmployeeExtendedCommand.TextCommand}" Margin="170 0 170 0"
                     Command="{Binding KitParametrsEmployees.EditEmployeeExtendedCommand}" 

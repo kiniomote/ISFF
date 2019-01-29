@@ -17,7 +17,7 @@ namespace ISFF
         {
             IsReadOnly = true;
             OpenEmployeesWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_EMPLOYEES));
-            OpenIngredientsWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_INGREDIENTs));
+            OpenIngredientsWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_INGREDIENTS));
             OpenProductsWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_PRODUCTS));
             OpenOrdersWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_ORDERS));
             selectedEmployee = null;

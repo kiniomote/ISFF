@@ -63,13 +63,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\ExtendedCommands\AddEmployeeCommandFactory.cs" />
-    <Compile Include="Commands\ExtendedCommands\ExtendedRelayCommand.cs" />
-    <Compile Include="Commands\ExtendedCommands\ExtendedRelayCommandFactory.cs" />
-    <Compile Include="Commands\ExtendedCommands\EditEmployeeCommandFactory.cs" />
-    <Compile Include="Commands\CommonCommands\CommonRelayCommandFactory.cs" />
-    <Compile Include="Commands\CommonCommands\RemoveEmployeesCommandFactory.cs" />
-    <Compile Include="Commands\CommonCommands\OpenWindowCommandFactory.cs" />
+    <Compile Include="Commands\IngredientCommands\AddIngredientCommandFactory.cs" />
+    <Compile Include="Commands\EmployeeCommands\AddEmployeeCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\AddProductCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\EditProductCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\RemoveProductCommandFactory.cs" />
+    <Compile Include="Commands\TypeCommand\ExtendedRelayCommandFactory.cs" />
+    <Compile Include="Commands\EmployeeCommands\EditEmployeeCommandFactory.cs" />
+    <Compile Include="Commands\TypeCommand\CommonRelayCommandFactory.cs" />
+    <Compile Include="Commands\EmployeeCommands\RemoveEmployeeCommandFactory.cs" />
+    <Compile Include="Commands\MainWindowCommands\OpenWindowCommandFactory.cs" />
+    <Compile Include="Commands\TypeCommand\CommonRelayCommand.cs" />
+    <Compile Include="Commands\TypeCommand\ExtendedRelayCommand.cs" />
+    <Compile Include="Commands\IngredientCommands\EditIngredientCommandFactory.cs" />
+    <Compile Include="Commands\IngredientCommands\RemoveIngredientCommandFactory.cs" />
+    <Compile Include="ViewModels\ParametrsViewModels\KitParametrsProducts.cs" />
+    <Compile Include="ViewModels\ProductsViewModel.cs" />
+    <Compile Include="ViewModels\ParametrsViewModels\KitParametrsIngredients.cs" />
+    <Compile Include="ViewModels\IngredientsViewModel.cs" />
     <Compile Include="ViewModels\ParametrsViewModels\KitParametrsMainWindow.cs" />
     <Compile Include="ViewModels\ParametrsViewModels\KitParametrsDialog.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
@@ -81,7 +92,6 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Models\DoseProduct.cs" />
     <Compile Include="Models\DoseIngredient.cs" />
-    <Compile Include="Commands\CommonCommands\CommonRelayCommand.cs" />
     <Compile Include="Service\StaticControlDbService.cs" />
     <Compile Include="Service\StaticJsonLogService.cs" />
     <Compile Include="Service\StaticShowInfoService.cs" />

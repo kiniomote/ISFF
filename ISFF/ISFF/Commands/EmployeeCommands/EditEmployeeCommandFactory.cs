@@ -28,6 +28,8 @@ namespace ISFF
                 kitParametrs.IsReadOnly = false;
                 kitParametrs.EditEmployeeExtendedCommand.TextCommand = ALTERNATIVE_TEXT_COMMAND;
                 kitParametrs.EditEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_ACCEPT;
+                kitParametrs.IsEnableCollection = false;
+                kitParametrs.IsBusy = true;
             };
         }
         public override Action<object> AlternativeExecute()
@@ -41,6 +43,8 @@ namespace ISFF
                     kitParametrs.IsReadOnly = true;
                     kitParametrs.EditEmployeeExtendedCommand.TextCommand = TEXT_COMMAND;
                     kitParametrs.EditEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
+                    kitParametrs.IsEnableCollection = true;
+                    kitParametrs.IsBusy = false;
                 }
                 else
                 {
@@ -49,13 +53,26 @@ namespace ISFF
                         kitParametrs.IsReadOnly = true;
                         kitParametrs.EditEmployeeExtendedCommand.TextCommand = TEXT_COMMAND;
                         kitParametrs.EditEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
+                        kitParametrs.IsEnableCollection = true;
+                        kitParametrs.IsBusy = false;
                     }
                 }
             };
         }
         public override Func<object, bool> CanExecute()
         {
-            return null;
+            return param =>
+            {
+                bool enable = true;
+                if (param is KitParametrsEmployees kitParametrs && kitParametrs.SelectedEmployee != null)
+                {
+                    if (kitParametrs.IsBusy && kitParametrs.EditEmployeeExtendedCommand.State != ExtendedRelayCommand.STATE_ACCEPT)
+                        enable = false;
+                }
+                else
+                    enable = false;
+                return enable;
+            };
         }
     }
 }

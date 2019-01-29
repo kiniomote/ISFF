@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ISFF
 {
-    public class RemoveEmployeesCommandFactory : CommonRelayCommandFactory
+    public class RemoveEmployeeCommandFactory : CommonRelayCommandFactory
     {
         public override Action<object> Execute()
         {
@@ -18,7 +18,18 @@ namespace ISFF
         }
         public override Func<object, bool> CanExecute()
         {
-            return null;
+            return param =>
+            {
+                bool enable = true;
+                if (param is KitParametrsEmployees kitParametrs && kitParametrs.SelectedEmployee != null)
+                {
+                    if (kitParametrs.IsBusy)
+                        enable = false;
+                }
+                else
+                    enable = false;
+                return enable;
+            };
         }
     }
 }

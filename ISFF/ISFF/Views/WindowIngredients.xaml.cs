@@ -22,6 +22,7 @@ namespace ISFF
         public WindowIngredients()
         {
             InitializeComponent();
+            DataContext = new IngredientsViewModel();
         }
     }
 }

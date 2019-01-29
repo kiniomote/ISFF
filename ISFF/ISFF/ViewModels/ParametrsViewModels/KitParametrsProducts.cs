@@ -9,27 +9,27 @@ using System.Collections.ObjectModel;
 
 namespace ISFF
 {
-    public class KitParametrsEmployees : INotifyPropertyChanged
+    public class KitParametrsProducts : INotifyPropertyChanged
     {
         //_______________________________
 
-        public KitParametrsEmployees()
+        public KitParametrsProducts()
         {
             IsReadOnly = true;
             IsEnableCollection = true;
             IsBusy = false;
-            Employees = new ObservableCollection<Employee>
+            Products = new ObservableCollection<Product>
             {
-                new Employee{ Id=1, Fio="Попадин Дмитрий Владимирович", IdNumber=156712, Post="Директор", Salary=60000, Exp=7},
-                new Employee{ Id=2, Fio="Василич Вася Владимирович", IdNumber=24497, Post="Повар", Salary=20000, Exp=2},
-                new Employee{ Id=3, Fio="Иваныч Иван Владимирович", IdNumber=74942, Post="Повар", Salary=20000, Exp=5},
-                new Employee{ Id=4, Fio="Петров Петя Владимирович", IdNumber=67149, Post="Админ", Salary=40000, Exp=1},
-                new Employee{ Id=5, Fio="Сидоров Сережа Владимирович", IdNumber=99547, Post="Охрана", Salary=15000, Exp=15},
+                new Product{ Id=1, Name="Картофель фри", TimeCook=180, Price=60, Weight=80},
+                new Product{ Id=2, Name="Гамбургер", TimeCook=180, Price=90, Weight=120},
+                new Product{ Id=3, Name="Кола 50 мл", TimeCook=20, Price=50, Weight=200},
+                new Product{ Id=4, Name="Рожок 60 гр", TimeCook=15, Price=60, Weight=35},
+                new Product{ Id=5, Name="Пирожок", TimeCook=0, Price=40, Weight=25},
             };
-            AddEmployeeExtendedCommand = new ExtendedRelayCommand(new AddEmployeeCommandFactory());
-            EditEmployeeExtendedCommand = new ExtendedRelayCommand(new EditEmployeeCommandFactory());
-            RemoveEmployeeCommand = new CommonRelayCommand(new RemoveEmployeeCommandFactory());
-            selectedEmployee = null;
+            AddProductExtendedCommand = new ExtendedRelayCommand(new AddProductCommandFactory());
+            EditProductExtendedCommand = new ExtendedRelayCommand(new EditProductCommandFactory());
+            RemoveProductCommand = new CommonRelayCommand(new RemoveProductCommandFactory());
+            SelectedProduct = null;
         }
 
         //_______________________________
@@ -39,8 +39,8 @@ namespace ISFF
         private bool isReadOnly;
         private bool isEnableCollection;
         private bool isBusy;
-        private Employee selectedEmployee;
-        public ObservableCollection<Employee> Employees { get; set; }
+        private Product selectedProduct;
+        public ObservableCollection<Product> Products { get; set; }
 
         #endregion
 
@@ -49,20 +49,20 @@ namespace ISFF
         #region Commands
 
         // Command add new employee in 
-        public ExtendedRelayCommand AddEmployeeExtendedCommand { get; }
+        public ExtendedRelayCommand AddProductExtendedCommand { get; }
 
         // Command edit employee in Database
-        public ExtendedRelayCommand EditEmployeeExtendedCommand { get; }
+        public ExtendedRelayCommand EditProductExtendedCommand { get; }
 
         // Command remove employee from Database
-        public CommonRelayCommand RemoveEmployeeCommand { get; }
+        public CommonRelayCommand RemoveProductCommand { get; }
 
         #endregion
 
         //_______________________________
 
         #region Propertyes
-            
+
         public bool IsReadOnly
         {
             get { return isReadOnly; }
@@ -93,13 +93,13 @@ namespace ISFF
             }
         }
 
-        public Employee SelectedEmployee
+        public Product SelectedProduct
         {
-            get { return selectedEmployee; }
+            get { return selectedProduct; }
             set
             {
-                selectedEmployee = value;
-                OnPropertyChanged("SelectedEmployee");
+                selectedProduct = value;
+                OnPropertyChanged("SelectedProduct");
             }
         }
 

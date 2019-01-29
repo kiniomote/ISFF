@@ -9,7 +9,7 @@
         Style="{StaticResource WindowStyle}" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="TextBox" BasedOn="{StaticResource TextboxStyle}">
-            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="IsReadOnly" Value="{Binding IsReadOnly}"/>
             <Setter Property="Margin" Value="0 7 2 7"/>
         </Style>
         <Style TargetType="TextBlock" BasedOn="{StaticResource TextblockStyle}">
@@ -27,9 +27,16 @@
         <!-- Верхняя часть-->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
             <ComboBox x:Name="comboboxSelectedEmployees" Style="{StaticResource ComboboxStyle}"
-                      Width="350" Margin="0 10 0 10" Background="White"/>
-            <Button x:Name="buttonChangeEmployees" Style="{StaticResource SmallButtonStyle}"
-                    Content="Изменить" Margin="50 5 0 5"/>
+                      Width="350" Margin="0 10 0 10" Background="White"
+                      DataContext="{Binding KitParametrsProducts}"
+                      ItemsSource="{Binding Products}" 
+                      SelectedItem="{Binding SelectedProduct}"
+                      DisplayMemberPath="Name"
+                      IsEnabled="{Binding IsEnableCollection}" />
+            <Button x:Name="buttonChangeEmployees" Style="{StaticResource SmallButtonStyle}" Margin="50 5 0 5"
+                    Content="{Binding KitParametrsProducts.EditProductExtendedCommand.TextCommand}" 
+                    Command="{Binding KitParametrsProducts.EditProductExtendedCommand}" 
+                    CommandParameter="{Binding KitParametrsProducts}"/>
         </StackPanel>
         
         <!-- Центральная часть-->
@@ -96,9 +103,9 @@
                 </StackPanel>
 
                 <!-- Информация о продукте-->
-                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" DataContext="{Binding KitParametrsProducts}">
                     <TextBlock Text="Название" HorizontalAlignment="Center" Margin="0"/>
-                    <TextBox Width="255"/>
+                    <TextBox Width="255" Text="{Binding SelectedProduct.Name}"/>
                     <Grid Width="262">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="6*"/>
@@ -112,11 +119,11 @@
                             <TextBlock Text="Вес ингредиентов"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" HorizontalAlignment="Right">
-                            <TextBox Width="80"/>
-                            <TextBox Width="80"/>
-                            <TextBox Width="80"/>
-                            <TextBox Width="80"/>
-                            <TextBox Width="80"/>
+                            <TextBox Width="80" Text="{Binding SelectedProduct.TimeCook}"/>
+                            <TextBox Width="80" Text="{Binding SelectedProduct.Price}"/>
+                            <TextBox Width="80" Text="{Binding SelectedProduct.Price}"/>
+                            <TextBox Width="80" Text="{Binding SelectedProduct.Weight}"/>
+                            <TextBox Width="80" Text="{Binding SelectedProduct.Weight}"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -134,13 +141,18 @@
         <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
             <Image Style="{StaticResource FigureStyle}" Margin="0 10 0 0"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="buttonAdd" Style="{StaticResource SmallButtonStyle}"
-                        Content="Добавить" Margin="0 5 40 5"/>
+                <Button x:Name="buttonAdd" Style="{StaticResource SmallButtonStyle}" Margin="0 5 40 5" 
+                        Content="{Binding KitParametrsProducts.AddProductExtendedCommand.TextCommand}"
+                        Command="{Binding KitParametrsProducts.AddProductExtendedCommand}"
+                        CommandParameter="{Binding KitParametrsProducts}"/>
                 <Button x:Name="buttonDelete" Style="{StaticResource SmallButtonStyle}"
-                        Content="Удалить" Margin="40 5 0 5"/>
+                        Content="Удалить" Margin="40 5 0 5"
+                        Command="{Binding KitParametrsProducts.RemoveProductCommand}"
+                        CommandParameter="{Binding KitParametrsProducts}"/>
             </StackPanel>
             <Button x:Name="buttonBackToMainWindow" Style="{StaticResource SmallButtonStyle}"
-                        Content="Назад" Margin="180 2 180 5"/>
+                    Content="Назад" Margin="180 2 180 5"
+                    IsCancel="True"/>
         </StackPanel>
     </Grid>
 </Window>

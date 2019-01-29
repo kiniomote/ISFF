@@ -13,7 +13,7 @@ namespace ISFF
         #region Windows for open
 
         public const int WINDOW_EMPLOYEES = 0;
-        public const int WINDOW_INGREDIENTs = 1;
+        public const int WINDOW_INGREDIENTS = 1;
         public const int WINDOW_PRODUCTS = 2;
         public const int WINDOW_ORDERS = 3;
 
@@ -37,7 +37,7 @@ namespace ISFF
                     case WINDOW_EMPLOYEES:
                         window = new WindowEmployees();
                         break;
-                    case WINDOW_INGREDIENTs:
+                    case WINDOW_INGREDIENTS:
                         window = new WindowIngredients();
                         break;
                     case WINDOW_PRODUCTS:

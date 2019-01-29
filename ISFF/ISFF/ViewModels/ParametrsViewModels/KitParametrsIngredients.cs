@@ -9,27 +9,27 @@ using System.Collections.ObjectModel;
 
 namespace ISFF
 {
-    public class KitParametrsEmployees : INotifyPropertyChanged
+    public class KitParametrsIngredients : INotifyPropertyChanged
     {
         //_______________________________
 
-        public KitParametrsEmployees()
+        public KitParametrsIngredients()
         {
             IsReadOnly = true;
             IsEnableCollection = true;
             IsBusy = false;
-            Employees = new ObservableCollection<Employee>
+            Ingredients = new ObservableCollection<Ingredient>
             {
-                new Employee{ Id=1, Fio="Попадин Дмитрий Владимирович", IdNumber=156712, Post="Директор", Salary=60000, Exp=7},
-                new Employee{ Id=2, Fio="Василич Вася Владимирович", IdNumber=24497, Post="Повар", Salary=20000, Exp=2},
-                new Employee{ Id=3, Fio="Иваныч Иван Владимирович", IdNumber=74942, Post="Повар", Salary=20000, Exp=5},
-                new Employee{ Id=4, Fio="Петров Петя Владимирович", IdNumber=67149, Post="Админ", Salary=40000, Exp=1},
-                new Employee{ Id=5, Fio="Сидоров Сережа Владимирович", IdNumber=99547, Post="Охрана", Salary=15000, Exp=15},
+                new Ingredient{ Id=1, Name="Огурец солёный", AmountNow=156, AmountUsed=50, Quantily="кг.", Weight=1000, Price=130},
+                new Ingredient{ Id=2, Name="Помидор свежий", AmountNow=96, AmountUsed=37, Quantily="кг.", Weight=1000, Price=200},
+                new Ingredient{ Id=3, Name="Булка белая", AmountNow=50, AmountUsed=18, Quantily="шт.", Weight=50, Price=10},
+                new Ingredient{ Id=4, Name="Котлета", AmountNow=33, AmountUsed=22, Quantily="шт.", Weight=80, Price=30},
+                new Ingredient{ Id=5, Name="Кетчуп Чумак", AmountNow=260, AmountUsed=18, Quantily="кг.", Weight=1000, Price=142},
             };
-            AddEmployeeExtendedCommand = new ExtendedRelayCommand(new AddEmployeeCommandFactory());
-            EditEmployeeExtendedCommand = new ExtendedRelayCommand(new EditEmployeeCommandFactory());
-            RemoveEmployeeCommand = new CommonRelayCommand(new RemoveEmployeeCommandFactory());
-            selectedEmployee = null;
+            AddIngredientExtendedCommand = new ExtendedRelayCommand(new AddIngredientCommandFactory());
+            EditIngredientExtendedCommand = new ExtendedRelayCommand(new EditIngredientCommandFactory());
+            RemoveIngredientCommand = new CommonRelayCommand(new RemoveIngredientCommandFactory());
+            SelectedIngredient = null;
         }
 
         //_______________________________
@@ -39,8 +39,8 @@ namespace ISFF
         private bool isReadOnly;
         private bool isEnableCollection;
         private bool isBusy;
-        private Employee selectedEmployee;
-        public ObservableCollection<Employee> Employees { get; set; }
+        private Ingredient selectedIngredient;
+        public ObservableCollection<Ingredient> Ingredients { get; set; }
 
         #endregion
 
@@ -49,20 +49,20 @@ namespace ISFF
         #region Commands
 
         // Command add new employee in 
-        public ExtendedRelayCommand AddEmployeeExtendedCommand { get; }
+        public ExtendedRelayCommand AddIngredientExtendedCommand { get; }
 
         // Command edit employee in Database
-        public ExtendedRelayCommand EditEmployeeExtendedCommand { get; }
+        public ExtendedRelayCommand EditIngredientExtendedCommand { get; }
 
         // Command remove employee from Database
-        public CommonRelayCommand RemoveEmployeeCommand { get; }
+        public CommonRelayCommand RemoveIngredientCommand { get; }
 
         #endregion
 
         //_______________________________
 
         #region Propertyes
-            
+
         public bool IsReadOnly
         {
             get { return isReadOnly; }
@@ -93,13 +93,13 @@ namespace ISFF
             }
         }
 
-        public Employee SelectedEmployee
+        public Ingredient SelectedIngredient
         {
-            get { return selectedEmployee; }
+            get { return selectedIngredient; }
             set
             {
-                selectedEmployee = value;
-                OnPropertyChanged("SelectedEmployee");
+                selectedIngredient = value;
+                OnPropertyChanged("SelectedIngredient");
             }
         }
 
