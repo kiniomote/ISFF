@@ -63,6 +63,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ProductCommands\AddDoseIngredientCommandFactory.cs" />
     <Compile Include="Commands\IngredientCommands\AddIngredientCommandFactory.cs" />
     <Compile Include="Commands\EmployeeCommands\AddEmployeeCommandFactory.cs" />
     <Compile Include="Commands\ProductCommands\AddProductCommandFactory.cs" />
@@ -77,6 +78,8 @@
     <Compile Include="Commands\TypeCommand\ExtendedRelayCommand.cs" />
     <Compile Include="Commands\IngredientCommands\EditIngredientCommandFactory.cs" />
     <Compile Include="Commands\IngredientCommands\RemoveIngredientCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\RemoveDoseIngredientCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\EditDoseIngredientCommandFactory.cs" />
     <Compile Include="ViewModels\ParametrsViewModels\KitParametrsProducts.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
     <Compile Include="ViewModels\ParametrsViewModels\KitParametrsIngredients.cs" />

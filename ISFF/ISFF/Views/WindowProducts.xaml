@@ -52,6 +52,8 @@
                 <StackPanel Grid.Column="0" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource TextblockStyle}" Text="Ингредиенты"/>
                     <DataGrid x:Name="datagridIngredients" Style="{StaticResource DataGridStyle}"
+                              DataContext="{Binding KitParametrsProducts}"
+                              SelectedItem="{Binding SelectedDoseIngredient}"
                               Height="208">
                         <DataGrid.Items>
                             <local:Ingredient Name="Огурец" AmountNow="25"/>
@@ -92,13 +94,19 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button x:Name="buttonAddIngredientProduct" 
                                 Style="{StaticResource VerySmallButtonStyle}" 
-                                Content="+"/>
+                                Content="+"
+                                Command="{Binding KitParametrsProducts.AddDoseIngredientCommand}"
+                                CommandParameter="{Binding KitParametrsProducts}"/>
                         <Button x:Name="buttonChangeIngredientProduct"
                                 Style="{StaticResource SmallButtonStyle}"
-                                Content="Изменить" Margin="5 0 5 0"/>
+                                Content="Изменить" Margin="5 0 5 0"
+                                Command="{Binding KitParametrsProducts.EditDoseIngredientCommand}"
+                                CommandParameter="{Binding KitParametrsProducts}"/>
                         <Button x:Name="buttonDeleteIngredientProduct" 
                                 Style="{StaticResource VerySmallButtonStyle}" 
-                                Content="-"/>
+                                Content="-"
+                                Command="{Binding KitParametrsProducts.RemoveDoseIngredientCommand}"
+                                CommandParameter="{Binding KitParametrsProducts}"/>
                     </StackPanel>
                 </StackPanel>
 

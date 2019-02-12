@@ -29,7 +29,11 @@ namespace ISFF
             AddProductExtendedCommand = new ExtendedRelayCommand(new AddProductCommandFactory());
             EditProductExtendedCommand = new ExtendedRelayCommand(new EditProductCommandFactory());
             RemoveProductCommand = new CommonRelayCommand(new RemoveProductCommandFactory());
+            AddDoseIngredientCommand = new CommonRelayCommand(new AddDoseIngredientCommandFactory());
+            EditDoseIngredientCommand = new CommonRelayCommand(new EditDoseIngredientCommandFactory());
+            RemoveDoseIngredientCommand = new CommonRelayCommand(new RemoveDoseIngredientCommandFactory());
             SelectedProduct = null;
+            SelectedDoseIngredient = null;
         }
 
         //_______________________________
@@ -40,6 +44,7 @@ namespace ISFF
         private bool isEnableCollection;
         private bool isBusy;
         private Product selectedProduct;
+        private DoseIngredient selectedDoseIngredient;
         public ObservableCollection<Product> Products { get; set; }
 
         #endregion
@@ -47,8 +52,8 @@ namespace ISFF
         //_______________________________
 
         #region Commands
-
-        // Command add new employee in 
+        
+        // Command add new employee in Database
         public ExtendedRelayCommand AddProductExtendedCommand { get; }
 
         // Command edit employee in Database
@@ -57,6 +62,15 @@ namespace ISFF
         // Command remove employee from Database
         public CommonRelayCommand RemoveProductCommand { get; }
 
+        // Command add dose ingredient in product
+        public CommonRelayCommand AddDoseIngredientCommand { get; }
+
+        // Command edit dose ingredient in product
+        public CommonRelayCommand EditDoseIngredientCommand { get; }
+
+        // Command remove dose ingredient in product
+        public CommonRelayCommand RemoveDoseIngredientCommand { get; }
+        
         #endregion
 
         //_______________________________
@@ -100,6 +114,16 @@ namespace ISFF
             {
                 selectedProduct = value;
                 OnPropertyChanged("SelectedProduct");
+            }
+        }
+
+        public DoseIngredient SelectedDoseIngredient
+        {
+            get { return selectedDoseIngredient; }
+            set
+            {
+                selectedDoseIngredient = value;
+                OnPropertyChanged("SelectedDoseIngredient");
             }
         }
 
