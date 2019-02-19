@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Data.Entity;
 using System.Collections.ObjectModel;
 
 namespace ISFF
@@ -18,29 +19,40 @@ namespace ISFF
             IsReadOnly = true;
             IsEnableCollection = true;
             IsBusy = false;
-            Employees = new ObservableCollection<Employee>
+            db = new ConnectionDB();
+            db.Employees.Load();
+            Employees = new ObservableCollection<Employee>();
+            foreach(Employee employee in db.Employees)
             {
-                new Employee{ Id=1, Fio="Попадин Дмитрий Владимирович", IdNumber=156712, Post="Директор", Salary=60000, Exp=7},
-                new Employee{ Id=2, Fio="Василич Вася Владимирович", IdNumber=24497, Post="Повар", Salary=20000, Exp=2},
-                new Employee{ Id=3, Fio="Иваныч Иван Владимирович", IdNumber=74942, Post="Повар", Salary=20000, Exp=5},
-                new Employee{ Id=4, Fio="Петров Петя Владимирович", IdNumber=67149, Post="Админ", Salary=40000, Exp=1},
-                new Employee{ Id=5, Fio="Сидоров Сережа Владимирович", IdNumber=99547, Post="Охрана", Salary=15000, Exp=15},
-            };
+                Employees.Add(employee);
+            }
+            //Employees = new ObservableCollection<Employee>
+            //{
+            //    new Employee{ Id=1, Fio="Попадин Дмитрий Владимирович", IdNumber=156712, Post="Директор", Salary=60000, Exp=7},
+            //    new Employee{ Id=2, Fio="Василич Вася Владимирович", IdNumber=24497, Post="Повар", Salary=20000, Exp=2},
+            //    new Employee{ Id=3, Fio="Иваныч Иван Владимирович", IdNumber=74942, Post="Повар", Salary=20000, Exp=5},
+            //    new Employee{ Id=4, Fio="Петров Петя Владимирович", IdNumber=67149, Post="Админ", Salary=40000, Exp=1},
+            //    new Employee{ Id=5, Fio="Сидоров Сережа Владимирович", IdNumber=99547, Post="Охрана", Salary=15000, Exp=15},
+            //};
             AddEmployeeExtendedCommand = new ExtendedRelayCommand(new AddEmployeeCommandFactory());
             EditEmployeeExtendedCommand = new ExtendedRelayCommand(new EditEmployeeCommandFactory());
             RemoveEmployeeCommand = new CommonRelayCommand(new RemoveEmployeeCommandFactory());
             selectedEmployee = null;
+            ReservedCopySelectedEmployee = null;
         }
 
         //_______________________________
 
         #region DataClass
 
+        public ConnectionDB db;
+        
         private bool isReadOnly;
         private bool isEnableCollection;
         private bool isBusy;
         private Employee selectedEmployee;
         public ObservableCollection<Employee> Employees { get; set; }
+        public Employee ReservedCopySelectedEmployee { get; set; }
 
         #endregion
 

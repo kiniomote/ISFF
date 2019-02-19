@@ -47,6 +47,8 @@ namespace ISFF
                     kitParametrs.IsBusy = false;
                     kitParametrs.AddEmployeeExtendedCommand.TextCommand = TEXT_COMMAND;
                     kitParametrs.AddEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
+                    kitParametrs.db.Employees.Add(kitParametrs.SelectedEmployee);
+                    kitParametrs.db.SaveChanges();
                 }
                 else
                 {
@@ -60,6 +62,7 @@ namespace ISFF
                         kitParametrs.Employees.Remove(kitParametrs.SelectedEmployee);
                     }
                 }
+                
             };
         }
         public override Func<object, bool> CanExecute()

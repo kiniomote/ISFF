@@ -30,6 +30,7 @@ namespace ISFF
                 kitParametrs.EditEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_ACCEPT;
                 kitParametrs.IsEnableCollection = false;
                 kitParametrs.IsBusy = true;
+                kitParametrs.ReservedCopySelectedEmployee = Employee.Copy(kitParametrs.SelectedEmployee);
             };
         }
         public override Action<object> AlternativeExecute()
@@ -45,6 +46,9 @@ namespace ISFF
                     kitParametrs.EditEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
                     kitParametrs.IsEnableCollection = true;
                     kitParametrs.IsBusy = false;
+                    Employee editEmployee = kitParametrs.db.Employees.SingleOrDefault(c => c.Id == kitParametrs.SelectedEmployee.Id);
+                    editEmployee = kitParametrs.SelectedEmployee;
+                    kitParametrs.db.SaveChanges();
                 }
                 else
                 {
@@ -55,6 +59,8 @@ namespace ISFF
                         kitParametrs.EditEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
                         kitParametrs.IsEnableCollection = true;
                         kitParametrs.IsBusy = false;
+                        Employee.CopyProperties(kitParametrs.SelectedEmployee, kitParametrs.ReservedCopySelectedEmployee);
+                        kitParametrs.SelectedEmployee = Employee.Copy(kitParametrs.ReservedCopySelectedEmployee);
                     }
                 }
             };
