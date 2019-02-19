@@ -25,5 +25,33 @@ namespace ISFF
 		{
             DoseIngredients = new List<DoseIngredient>();
 		}
-	}
+
+        public static Ingredient Copy(Ingredient ingredient_copy)
+        {
+            Ingredient ingredient = new Ingredient
+            {
+                Id = ingredient_copy.Id,
+                Name = ingredient_copy.Name,
+                AmountNow = ingredient_copy.AmountNow,
+                Weight = ingredient_copy.Weight,
+                AmountUsed = ingredient_copy.AmountUsed,
+                Quantily = ingredient_copy.Quantily,
+                Demand = ingredient_copy.Demand,
+                Price = ingredient_copy.Price
+            };
+            return ingredient;
+        }
+
+        public static void CopyProperties(Ingredient ingredient, Ingredient ingredient_copy)
+        {
+            ingredient.Id = ingredient_copy.Id;
+            ingredient.Name = ingredient_copy.Name;
+            ingredient.AmountNow = ingredient_copy.AmountNow;
+            ingredient.Weight = ingredient_copy.Weight;
+            ingredient.AmountUsed = ingredient_copy.AmountUsed;
+            ingredient.Quantily = ingredient_copy.Quantily;
+            ingredient.Demand = ingredient_copy.Demand;
+            ingredient.Price = ingredient_copy.Price;
+        }
+    }
 }

@@ -97,7 +97,6 @@
     <Compile Include="Models\DoseIngredient.cs" />
     <Compile Include="Service\StaticControlDbService.cs" />
     <Compile Include="Service\StaticJsonLogService.cs" />
-    <Compile Include="Service\StaticShowInfoService.cs" />
     <Compile Include="Views\WindowEmployees.xaml.cs">
       <DependentUpon>WindowEmployees.xaml</DependentUpon>
     </Compile>
@@ -137,7 +136,6 @@
     <Compile Include="Models\ConnectionDB.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Ingredient.cs" />
-    <Compile Include="Interfaces\IOperations.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -160,7 +158,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Service\ObjectOperations.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -192,7 +189,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Commands\OrderCommands\" />
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Figure.png" />
   </ItemGroup>

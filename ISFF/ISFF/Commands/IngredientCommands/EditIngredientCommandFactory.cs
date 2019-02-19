@@ -30,6 +30,7 @@ namespace ISFF
                 kitParametrs.EditIngredientExtendedCommand.State = ExtendedRelayCommand.STATE_ACCEPT;
                 kitParametrs.IsEnableCollection = false;
                 kitParametrs.IsBusy = true;
+                kitParametrs.ReservedCopySelectedIngredient = Ingredient.Copy(kitParametrs.SelectedIngredient);
             };
         }
         public override Action<object> AlternativeExecute()
@@ -45,6 +46,9 @@ namespace ISFF
                     kitParametrs.EditIngredientExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
                     kitParametrs.IsEnableCollection = true;
                     kitParametrs.IsBusy = false;
+                    Ingredient editIngredient = kitParametrs.db.Ingredients.SingleOrDefault(c => c.Id == kitParametrs.SelectedIngredient.Id);
+                    editIngredient = kitParametrs.SelectedIngredient;
+                    kitParametrs.db.SaveChanges();
                 }
                 else
                 {
@@ -55,6 +59,8 @@ namespace ISFF
                         kitParametrs.EditIngredientExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
                         kitParametrs.IsEnableCollection = true;
                         kitParametrs.IsBusy = false;
+                        Ingredient.CopyProperties(kitParametrs.SelectedIngredient, kitParametrs.ReservedCopySelectedIngredient);
+                        kitParametrs.SelectedIngredient = Ingredient.Copy(kitParametrs.ReservedCopySelectedIngredient);
                     }
                 }
             };

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 
 namespace ISFF
 {
@@ -18,14 +19,22 @@ namespace ISFF
             IsReadOnly = true;
             IsEnableCollection = true;
             IsBusy = false;
-            Products = new ObservableCollection<Product>
+            db = new ConnectionDB();
+            db.Ingredients.Load();
+            db.Products.Load();
+            Products = new ObservableCollection<Product>();
+            foreach (Product product in db.Products)
             {
-                new Product{ Id=1, Name="Картофель фри", TimeCook=180, Price=60, Weight=80},
-                new Product{ Id=2, Name="Гамбургер", TimeCook=180, Price=90, Weight=120},
-                new Product{ Id=3, Name="Кола 50 мл", TimeCook=20, Price=50, Weight=200},
-                new Product{ Id=4, Name="Рожок 60 гр", TimeCook=15, Price=60, Weight=35},
-                new Product{ Id=5, Name="Пирожок", TimeCook=0, Price=40, Weight=25},
-            };
+                Products.Add(product);
+            }
+            //Products = new ObservableCollection<Product>
+            //{
+            //    new Product{ Id=1, Name="Картофель фри", TimeCook=180, Price=60, Weight=80},
+            //    new Product{ Id=2, Name="Гамбургер", TimeCook=180, Price=90, Weight=120},
+            //    new Product{ Id=3, Name="Кола 50 мл", TimeCook=20, Price=50, Weight=200},
+            //    new Product{ Id=4, Name="Рожок 60 гр", TimeCook=15, Price=60, Weight=35},
+            //    new Product{ Id=5, Name="Пирожок", TimeCook=0, Price=40, Weight=25},
+            //};
             AddProductExtendedCommand = new ExtendedRelayCommand(new AddProductCommandFactory());
             EditProductExtendedCommand = new ExtendedRelayCommand(new EditProductCommandFactory());
             RemoveProductCommand = new CommonRelayCommand(new RemoveProductCommandFactory());
@@ -40,10 +49,13 @@ namespace ISFF
 
         #region DataClass
 
+        public ConnectionDB db;
+
         private bool isReadOnly;
         private bool isEnableCollection;
         private bool isBusy;
         private Product selectedProduct;
+        public Product ReservedCopySelectedProduct;
         private DoseIngredient selectedDoseIngredient;
         public ObservableCollection<Product> Products { get; set; }
 

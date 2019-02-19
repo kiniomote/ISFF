@@ -23,7 +23,7 @@
             <RowDefinition Height="60*"/>
             <RowDefinition Height="21*"/>
         </Grid.RowDefinitions>
-        
+
         <!-- Верхняя часть-->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
             <ComboBox x:Name="comboboxSelectedEmployees" Style="{StaticResource ComboboxStyle}"
@@ -38,7 +38,7 @@
                     Command="{Binding KitParametrsProducts.EditProductExtendedCommand}" 
                     CommandParameter="{Binding KitParametrsProducts}"/>
         </StackPanel>
-        
+
         <!-- Центральная часть-->
         <StackPanel Grid.Row="1" VerticalAlignment="Center">
             <Grid>
@@ -53,27 +53,9 @@
                     <TextBlock Style="{StaticResource TextblockStyle}" Text="Ингредиенты"/>
                     <DataGrid x:Name="datagridIngredients" Style="{StaticResource DataGridStyle}"
                               DataContext="{Binding KitParametrsProducts}"
+                              ItemsSource="{Binding SelectedProduct.DoseIngredients}"
                               SelectedItem="{Binding SelectedDoseIngredient}"
                               Height="208">
-                        <DataGrid.Items>
-                            <local:Ingredient Name="Огурец" AmountNow="25"/>
-                            <local:Ingredient Name="Огурец" AmountNow="25"/>
-                            <local:Ingredient Name="Огурец" AmountNow="25"/>
-                            <local:Ingredient Name="Огурец" AmountNow="25"/>
-                            <local:Ingredient Name="Огурец" AmountNow="25"/>
-                            <local:Ingredient Name="Колбаса салями" AmountNow="50"/>
-                            <local:Ingredient Name="Колбаса салями" AmountNow="50"/>
-                            <local:Ingredient Name="Колбаса салями" AmountNow="50"/>
-                            <local:Ingredient Name="Колбаса салями" AmountNow="50"/>
-                            <local:Ingredient Name="Сыр" AmountNow="25"/>
-                            <local:Ingredient Name="Сыр" AmountNow="25"/>
-                            <local:Ingredient Name="Сыр" AmountNow="25"/>
-                            <local:Ingredient Name="Булка" AmountNow="1"/>
-                            <local:Ingredient Name="Булка" AmountNow="1"/>
-                            <local:Ingredient Name="Булка" AmountNow="1"/>
-                            <local:Ingredient Name="Булка" AmountNow="1"/>
-                            <local:Ingredient Name="Булка" AmountNow="1"/>
-                        </DataGrid.Items>
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=Name}" Width="7*"/>
                             <DataGridTextColumn Binding="{Binding Path=AmountNow}" Width="2*"/>
@@ -135,7 +117,7 @@
                         </StackPanel>
                     </Grid>
                 </StackPanel>
-                
+
                 <!-- Картинка продукта-->
                 <Rectangle x:Name="ImageProduct" Width="200" Height="250" Grid.Column="2">
                     <Rectangle.Fill>
@@ -144,7 +126,7 @@
                 </Rectangle>
             </Grid>
         </StackPanel>
-        
+
         <!-- Нижняя часть-->
         <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
             <Image Style="{StaticResource FigureStyle}" Margin="0 10 0 0"/>

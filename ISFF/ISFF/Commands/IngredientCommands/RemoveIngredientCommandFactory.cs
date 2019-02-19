@@ -13,7 +13,9 @@ namespace ISFF
             return param =>
             {
                 KitParametrsIngredients kitParametrs = param as KitParametrsIngredients;
+                kitParametrs.db.Ingredients.Remove(kitParametrs.SelectedIngredient);
                 kitParametrs.Ingredients.Remove(kitParametrs.SelectedIngredient);
+                kitParametrs.db.SaveChanges();
             };
         }
         public override Func<object, bool> CanExecute()

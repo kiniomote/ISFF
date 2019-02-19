@@ -15,6 +15,8 @@ namespace ISFF
 
         public KitParametrsMainWindow()
         {
+            //StaticControlDbService.LoadDataBase();
+            //StaticControlDbService.SaveChangesDataBase();
             IsReadOnly = true;
             OpenEmployeesWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_EMPLOYEES));
             OpenIngredientsWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_INGREDIENTS));

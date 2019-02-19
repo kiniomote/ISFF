@@ -24,7 +24,7 @@ namespace ISFF
                 "ALTER TABLE dbo.DoseIngredients " +
                 "ADD CONSTRAINT DoseIngredients_Ingredients " +
                 "FOREIGN KEY (IngredientId) " +
-                "REFERENCES dbo.Ingreients (Id) " +
+                "REFERENCES dbo.Ingredients (Id) " +
                 "ON DELETE SET NULL");
             db.Database.ExecuteSqlCommand(
                 "ALTER TABLE dbo.DoseIngredients " +

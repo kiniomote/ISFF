@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 
 namespace ISFF
 {
@@ -18,14 +19,21 @@ namespace ISFF
             IsReadOnly = true;
             IsEnableCollection = true;
             IsBusy = false;
-            Ingredients = new ObservableCollection<Ingredient>
+            db = new ConnectionDB();
+            db.Ingredients.Load();
+            Ingredients = new ObservableCollection<Ingredient>();
+            foreach (Ingredient ingredient in db.Ingredients)
             {
-                new Ingredient{ Id=1, Name="Огурец солёный", AmountNow=156, AmountUsed=50, Quantily="кг.", Weight=1000, Price=130},
-                new Ingredient{ Id=2, Name="Помидор свежий", AmountNow=96, AmountUsed=37, Quantily="кг.", Weight=1000, Price=200},
-                new Ingredient{ Id=3, Name="Булка белая", AmountNow=50, AmountUsed=18, Quantily="шт.", Weight=50, Price=10},
-                new Ingredient{ Id=4, Name="Котлета", AmountNow=33, AmountUsed=22, Quantily="шт.", Weight=80, Price=30},
-                new Ingredient{ Id=5, Name="Кетчуп Чумак", AmountNow=260, AmountUsed=18, Quantily="кг.", Weight=1000, Price=142},
-            };
+                Ingredients.Add(ingredient);
+            }
+            //Ingredients = new ObservableCollection<Ingredient>
+            //{
+            //    new Ingredient{ Id=1, Name="Огурец солёный", AmountNow=156, AmountUsed=50, Quantily="кг.", Weight=1000, Price=130},
+            //    new Ingredient{ Id=2, Name="Помидор свежий", AmountNow=96, AmountUsed=37, Quantily="кг.", Weight=1000, Price=200},
+            //    new Ingredient{ Id=3, Name="Булка белая", AmountNow=50, AmountUsed=18, Quantily="шт.", Weight=50, Price=10},
+            //    new Ingredient{ Id=4, Name="Котлета", AmountNow=33, AmountUsed=22, Quantily="шт.", Weight=80, Price=30},
+            //    new Ingredient{ Id=5, Name="Кетчуп Чумак", AmountNow=260, AmountUsed=18, Quantily="кг.", Weight=1000, Price=142},
+            //};
             AddIngredientExtendedCommand = new ExtendedRelayCommand(new AddIngredientCommandFactory());
             EditIngredientExtendedCommand = new ExtendedRelayCommand(new EditIngredientCommandFactory());
             RemoveIngredientCommand = new CommonRelayCommand(new RemoveIngredientCommandFactory());
@@ -36,11 +44,14 @@ namespace ISFF
 
         #region DataClass
 
+        public ConnectionDB db;
+
         private bool isReadOnly;
         private bool isEnableCollection;
         private bool isBusy;
         private Ingredient selectedIngredient;
         public ObservableCollection<Ingredient> Ingredients { get; set; }
+        public Ingredient ReservedCopySelectedIngredient { get; set; }
 
         #endregion
 

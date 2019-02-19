@@ -47,6 +47,8 @@ namespace ISFF
                     kitParametrs.IsBusy = false;
                     kitParametrs.AddIngredientExtendedCommand.TextCommand = TEXT_COMMAND;
                     kitParametrs.AddIngredientExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
+                    kitParametrs.db.Ingredients.Add(kitParametrs.SelectedIngredient);
+                    kitParametrs.db.SaveChanges();
                 }
                 else
                 {
