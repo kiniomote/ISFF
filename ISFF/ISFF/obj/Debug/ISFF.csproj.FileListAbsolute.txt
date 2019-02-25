@@ -33,3 +33,5 @@ C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\WindowOrders.g.cs
 C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\WindowOrders.baml
 C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\DialogWindow.g.cs
 C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\DialogWindow.baml
+C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\ChoseDoseWindow.g.cs
+C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\ChoseDoseWindow.baml

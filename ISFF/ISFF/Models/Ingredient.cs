@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ISFF
 {
-	public class Ingredient
+	public class Ingredient : INameable
 	{
 		// Название столбцов в таблице Ингредиенты
 		public int Id { get; set; }

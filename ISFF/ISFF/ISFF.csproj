@@ -63,6 +63,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interfaces\INameable.cs" />
+    <Compile Include="ViewModels\ParametrsViewModels\KitParametrsDose.cs" />
+    <Compile Include="ViewModels\DoseViewModel.cs" />
+    <Compile Include="Views\ChoseDoseWindow.xaml.cs">
+      <DependentUpon>ChoseDoseWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Commands\ProductCommands\AddDoseIngredientCommandFactory.cs" />
     <Compile Include="Commands\IngredientCommands\AddIngredientCommandFactory.cs" />
     <Compile Include="Commands\EmployeeCommands\AddEmployeeCommandFactory.cs" />
@@ -109,6 +115,10 @@
     <Compile Include="Views\WindowOrders.xaml.cs">
       <DependentUpon>WindowOrders.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\ChoseDoseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,7 +201,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\OrderCommands\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Figure.png" />

@@ -22,6 +22,7 @@ namespace ISFF
             db = new ConnectionDB();
             db.Ingredients.Load();
             db.Products.Load();
+            db.DoseIngredients.Load();
             Products = new ObservableCollection<Product>();
             foreach (Product product in db.Products)
             {
@@ -55,8 +56,8 @@ namespace ISFF
         private bool isEnableCollection;
         private bool isBusy;
         private Product selectedProduct;
-        public Product ReservedCopySelectedProduct;
         private DoseIngredient selectedDoseIngredient;
+        public Product ReservedCopySelectedProduct { get; set; }
         public ObservableCollection<Product> Products { get; set; }
 
         #endregion
@@ -87,7 +88,7 @@ namespace ISFF
 
         //_______________________________
 
-        #region Propertyes
+        #region Properties
 
         public bool IsReadOnly
         {

@@ -57,18 +57,18 @@
                               SelectedItem="{Binding SelectedDoseIngredient}"
                               Height="208">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=Name}" Width="7*"/>
-                            <DataGridTextColumn Binding="{Binding Path=AmountNow}" Width="2*"/>
+                            <DataGridTextColumn Binding="{Binding Path=Ingredient.Name}" Width="7*"/>
+                            <DataGridTextColumn Binding="{Binding Path=CountIngredient}" Width="2*"/>
                         </DataGrid.Columns>
                         <DataGrid.RowDetailsTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Цена за 1 "/>
-                                    <TextBlock Text="{Binding Path=Quantily}"/>
+                                    <TextBlock Text="{Binding Path=Ingredient.Quantily}"/>
                                     <TextBlock Text=" "/>
-                                    <TextBlock Text="{Binding Path=Price}"/>
+                                    <TextBlock Text="{Binding Path=Ingredient.Price}"/>
                                     <TextBlock Text=". Есть "/>
-                                    <TextBlock Text="{Binding Path=AmountNow}"/>
+                                    <TextBlock Text="{Binding Path=Ingredient.AmountNow}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGrid.RowDetailsTemplate>
