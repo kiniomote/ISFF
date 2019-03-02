@@ -25,6 +25,13 @@ namespace ISFF
                     kitParametrs.SelectedDoseIngredient.CountIngredient);
                 if (choseDoseWindow.ShowDialog() == false)
                     return;
+                DoseViewModel kitDose = choseDoseWindow.DataContext as DoseViewModel;
+                DoseIngredient doseIngredient = DoseIngredient.Copy(kitParametrs.SelectedDoseIngredient);
+                kitParametrs.DoseIngredients.Remove(kitParametrs.SelectedDoseIngredient);
+                doseIngredient.Ingredient = (Ingredient)kitDose.KitParametersDose.SelectedItem;
+                doseIngredient.CountIngredient = kitDose.KitParametersDose.CountItems;
+                kitParametrs.SelectedDoseIngredient = doseIngredient;
+                kitParametrs.DoseIngredients.Add(kitParametrs.SelectedDoseIngredient);
             };
         }
         public override Func<object, bool> CanExecute()

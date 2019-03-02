@@ -23,19 +23,8 @@ namespace ISFF
             db.Ingredients.Load();
             db.Products.Load();
             db.DoseIngredients.Load();
-            Products = new ObservableCollection<Product>();
-            foreach (Product product in db.Products)
-            {
-                Products.Add(product);
-            }
-            //Products = new ObservableCollection<Product>
-            //{
-            //    new Product{ Id=1, Name="Картофель фри", TimeCook=180, Price=60, Weight=80},
-            //    new Product{ Id=2, Name="Гамбургер", TimeCook=180, Price=90, Weight=120},
-            //    new Product{ Id=3, Name="Кола 50 мл", TimeCook=20, Price=50, Weight=200},
-            //    new Product{ Id=4, Name="Рожок 60 гр", TimeCook=15, Price=60, Weight=35},
-            //    new Product{ Id=5, Name="Пирожок", TimeCook=0, Price=40, Weight=25},
-            //};
+            Products = DeepCopyCollection<Product>.CopyToObservableCollectionFromDb(db.Products);
+            DoseIngredients = new ObservableCollection<DoseIngredient>();
             AddProductExtendedCommand = new ExtendedRelayCommand(new AddProductCommandFactory());
             EditProductExtendedCommand = new ExtendedRelayCommand(new EditProductCommandFactory());
             RemoveProductCommand = new CommonRelayCommand(new RemoveProductCommandFactory());
@@ -59,13 +48,14 @@ namespace ISFF
         private DoseIngredient selectedDoseIngredient;
         public Product ReservedCopySelectedProduct { get; set; }
         public ObservableCollection<Product> Products { get; set; }
+        public ObservableCollection<DoseIngredient> DoseIngredients { get; set; }
 
         #endregion
 
         //_______________________________
 
         #region Commands
-        
+
         // Command add new employee in Database
         public ExtendedRelayCommand AddProductExtendedCommand { get; }
 
@@ -96,7 +86,7 @@ namespace ISFF
             set
             {
                 isReadOnly = value;
-                OnPropertyChanged("IsReadOnly");
+                OnPropertyChanged();
             }
         }
 
@@ -106,7 +96,7 @@ namespace ISFF
             set
             {
                 isEnableCollection = value;
-                OnPropertyChanged("IsEnableCollection");
+                OnPropertyChanged();
             }
         }
 
@@ -116,7 +106,7 @@ namespace ISFF
             set
             {
                 isBusy = value;
-                OnPropertyChanged("IsBusy");
+                OnPropertyChanged();
             }
         }
 
@@ -126,7 +116,10 @@ namespace ISFF
             set
             {
                 selectedProduct = value;
-                OnPropertyChanged("SelectedProduct");
+                if (selectedProduct == null)
+                    return;
+                DeepCopyCollection<DoseIngredient>.CopyElementsFromCollection(DoseIngredients, selectedProduct.DoseIngredients);
+                OnPropertyChanged();
             }
         }
 
@@ -136,7 +129,7 @@ namespace ISFF
             set
             {
                 selectedDoseIngredient = value;
-                OnPropertyChanged("SelectedDoseIngredient");
+                OnPropertyChanged();
             }
         }
 

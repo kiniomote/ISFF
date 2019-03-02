@@ -15,7 +15,7 @@ namespace ISFF
                 KitParametrsProducts kitParametrs = param as KitParametrsProducts;
 
                 List<INameable> items = new List<INameable>();
-                foreach(Ingredient ingredient in kitParametrs.db.Ingredients.ToList())
+                foreach (Ingredient ingredient in kitParametrs.db.Ingredients)
                 {
                     items.Add(ingredient);
                 }
@@ -24,7 +24,7 @@ namespace ISFF
                 if (choseDoseWindow.ShowDialog() == false)
                     return;
                 DoseViewModel kitDose = choseDoseWindow.DataContext as DoseViewModel;
-                kitParametrs.SelectedProduct.DoseIngredients.Add(new DoseIngredient()
+                kitParametrs.DoseIngredients.Add(new DoseIngredient()
                 {
                     Product = kitParametrs.SelectedProduct,
                     Ingredient = (Ingredient)kitDose.KitParametersDose.SelectedItem,

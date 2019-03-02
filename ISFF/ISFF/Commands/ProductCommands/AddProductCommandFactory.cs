@@ -47,6 +47,9 @@ namespace ISFF
                     kitParametrs.IsBusy = false;
                     kitParametrs.AddProductExtendedCommand.TextCommand = TEXT_COMMAND;
                     kitParametrs.AddProductExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
+                    kitParametrs.SelectedProduct.DoseIngredients = DeepCopyCollection<DoseIngredient>.CopyToList(kitParametrs.DoseIngredients);
+                    kitParametrs.db.Products.Add(kitParametrs.SelectedProduct);
+                    kitParametrs.db.SaveChanges();
                 }
                 else
                 {
@@ -57,6 +60,7 @@ namespace ISFF
                         kitParametrs.IsBusy = false;
                         kitParametrs.AddProductExtendedCommand.TextCommand = TEXT_COMMAND;
                         kitParametrs.AddProductExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
+                        kitParametrs.DoseIngredients.Clear();
                         kitParametrs.Products.Remove(kitParametrs.SelectedProduct);
                     }
                 }

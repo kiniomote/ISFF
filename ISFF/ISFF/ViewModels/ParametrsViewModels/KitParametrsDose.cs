@@ -13,11 +13,7 @@ namespace ISFF
     {
         public KitParametrsDose(List<INameable> items, INameable selected, int count)
         {
-            this.items = new ObservableCollection<INameable>();
-            foreach(INameable item in items)
-            {
-                this.items.Add(item);
-            }
+            this.items = DeepCopyCollection<INameable>.CopyToObservableCollection(items);
             selectedItem = selected;
             countItems = count;
         }
@@ -32,7 +28,7 @@ namespace ISFF
             set
             {
                 items = value;
-                OnPropertyChanged("Items");
+                OnPropertyChanged();
             }
         }
 
@@ -42,7 +38,7 @@ namespace ISFF
             set
             {
                 selectedItem = value;
-                OnPropertyChanged("SelectedItem");
+                OnPropertyChanged();
             }
         }
 
@@ -52,7 +48,7 @@ namespace ISFF
             set
             {
                 countItems = value;
-                OnPropertyChanged("CountItems");
+                OnPropertyChanged();
             }
         }
 

@@ -63,7 +63,7 @@ namespace ISFF
             set
             {
                 isReadOnly = value;
-                OnPropertyChanged("IsReadOnly");
+                OnPropertyChanged();
             }
         }
 
@@ -73,7 +73,7 @@ namespace ISFF
             set
             {
                 selectedEmployee = value;
-                OnPropertyChanged("SelectedEmployee");
+                OnPropertyChanged();
             }
         }
 

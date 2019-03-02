@@ -53,12 +53,12 @@
                     <TextBlock Style="{StaticResource TextblockStyle}" Text="Ингредиенты"/>
                     <DataGrid x:Name="datagridIngredients" Style="{StaticResource DataGridStyle}"
                               DataContext="{Binding KitParametrsProducts}"
-                              ItemsSource="{Binding SelectedProduct.DoseIngredients}"
+                              ItemsSource="{Binding DoseIngredients}"
                               SelectedItem="{Binding SelectedDoseIngredient}"
                               Height="208">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=Ingredient.Name}" Width="7*"/>
-                            <DataGridTextColumn Binding="{Binding Path=CountIngredient}" Width="2*"/>
+                            <DataGridTextColumn Binding="{Binding Path=Ingredient.Name}" Width="2*"/>
+                            <DataGridTextColumn Binding="{Binding Path=CountIngredient}" Width="1*"/>
                         </DataGrid.Columns>
                         <DataGrid.RowDetailsTemplate>
                             <DataTemplate>

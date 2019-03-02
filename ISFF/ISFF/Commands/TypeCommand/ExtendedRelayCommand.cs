@@ -48,7 +48,7 @@ namespace ISFF
 
         public void Execute(object parameter)
         {
-            if(state)
+            if(state == STATE_NORMAL)
                 execute_(parameter);
             else
                 alternativeExecute_(parameter);

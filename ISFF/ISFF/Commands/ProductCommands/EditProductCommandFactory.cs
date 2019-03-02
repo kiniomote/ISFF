@@ -30,6 +30,7 @@ namespace ISFF
                 kitParametrs.EditProductExtendedCommand.State = ExtendedRelayCommand.STATE_ACCEPT;
                 kitParametrs.IsEnableCollection = false;
                 kitParametrs.IsBusy = true;
+                kitParametrs.ReservedCopySelectedProduct = Product.Copy(kitParametrs.SelectedProduct);
             };
         }
         public override Action<object> AlternativeExecute()
@@ -45,6 +46,10 @@ namespace ISFF
                     kitParametrs.EditProductExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
                     kitParametrs.IsEnableCollection = true;
                     kitParametrs.IsBusy = false;
+                    kitParametrs.SelectedProduct.DoseIngredients = DeepCopyCollection<DoseIngredient>.CopyToList(kitParametrs.DoseIngredients);
+                    Product editProduct = kitParametrs.db.Products.SingleOrDefault(c => c.Id == kitParametrs.SelectedProduct.Id);
+                    editProduct = kitParametrs.SelectedProduct;
+                    kitParametrs.db.SaveChanges();
                 }
                 else
                 {
@@ -55,6 +60,9 @@ namespace ISFF
                         kitParametrs.EditProductExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
                         kitParametrs.IsEnableCollection = true;
                         kitParametrs.IsBusy = false;
+                        Product.CopyProperties(kitParametrs.SelectedProduct, kitParametrs.ReservedCopySelectedProduct);
+                        kitParametrs.SelectedProduct = Product.Copy(kitParametrs.ReservedCopySelectedProduct);
+                        DeepCopyCollection<DoseIngredient>.CopyElementsFromCollection(kitParametrs.DoseIngredients, kitParametrs.SelectedProduct.DoseIngredients);
                     }
                 }
             };

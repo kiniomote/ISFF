@@ -24,7 +24,7 @@ namespace ISFF
             set
             {
                 textMessage = value;
-                OnPropertyChanged("TextMessage");
+                OnPropertyChanged();
             }
         }
 

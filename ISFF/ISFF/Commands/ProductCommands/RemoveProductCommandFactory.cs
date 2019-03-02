@@ -13,6 +13,7 @@ namespace ISFF
             return param =>
             {
                 KitParametrsProducts kitParametrs = param as KitParametrsProducts;
+                kitParametrs.DoseIngredients.Clear();
                 kitParametrs.db.Products.Remove(kitParametrs.SelectedProduct);
                 kitParametrs.Products.Remove(kitParametrs.SelectedProduct);
                 kitParametrs.db.SaveChanges();

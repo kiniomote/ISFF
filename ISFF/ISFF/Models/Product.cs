@@ -32,5 +32,31 @@ namespace ISFF
             DoseProducts = new List<DoseProduct>();
             Quantily = "шт";
 		}
-	}
+
+        public static Product Copy(Product product_copy)
+        {
+            Product product = new Product
+            {
+                Id = product_copy.Id,
+                Name = product_copy.Name,
+                Price = product_copy.Price,
+                TimeCook = product_copy.TimeCook,
+                Weight = product_copy.Weight,
+                NameImage = product_copy.NameImage,
+                DoseIngredients = DeepCopyCollection<DoseIngredient>.CopyToList(product_copy.DoseIngredients),
+                DoseProducts = DeepCopyCollection<DoseProduct>.CopyToList(product_copy.DoseProducts)
+            };
+            return product;
+        }
+
+        public static void CopyProperties(Product product, Product product_copy)
+        {
+            product.Id = product_copy.Id;
+            product.Name = product_copy.Name;
+            product.Price = product_copy.Price;
+            product.TimeCook = product_copy.TimeCook;
+            product.Weight = product_copy.Weight;
+            product.NameImage = product_copy.NameImage;
+        }
+    }
 }

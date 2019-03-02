@@ -21,19 +21,7 @@ namespace ISFF
             IsBusy = false;
             db = new ConnectionDB();
             db.Ingredients.Load();
-            Ingredients = new ObservableCollection<Ingredient>();
-            foreach (Ingredient ingredient in db.Ingredients)
-            {
-                Ingredients.Add(ingredient);
-            }
-            //Ingredients = new ObservableCollection<Ingredient>
-            //{
-            //    new Ingredient{ Id=1, Name="Огурец солёный", AmountNow=156, AmountUsed=50, Quantily="кг.", Weight=1000, Price=130},
-            //    new Ingredient{ Id=2, Name="Помидор свежий", AmountNow=96, AmountUsed=37, Quantily="кг.", Weight=1000, Price=200},
-            //    new Ingredient{ Id=3, Name="Булка белая", AmountNow=50, AmountUsed=18, Quantily="шт.", Weight=50, Price=10},
-            //    new Ingredient{ Id=4, Name="Котлета", AmountNow=33, AmountUsed=22, Quantily="шт.", Weight=80, Price=30},
-            //    new Ingredient{ Id=5, Name="Кетчуп Чумак", AmountNow=260, AmountUsed=18, Quantily="кг.", Weight=1000, Price=142},
-            //};
+            Ingredients = DeepCopyCollection<Ingredient>.CopyToObservableCollectionFromDb(db.Ingredients);
             AddIngredientExtendedCommand = new ExtendedRelayCommand(new AddIngredientCommandFactory());
             EditIngredientExtendedCommand = new ExtendedRelayCommand(new EditIngredientCommandFactory());
             RemoveIngredientCommand = new CommonRelayCommand(new RemoveIngredientCommandFactory());
@@ -80,7 +68,7 @@ namespace ISFF
             set
             {
                 isReadOnly = value;
-                OnPropertyChanged("IsReadOnly");
+                OnPropertyChanged();
             }
         }
 
@@ -90,7 +78,7 @@ namespace ISFF
             set
             {
                 isEnableCollection = value;
-                OnPropertyChanged("IsEnableCollection");
+                OnPropertyChanged();
             }
         }
 
@@ -100,7 +88,7 @@ namespace ISFF
             set
             {
                 isBusy = value;
-                OnPropertyChanged("IsBusy");
+                OnPropertyChanged();
             }
         }
 
@@ -110,7 +98,7 @@ namespace ISFF
             set
             {
                 selectedIngredient = value;
-                OnPropertyChanged("SelectedIngredient");
+                OnPropertyChanged();
             }
         }
 

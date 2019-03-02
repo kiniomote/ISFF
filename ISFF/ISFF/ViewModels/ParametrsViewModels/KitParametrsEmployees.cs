@@ -21,19 +21,7 @@ namespace ISFF
             IsBusy = false;
             db = new ConnectionDB();
             db.Employees.Load();
-            Employees = new ObservableCollection<Employee>();
-            foreach(Employee employee in db.Employees)
-            {
-                Employees.Add(employee);
-            }
-            //Employees = new ObservableCollection<Employee>
-            //{
-            //    new Employee{ Id=1, Fio="Попадин Дмитрий Владимирович", IdNumber=156712, Post="Директор", Salary=60000, Exp=7},
-            //    new Employee{ Id=2, Fio="Василич Вася Владимирович", IdNumber=24497, Post="Повар", Salary=20000, Exp=2},
-            //    new Employee{ Id=3, Fio="Иваныч Иван Владимирович", IdNumber=74942, Post="Повар", Salary=20000, Exp=5},
-            //    new Employee{ Id=4, Fio="Петров Петя Владимирович", IdNumber=67149, Post="Админ", Salary=40000, Exp=1},
-            //    new Employee{ Id=5, Fio="Сидоров Сережа Владимирович", IdNumber=99547, Post="Охрана", Salary=15000, Exp=15},
-            //};
+            Employees = DeepCopyCollection<Employee>.CopyToObservableCollectionFromDb(db.Employees);
             AddEmployeeExtendedCommand = new ExtendedRelayCommand(new AddEmployeeCommandFactory());
             EditEmployeeExtendedCommand = new ExtendedRelayCommand(new EditEmployeeCommandFactory());
             RemoveEmployeeCommand = new CommonRelayCommand(new RemoveEmployeeCommandFactory());
@@ -81,7 +69,7 @@ namespace ISFF
             set
             {
                 isReadOnly = value;
-                OnPropertyChanged("IsReadOnly");
+                OnPropertyChanged();
             }
         }
 
@@ -91,7 +79,7 @@ namespace ISFF
             set
             {
                 isEnableCollection = value;
-                OnPropertyChanged("IsEnableCollection");
+                OnPropertyChanged();
             }
         }
 
@@ -101,7 +89,7 @@ namespace ISFF
             set
             {
                 isBusy = value;
-                OnPropertyChanged("IsBusy");
+                OnPropertyChanged();
             }
         }
 
@@ -111,7 +99,7 @@ namespace ISFF
             set
             {
                 selectedEmployee = value;
-                OnPropertyChanged("SelectedEmployee");
+                OnPropertyChanged();
             }
         }
 
