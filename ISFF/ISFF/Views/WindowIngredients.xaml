@@ -5,12 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ISFF"
         mc:Ignorable="d"
-        Title="Ингредиенты" Height="550" Width="500" MinHeight="550" MinWidth="500"
+        Title="Ингредиенты" Height="500" Width="500" MinHeight="500" MinWidth="500"
         Style="{StaticResource WindowStyle}" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="TextBox" BasedOn="{StaticResource TextboxStyle}">
             <Setter Property="IsReadOnly" Value="{Binding IsReadOnly}"/>
             <Setter Property="Margin" Value="0 7 0 7"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                            Path=(Validation.Errors)[0].ErrorContent}" />
+                    <Setter Property="Foreground" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="TextBlock" BasedOn="{StaticResource TextblockStyle}">
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -52,15 +60,37 @@
                     <TextBlock Text="Количество в наличии"/>
                     <TextBlock Text="Количество потраченных за день"/>
                     <TextBlock Text="Величина измерения"/>
-                    <TextBlock Text="Востребованность"/>
                     <TextBlock Text="Цена за 1 ед."/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" HorizontalAlignment="Right">
-                    <TextBox Width="100" Text="{Binding SelectedIngredient.AmountNow}"/>
-                    <TextBox Width="100" Text="{Binding SelectedIngredient.AmountUsed}"/>
+                    <TextBox Width="100">
+                        <TextBox.Text>
+                            <Binding Path="SelectedIngredient.AmountNow">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox Width="100">
+                        <TextBox.Text>
+                            <Binding Path="SelectedIngredient.AmountUsed">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <TextBox Width="100" Text="{Binding SelectedIngredient.Quantily}"/>
-                    <TextBox Width="100" Text="{Binding SelectedIngredient.Demand}"/>
-                    <TextBox Width="100" Text="{Binding SelectedIngredient.Price}"/>
+                    <TextBox Width="100">
+                        <TextBox.Text>
+                            <Binding Path="SelectedIngredient.Price">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                 </StackPanel>
             </Grid>
         </StackPanel>

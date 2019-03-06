@@ -11,6 +11,14 @@
         <Style TargetType="TextBox" BasedOn="{StaticResource TextboxStyle}">
             <Setter Property="IsReadOnly" Value="{Binding IsReadOnly}"/>
             <Setter Property="Margin" Value="0 7 2 7"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                            Path=(Validation.Errors)[0].ErrorContent}" />
+                    <Setter Property="Foreground" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="TextBlock" BasedOn="{StaticResource TextblockStyle}">
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -109,10 +117,34 @@
                             <TextBlock Text="Вес ингредиентов"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" HorizontalAlignment="Right">
-                            <TextBox Width="80" Text="{Binding SelectedProduct.TimeCook}"/>
+                            <TextBox Width="80">
+                                <TextBox.Text>
+                                    <Binding Path="SelectedProduct.TimeCook">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBox Width="80">
+                                <TextBox.Text>
+                                    <Binding Path="SelectedProduct.Price">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
                             <TextBox Width="80" Text="{Binding SelectedProduct.Price}"/>
-                            <TextBox Width="80" Text="{Binding SelectedProduct.Price}"/>
-                            <TextBox Width="80" Text="{Binding SelectedProduct.Weight}"/>
+                            <TextBox Width="80">
+                                <TextBox.Text>
+                                    <Binding Path="SelectedProduct.Weight">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
                             <TextBox Width="80" Text="{Binding SelectedProduct.Weight}"/>
                         </StackPanel>
                     </Grid>

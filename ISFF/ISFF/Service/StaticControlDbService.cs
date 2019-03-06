@@ -26,18 +26,18 @@ namespace ISFF
                 "FOREIGN KEY (IngredientId) " +
                 "REFERENCES dbo.Ingredients (Id) " +
                 "ON DELETE SET NULL");
-            db.Database.ExecuteSqlCommand(
-                "ALTER TABLE dbo.DoseIngredients " +
-                "ADD CONSTRAINT DoseIngredients_Products " +
-                "FOREIGN KEY (ProductId) " +
-                "REFERENCES dbo.Products (Id) " +
-                "ON DELETE SET NULL");
-            db.Database.ExecuteSqlCommand(
-                "ALTER TABLE dbo.DoseProducts " +
-                "ADD CONSTRAINT DoseProducts_Orders " +
-                "FOREIGN KEY (OrderId) " +
-                "REFERENCES dbo.Orders (Id) " +
-                "ON DELETE SET NULL");
+            //db.Database.ExecuteSqlCommand(
+            //    "ALTER TABLE dbo.DoseIngredients " +
+            //    "ADD CONSTRAINT DoseIngredients_Products " +
+            //    "FOREIGN KEY (ProductId) " +
+            //    "REFERENCES dbo.Products (Id) " +
+            //    "ON DELETE SET NULL");
+            //db.Database.ExecuteSqlCommand(
+            //    "ALTER TABLE dbo.DoseProducts " +
+            //    "ADD CONSTRAINT DoseProducts_Orders " +
+            //    "FOREIGN KEY (OrderId) " +
+            //    "REFERENCES dbo.Orders (Id) " +
+            //    "ON DELETE SET NULL");
             db.Database.ExecuteSqlCommand(
                 "ALTER TABLE dbo.DoseProducts " +
                 "ADD CONSTRAINT DoseProducts_Products " +

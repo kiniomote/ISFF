@@ -10,6 +10,14 @@
     <Window.Resources>
         <Style TargetType="TextBox" BasedOn="{StaticResource TextboxStyle}">
             <Setter Property="IsReadOnly" Value="{Binding IsReadOnly}"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                            Path=(Validation.Errors)[0].ErrorContent}" />
+                    <Setter Property="Foreground" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="TextBlock" BasedOn="{StaticResource TextblockStyle}"/>
     </Window.Resources>
@@ -42,12 +50,36 @@
             <TextBlock Text="Должность"/>
             <TextBox Width="400" Text="{Binding SelectedEmployee.Post}"/>
             <TextBlock Text="Ид. номер"/>
-            <TextBox Width="250" Text="{Binding SelectedEmployee.IdNumber}"/>
+            <TextBox Width="250">
+                <TextBox.Text>
+                    <Binding Path="SelectedEmployee.IdNumber">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
                 <TextBlock Text="Стаж"/>
-                <TextBox Width="100" Text="{Binding SelectedEmployee.Exp}"/>
+                <TextBox Width="100">
+                    <TextBox.Text>
+                        <Binding Path="SelectedEmployee.Exp">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <TextBlock Text="Зарплата"/>
-                <TextBox Width="169" Text="{Binding SelectedEmployee.Salary}"/>
+                <TextBox Width="169">
+                    <TextBox.Text>
+                        <Binding Path="SelectedEmployee.Salary">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </StackPanel>
         </StackPanel>
 

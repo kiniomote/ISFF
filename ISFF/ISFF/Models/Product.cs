@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
 
 namespace ISFF
 {
-	public class Product : INameable
+	public class Product : INameable, IDataErrorInfo
 	{
 		// Название столбцов в таблице Товары
 		public int Id { get; set; } // Первичный ключ
@@ -32,6 +33,35 @@ namespace ISFF
             DoseProducts = new List<DoseProduct>();
             Quantily = "шт";
 		}
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = string.Empty;
+                switch (columnName)
+                {
+                    case "Price":
+                        if (Price <= 0)
+                            error = "Цена не может быть отрицательной или нулевой";
+                        break;
+                    case "TimeCook":
+                        if (TimeCook < 0)
+                            error = "Время готовки не может быть отрицательным";
+                        break;
+                    case "Weight":
+                        if (Weight <= 0)
+                            error = "Вес не может быть отрицательным или нулевым";
+                        break;
+                }
+                return error;
+            }
+        }
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
 
         public static Product Copy(Product product_copy)
         {

@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace ISFF
 {
-    public class KitParametrsDose : INotifyPropertyChanged
+    public class KitParametrsDose : INotifyPropertyChanged, IDataErrorInfo
     {
         public KitParametrsDose(List<INameable> items, INameable selected, int count)
         {
@@ -21,6 +21,27 @@ namespace ISFF
         private ObservableCollection<INameable> items;
         private INameable selectedItem;
         private int countItems;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = string.Empty;
+                switch (columnName)
+                {
+                    case "CountItems":
+                        if (CountItems <= 0)
+                            error = "Количество не может быть меньше одного";
+                        break;
+                }
+                return error;
+            }
+        }
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
 
         public ObservableCollection<INameable> Items
         {

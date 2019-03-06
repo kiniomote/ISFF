@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace ISFF
 {
-	public class Ingredient : INameable
+	public class Ingredient : INameable, IDataErrorInfo
 	{
 		// Название столбцов в таблице Ингредиенты
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public double AmountNow { get; set; }
-        public double Weight { get; set; }
 		public double AmountUsed { get; set; }
 		public string Quantily { get; set; }
-		public int Demand { get; set; }
 		public double Price { get; set; }
 
         // Внешний ключ с DoseIngredient, связь один ко многим
@@ -26,6 +25,35 @@ namespace ISFF
             DoseIngredients = new List<DoseIngredient>();
 		}
 
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = string.Empty;
+                switch (columnName)
+                {
+                    case "AmountNow":
+                        if (AmountNow < 0)
+                            error = "Некорректное указанное количество";
+                        break;
+                    case "AmountUsed":
+                        if (AmountUsed < 0)
+                            error = "Некорректное указанное количество";
+                        break;
+                    case "Price":
+                        if (Price <= 0)
+                            error = "Цена не может быть отрицательной или нулевой";
+                        break;
+                }
+                return error;
+            }
+        }
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
         public static Ingredient Copy(Ingredient ingredient_copy)
         {
             Ingredient ingredient = new Ingredient
@@ -33,10 +61,8 @@ namespace ISFF
                 Id = ingredient_copy.Id,
                 Name = ingredient_copy.Name,
                 AmountNow = ingredient_copy.AmountNow,
-                Weight = ingredient_copy.Weight,
                 AmountUsed = ingredient_copy.AmountUsed,
                 Quantily = ingredient_copy.Quantily,
-                Demand = ingredient_copy.Demand,
                 Price = ingredient_copy.Price
             };
             return ingredient;
@@ -47,10 +73,8 @@ namespace ISFF
             ingredient.Id = ingredient_copy.Id;
             ingredient.Name = ingredient_copy.Name;
             ingredient.AmountNow = ingredient_copy.AmountNow;
-            ingredient.Weight = ingredient_copy.Weight;
             ingredient.AmountUsed = ingredient_copy.AmountUsed;
             ingredient.Quantily = ingredient_copy.Quantily;
-            ingredient.Demand = ingredient_copy.Demand;
             ingredient.Price = ingredient_copy.Price;
         }
     }
