@@ -22,6 +22,7 @@ namespace ISFF
         public WindowOrders()
         {
             InitializeComponent();
+            DataContext = new OrdersViewModel();
         }
     }
 }

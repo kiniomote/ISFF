@@ -9,7 +9,7 @@
         Style="{StaticResource WindowStyle}" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="TextBox" BasedOn="{StaticResource TextboxStyle}">
-            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="IsReadOnly" Value="{Binding IsReadOnly}"/>
             <Setter Property="Margin" Value="0 7 10 7"/>
         </Style>
         <Style TargetType="TextBlock" BasedOn="{StaticResource TextblockStyle}">
@@ -30,12 +30,20 @@
             <StackPanel VerticalAlignment="Center" Margin="0 0 30 0">
                 <TextBlock Text="Текущие заказы" HorizontalAlignment="Center"/>
                 <ComboBox x:Name="comboboxSelectedCurentOrder" Style="{StaticResource ComboboxStyle}"
-                      Width="200" Margin="0 0 0 10" Background="White"/>
+                          DataContext="{Binding KitParametrsOrders}"
+                          ItemsSource="{Binding ReadyOrders}" 
+                          SelectedItem="{Binding SelectedOrder}"
+                          DisplayMemberPath="Id"
+                          Width="200" Margin="0 0 0 10" Background="White"/>
             </StackPanel>
             <StackPanel VerticalAlignment="Center" Margin="30 0 0 0">
                 <TextBlock Text="Завершённые заказы" HorizontalAlignment="Center"/>
                 <ComboBox x:Name="comboboxSelectedFinishedOrder" Style="{StaticResource ComboboxStyle}"
-                      Width="200" Margin="0 0 0 10" Background="White"/>
+                          DataContext="{Binding KitParametrsOrders}"
+                          ItemsSource="{Binding FinishedOrders}" 
+                          SelectedItem="{Binding SelectedOrder}"
+                          DisplayMemberPath="Id"
+                          Width="200" Margin="0 0 0 10" Background="White"/>
             </StackPanel>
         </StackPanel>
 
@@ -50,29 +58,22 @@
             <StackPanel Grid.Column="0" VerticalAlignment="Center">
                 <TextBlock Style="{StaticResource TextblockStyle}" Text="Список заказа"/>
                 <DataGrid x:Name="datagridIngredients" Style="{StaticResource DataGridStyle}"
-                              Height="259">
-                    <DataGrid.Items>
-                        <local:Ingredient Name="Огурец" AmountNow="25"/>
-                        <local:Ingredient Name="Огурец" AmountNow="25"/>
-                        <local:Ingredient Name="Колбаса салями" AmountNow="50"/>
-                        <local:Ingredient Name="Колбаса салями" AmountNow="50"/>
-                        <local:Ingredient Name="Сыр" AmountNow="25"/>
-                        <local:Ingredient Name="Сыр" AmountNow="25"/>
-                        <local:Ingredient Name="Булка" AmountNow="1"/>
-                        <local:Ingredient Name="Булка" AmountNow="1"/>
-                    </DataGrid.Items>
+                          DataContext="{Binding KitParametrsOrders}"
+                          ItemsSource="{Binding SelectedOrder.DoseProducts}"
+                          SelectedItem="{Binding SelectedDoseProduct}"
+                          Height="259">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=Name}" Width="8*"/>
-                        <DataGridTextColumn Binding="{Binding Path=AmountNow}" Width="1*"/>
+                        <DataGridTextColumn Binding="{Binding Path=Product.Name}" Width="8*"/>
+                        <DataGridTextColumn Binding="{Binding Path=CountProduct}" Width="1*"/>
                     </DataGrid.Columns>
                     <DataGrid.RowDetailsTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Цена за 1 ед. "/>
-                                <TextBlock Text="{Binding Path=Price}"/>
+                                <TextBlock Text="{Binding Path=Product.Price}"/>
                                 <TextBlock Text=" р. "/>
                                 <TextBlock Text="время готовки "/>
-                                <TextBlock Text="{Binding Path=TimeCook}"/>
+                                <TextBlock Text="{Binding Path=Product.TimeCook}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGrid.RowDetailsTemplate>
@@ -81,7 +82,7 @@
 
             <!-- Информация о продукте-->
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                <Grid Width="263">
+                <Grid Width="263" DataContext="{Binding KitParametrsOrders}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="6*"/>
                         <ColumnDefinition Width="5*"/>
@@ -89,22 +90,26 @@
                     <StackPanel Grid.Column="0" HorizontalAlignment="Left">
                         <TextBlock Text="Номер заказа"/>
                         <TextBlock Text="Цена заказа"/>
-                        <TextBlock Text="Крайний срок"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1" HorizontalAlignment="Right">
-                        <TextBox Width="100"/>
-                        <TextBox Width="100"/>
-                        <TextBox Width="100"/>
+                        <TextBox Width="100" Text="{Binding SelectedOrder.Id}"/>
+                        <TextBox Width="100" Text="{Binding SelectedOrder.Price}"/>
                     </StackPanel>
                 </Grid>
+                <TextBlock Text="Крайний срок" HorizontalAlignment="Center"/>
+                <TextBox Width="200" Text="{Binding KitParametrsOrders.SelectedOrder.Time}"
+                         Margin="0 0 0 0" IsReadOnly="True"/>
                 <TextBlock Text="Текущее время" HorizontalAlignment="Center"/>
-                <TextBox Width="100" Text="DateNow" Margin="0 0 0 0"/>
+                <TextBox Width="200" Text="{Binding KitParametrsOrders.CurrentTime}"
+                         Margin="0 0 0 0" IsReadOnly="True"/>
                 <TextBlock Text="Состояние" HorizontalAlignment="Center" Margin="0 5 0 0"/>
-                <Rectangle x:Name="inidcatorReady" Width="200" Height="35"
-                           RadiusX="10" RadiusY="10" Fill="Red"
-                           Margin="0 8 0 10"/>
+                <Rectangle x:Name="inidcatorReady" Width="200" Height="30"
+                           RadiusX="10" RadiusY="10" Fill="{Binding KitParametrsOrders.ColorStateOrder}"
+                           Margin="0 2 0 2"/>
                 <Button x:Name="buttonReady" Style="{StaticResource SmallButtonStyle}"
-                        Margin="60 0 60 0" Content="Готово"/>
+                        Margin="60 0 60 0" Content="Готово"
+                        Command="{Binding KitParametrsOrders.ChangeStateOrderCommand}"
+                        CommandParameter="{Binding KitParametrsOrders}"/>
             </StackPanel>
         </Grid>
 
@@ -112,7 +117,8 @@
         <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
             <Image Style="{StaticResource FigureStyle}" Margin="0 10 0 0"/>
             <Button x:Name="buttonBackToMainWindow" Style="{StaticResource SmallButtonStyle}"
-                        Content="Назад" Margin="180 10 180 5"/>
+                    Content="Назад" Margin="180 10 180 5"
+                    IsCancel="True"/>
         </StackPanel>
     </Grid>
 </Window>

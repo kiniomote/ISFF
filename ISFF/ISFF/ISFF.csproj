@@ -63,7 +63,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\OrderCommands\ChangeStateOrderCommandFactory.cs" />
     <Compile Include="Interfaces\INameable.cs" />
+    <Compile Include="ViewModels\ParametrsViewModels\KitParametrsOrders.cs" />
+    <Compile Include="ViewModels\OrdersViewModel.cs" />
     <Compile Include="Service\DeepCopyCollection.cs" />
     <Compile Include="ViewModels\ParametrsViewModels\KitParametrsDose.cs" />
     <Compile Include="ViewModels\DoseViewModel.cs" />
@@ -200,9 +203,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\OrderCommands\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Figure.png" />
   </ItemGroup>
