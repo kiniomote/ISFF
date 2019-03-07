@@ -27,7 +27,7 @@ namespace ISFF
                 KitParametrsEmployees kitParametrs = param as KitParametrsEmployees;
                 kitParametrs.IsReadOnly = false;
                 kitParametrs.EditEmployeeExtendedCommand.TextCommand = ALTERNATIVE_TEXT_COMMAND;
-                kitParametrs.EditEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_ACCEPT;
+                kitParametrs.EditEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_ALTERNATIVE;
                 kitParametrs.IsEnableCollection = false;
                 kitParametrs.IsBusy = true;
                 kitParametrs.ReservedCopySelectedEmployee = Employee.Copy(kitParametrs.SelectedEmployee);
@@ -38,8 +38,8 @@ namespace ISFF
             return param =>
             {
                 KitParametrsEmployees kitParametrs = param as KitParametrsEmployees;
-                DialogWindow dialogWindow = new DialogWindow(TEXT_DIALOG_WINDOW);
-                if (dialogWindow.ShowDialog() == true)
+                int answer = DialogWindowService.OpenResponseDialogWindow(TEXT_DIALOG_WINDOW);
+                if (answer == DialogViewModel.ANSWER_YES)
                 {
                     kitParametrs.IsReadOnly = true;
                     kitParametrs.EditEmployeeExtendedCommand.TextCommand = TEXT_COMMAND;
@@ -52,7 +52,7 @@ namespace ISFF
                 }
                 else
                 {
-                    if(dialogWindow.Answer == DialogViewModel.ANSWER_NO)
+                    if(answer == DialogViewModel.ANSWER_NO)
                     {
                         kitParametrs.IsReadOnly = true;
                         kitParametrs.EditEmployeeExtendedCommand.TextCommand = TEXT_COMMAND;
@@ -72,7 +72,7 @@ namespace ISFF
                 bool enable = true;
                 if (param is KitParametrsEmployees kitParametrs && kitParametrs.SelectedEmployee != null)
                 {
-                    if (kitParametrs.IsBusy && kitParametrs.EditEmployeeExtendedCommand.State != ExtendedRelayCommand.STATE_ACCEPT)
+                    if (kitParametrs.IsBusy && kitParametrs.EditEmployeeExtendedCommand.State != ExtendedRelayCommand.STATE_ALTERNATIVE)
                         enable = false;
                 }
                 else

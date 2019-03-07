@@ -19,17 +19,15 @@ namespace ISFF
                 {
                     items.Add(ingredient);
                 }
-
-                ChoseDoseWindow choseDoseWindow = new ChoseDoseWindow(items, 
-                    kitParametrs.SelectedDoseIngredient.Ingredient, 
+                KitParametrsDose kitParametrsDose = DialogWindowService.OpenDoseDialogWindow(items,
+                    kitParametrs.SelectedDoseIngredient.Ingredient,
                     kitParametrs.SelectedDoseIngredient.CountIngredient);
-                if (choseDoseWindow.ShowDialog() == false)
+                if (kitParametrsDose == null)
                     return;
-                DoseViewModel kitDose = choseDoseWindow.DataContext as DoseViewModel;
                 DoseIngredient doseIngredient = DoseIngredient.Copy(kitParametrs.SelectedDoseIngredient);
                 kitParametrs.DoseIngredients.Remove(kitParametrs.SelectedDoseIngredient);
-                doseIngredient.Ingredient = (Ingredient)kitDose.KitParametersDose.SelectedItem;
-                doseIngredient.CountIngredient = kitDose.KitParametersDose.CountItems;
+                doseIngredient.Ingredient = (Ingredient)kitParametrsDose.SelectedItem;
+                doseIngredient.CountIngredient = kitParametrsDose.CountItems;
                 kitParametrs.SelectedDoseIngredient = doseIngredient;
                 kitParametrs.DoseIngredients.Add(kitParametrs.SelectedDoseIngredient);
             };

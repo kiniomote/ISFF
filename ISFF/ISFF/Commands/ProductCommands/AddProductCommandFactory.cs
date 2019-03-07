@@ -27,7 +27,7 @@ namespace ISFF
                 KitParametrsProducts kitParametrs = param as KitParametrsProducts;
                 kitParametrs.IsReadOnly = false;
                 kitParametrs.AddProductExtendedCommand.TextCommand = ALTERNATIVE_TEXT_COMMAND;
-                kitParametrs.AddProductExtendedCommand.State = ExtendedRelayCommand.STATE_ACCEPT;
+                kitParametrs.AddProductExtendedCommand.State = ExtendedRelayCommand.STATE_ALTERNATIVE;
                 kitParametrs.Products.Insert(0, new Product());
                 kitParametrs.SelectedProduct = kitParametrs.Products.First();
                 kitParametrs.IsEnableCollection = false;
@@ -39,8 +39,8 @@ namespace ISFF
             return param =>
             {
                 KitParametrsProducts kitParametrs = param as KitParametrsProducts;
-                DialogWindow dialogWindow = new DialogWindow(TEXT_DIALOG_WINDOW);
-                if(dialogWindow.ShowDialog() == true)
+                int answer = DialogWindowService.OpenResponseDialogWindow(TEXT_DIALOG_WINDOW);
+                if(answer == DialogViewModel.ANSWER_YES)
                 {
                     kitParametrs.IsReadOnly = true;
                     kitParametrs.IsEnableCollection = true;
@@ -53,7 +53,7 @@ namespace ISFF
                 }
                 else
                 {
-                    if (dialogWindow.Answer == DialogViewModel.ANSWER_NO)
+                    if (answer == DialogViewModel.ANSWER_NO)
                     {
                         kitParametrs.IsReadOnly = true;
                         kitParametrs.IsEnableCollection = true;
@@ -73,7 +73,7 @@ namespace ISFF
                 bool enable = true;
                 if (param is KitParametrsProducts kitParametrs)
                 {
-                    if (kitParametrs.IsBusy && kitParametrs.AddProductExtendedCommand.State != ExtendedRelayCommand.STATE_ACCEPT)
+                    if (kitParametrs.IsBusy && kitParametrs.AddProductExtendedCommand.State != ExtendedRelayCommand.STATE_ALTERNATIVE)
                         enable = false;
                 }
 

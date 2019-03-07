@@ -15,7 +15,7 @@ namespace ISFF
         #region Constants
 
         public const bool STATE_NORMAL = true;
-        public const bool STATE_ACCEPT = false;
+        public const bool STATE_ALTERNATIVE = false;
 
         #endregion
 

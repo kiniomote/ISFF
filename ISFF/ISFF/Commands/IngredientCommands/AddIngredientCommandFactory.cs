@@ -27,7 +27,7 @@ namespace ISFF
                 KitParametrsIngredients kitParametrs = param as KitParametrsIngredients;
                 kitParametrs.IsReadOnly = false;
                 kitParametrs.AddIngredientExtendedCommand.TextCommand = ALTERNATIVE_TEXT_COMMAND;
-                kitParametrs.AddIngredientExtendedCommand.State = ExtendedRelayCommand.STATE_ACCEPT;
+                kitParametrs.AddIngredientExtendedCommand.State = ExtendedRelayCommand.STATE_ALTERNATIVE;
                 kitParametrs.Ingredients.Insert(0, new Ingredient());
                 kitParametrs.SelectedIngredient = kitParametrs.Ingredients.First();
                 kitParametrs.IsEnableCollection = false;
@@ -39,8 +39,8 @@ namespace ISFF
             return param =>
             {
                 KitParametrsIngredients kitParametrs = param as KitParametrsIngredients;
-                DialogWindow dialogWindow = new DialogWindow(TEXT_DIALOG_WINDOW);
-                if (dialogWindow.ShowDialog() == true)
+                int answer = DialogWindowService.OpenResponseDialogWindow(TEXT_DIALOG_WINDOW);
+                if (answer == DialogViewModel.ANSWER_YES)
                 {
                     kitParametrs.IsReadOnly = true;
                     kitParametrs.IsEnableCollection = true;
@@ -52,7 +52,7 @@ namespace ISFF
                 }
                 else
                 {
-                    if (dialogWindow.Answer == DialogViewModel.ANSWER_NO)
+                    if (answer == DialogViewModel.ANSWER_NO)
                     {
                         kitParametrs.IsReadOnly = true;
                         kitParametrs.IsEnableCollection = true;
@@ -71,7 +71,7 @@ namespace ISFF
                 bool enable = true;
                 if (param is KitParametrsIngredients kitParametrs)
                 {
-                    if (kitParametrs.IsBusy && kitParametrs.AddIngredientExtendedCommand.State != ExtendedRelayCommand.STATE_ACCEPT)
+                    if (kitParametrs.IsBusy && kitParametrs.AddIngredientExtendedCommand.State != ExtendedRelayCommand.STATE_ALTERNATIVE)
                         enable = false;
                 }
 

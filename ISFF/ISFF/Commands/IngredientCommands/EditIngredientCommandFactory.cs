@@ -27,7 +27,7 @@ namespace ISFF
                 KitParametrsIngredients kitParametrs = param as KitParametrsIngredients;
                 kitParametrs.IsReadOnly = false;
                 kitParametrs.EditIngredientExtendedCommand.TextCommand = ALTERNATIVE_TEXT_COMMAND;
-                kitParametrs.EditIngredientExtendedCommand.State = ExtendedRelayCommand.STATE_ACCEPT;
+                kitParametrs.EditIngredientExtendedCommand.State = ExtendedRelayCommand.STATE_ALTERNATIVE;
                 kitParametrs.IsEnableCollection = false;
                 kitParametrs.IsBusy = true;
                 kitParametrs.ReservedCopySelectedIngredient = Ingredient.Copy(kitParametrs.SelectedIngredient);
@@ -38,8 +38,8 @@ namespace ISFF
             return param =>
             {
                 KitParametrsIngredients kitParametrs = param as KitParametrsIngredients;
-                DialogWindow dialogWindow = new DialogWindow(TEXT_DIALOG_WINDOW);
-                if (dialogWindow.ShowDialog() == true)
+                int answer = DialogWindowService.OpenResponseDialogWindow(TEXT_DIALOG_WINDOW);
+                if (answer == DialogViewModel.ANSWER_YES)
                 {
                     kitParametrs.IsReadOnly = true;
                     kitParametrs.EditIngredientExtendedCommand.TextCommand = TEXT_COMMAND;
@@ -52,7 +52,7 @@ namespace ISFF
                 }
                 else
                 {
-                    if (dialogWindow.Answer == DialogViewModel.ANSWER_NO)
+                    if (answer == DialogViewModel.ANSWER_NO)
                     {
                         kitParametrs.IsReadOnly = true;
                         kitParametrs.EditIngredientExtendedCommand.TextCommand = TEXT_COMMAND;
@@ -72,7 +72,7 @@ namespace ISFF
                 bool enable = true;
                 if (param is KitParametrsIngredients kitParametrs && kitParametrs.SelectedIngredient != null)
                 {
-                    if (kitParametrs.IsBusy && kitParametrs.EditIngredientExtendedCommand.State != ExtendedRelayCommand.STATE_ACCEPT)
+                    if (kitParametrs.IsBusy && kitParametrs.EditIngredientExtendedCommand.State != ExtendedRelayCommand.STATE_ALTERNATIVE)
                         enable = false;
                 }
                 else

@@ -41,10 +41,34 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Controls, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Effects, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Effects.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Prototyping.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Prototyping.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Prototyping.SketchControls, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Prototyping.SketchControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SDK.Expression.Blend, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.SDK.Expression.Blend.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -63,11 +87,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\MainWindowCommands\AuthorizationCommandFactory.cs" />
+    <Compile Include="Services\DependecyPropertyBehavior.cs" />
+    <Compile Include="Views\MessageWindow.xaml.cs">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommonDialogWindow.xaml.cs">
+      <DependentUpon>CommonDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\DialogWindowService.cs" />
+    <Compile Include="Services\CheckUserAccessService.cs" />
     <Compile Include="Commands\OrderCommands\ChangeStateOrderCommandFactory.cs" />
     <Compile Include="Interfaces\INameable.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\ParametrsViewModels\KitParametrsOrders.cs" />
     <Compile Include="ViewModels\OrdersViewModel.cs" />
-    <Compile Include="Service\DeepCopyCollection.cs" />
+    <Compile Include="Services\DeepCopyCollection.cs" />
     <Compile Include="ViewModels\ParametrsViewModels\KitParametrsDose.cs" />
     <Compile Include="ViewModels\DoseViewModel.cs" />
     <Compile Include="Views\ChoseDoseWindow.xaml.cs">
@@ -97,16 +132,16 @@
     <Compile Include="ViewModels\ParametrsViewModels\KitParametrsMainWindow.cs" />
     <Compile Include="ViewModels\ParametrsViewModels\KitParametrsDialog.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
-    <Compile Include="Views\DialogWindow.xaml.cs">
-      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    <Compile Include="Views\ResponseDialogWindow.xaml.cs">
+      <DependentUpon>ResponseDialogWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ParametrsViewModels\KitParametrsEmployees.cs" />
     <Compile Include="ViewModels\EmployeesViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Models\DoseProduct.cs" />
     <Compile Include="Models\DoseIngredient.cs" />
-    <Compile Include="Service\StaticControlDbService.cs" />
-    <Compile Include="Service\StaticJsonLogService.cs" />
+    <Compile Include="Services\StaticControlDbService.cs" />
+    <Compile Include="Services\StaticJsonLogService.cs" />
     <Compile Include="Views\WindowEmployees.xaml.cs">
       <DependentUpon>WindowEmployees.xaml</DependentUpon>
     </Compile>
@@ -119,11 +154,19 @@
     <Compile Include="Views\WindowOrders.xaml.cs">
       <DependentUpon>WindowOrders.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\MessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CommonDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ChoseDoseWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DialogWindow.xaml">
+    <Page Include="Views\ResponseDialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

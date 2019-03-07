@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:ISFF"
         mc:Ignorable="d"
         Title="ISFF" Height="400" Width="800" Style="{DynamicResource WindowStyle}"
@@ -29,7 +30,9 @@
                             <ColumnDefinition Width="65*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource TextblockStyle}" Text="Login:" TextAlignment="Left" FontSize="18" Grid.Column="0"/>
-                        <TextBox Style="{StaticResource TextboxStyle}" Background="White" BorderThickness="1" Grid.Column="1"/>
+                        <TextBox Style="{StaticResource TextboxStyle}" Background="White" 
+                                 BorderThickness="1" Grid.Column="1"
+                                 Text="{Binding KitParametrsMainWindow.Login}"/>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -37,10 +40,22 @@
                             <ColumnDefinition Width="65*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource TextblockStyle}" Text="Password:" TextAlignment="Left" FontSize="18" Grid.Column="0"/>
-                        <TextBox Style="{StaticResource TextboxStyle}" Background="White" BorderThickness="1" Grid.Column="1"/>
+                        <PasswordBox Style="{StaticResource PasswordboxStyle}"  Background="White" 
+                                     BorderThickness="1" Grid.Column="1"
+                                     PasswordChar="*">
+                            <i:Interaction.Behaviors>
+                                <local:DependecyPropertyBehavior 
+                                    UpdateEvent="PasswordChanged"
+                                    Property="Password"
+                                    Binding="{Binding KitParametrsMainWindow.Password}"/>
+                            </i:Interaction.Behaviors>
+                        </PasswordBox>
                     </Grid>
                     
-                    <Button x:Name="buttonLogin" Style="{StaticResource SmallButtonStyle}" Content="Вход" Margin="70 2 70 0"/>
+                    <Button x:Name="buttonLogin" Style="{StaticResource SmallButtonStyle}" 
+                            Content="{Binding KitParametrsMainWindow.AuthorizationCommand.TextCommand}" Margin="70 2 70 0"
+                            Command="{Binding KitParametrsMainWindow.AuthorizationCommand}" 
+                            CommandParameter="{Binding KitParametrsMainWindow}"/>
                 </StackPanel>
             </GroupBox>
             <TextBlock FontFamily="/Resources/#Audiowide" FontSize="62" Foreground="{StaticResource foregroundHeading}" Text="IS FastFood"

@@ -27,7 +27,7 @@ namespace ISFF
                 KitParametrsEmployees kitParametrs = param as KitParametrsEmployees;
                 kitParametrs.IsReadOnly = false;
                 kitParametrs.AddEmployeeExtendedCommand.TextCommand = ALTERNATIVE_TEXT_COMMAND;
-                kitParametrs.AddEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_ACCEPT;
+                kitParametrs.AddEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_ALTERNATIVE;
                 kitParametrs.Employees.Insert(0, new Employee());
                 kitParametrs.SelectedEmployee = kitParametrs.Employees.First();
                 kitParametrs.IsEnableCollection = false;
@@ -39,8 +39,8 @@ namespace ISFF
             return param =>
             {
                 KitParametrsEmployees kitParametrs = param as KitParametrsEmployees;
-                DialogWindow dialogWindow = new DialogWindow(TEXT_DIALOG_WINDOW);
-                if(dialogWindow.ShowDialog() == true)
+                int answer = DialogWindowService.OpenResponseDialogWindow(TEXT_DIALOG_WINDOW);
+                if (answer == DialogViewModel.ANSWER_YES)
                 {
                     kitParametrs.IsReadOnly = true;
                     kitParametrs.IsEnableCollection = true;
@@ -52,7 +52,7 @@ namespace ISFF
                 }
                 else
                 {
-                    if (dialogWindow.Answer == DialogViewModel.ANSWER_NO)
+                    if (answer == DialogViewModel.ANSWER_NO)
                     {
                         kitParametrs.IsReadOnly = true;
                         kitParametrs.IsEnableCollection = true;
@@ -72,7 +72,7 @@ namespace ISFF
                 bool enable = true;
                 if (param is KitParametrsEmployees kitParametrs)
                 {
-                    if (kitParametrs.IsBusy && kitParametrs.AddEmployeeExtendedCommand.State != ExtendedRelayCommand.STATE_ACCEPT)
+                    if (kitParametrs.IsBusy && kitParametrs.AddEmployeeExtendedCommand.State != ExtendedRelayCommand.STATE_ALTERNATIVE)
                         enable = false;
                 }
 

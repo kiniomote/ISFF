@@ -17,12 +17,14 @@ namespace ISFF
         {
             //StaticControlDbService.LoadDataBase();
             //StaticControlDbService.SaveChangesDataBase();
+            CheckUserAccessService.AuthorizationDefault();
             IsReadOnly = true;
             OpenEmployeesWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_EMPLOYEES));
             OpenIngredientsWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_INGREDIENTS));
             OpenProductsWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_PRODUCTS));
             OpenOrdersWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_ORDERS));
-            selectedEmployee = null;
+            AuthorizationCommand = new ExtendedRelayCommand(new AuthorizationCommandFactory());
+            Login = "user";
         }
 
         //_______________________________
@@ -30,8 +32,8 @@ namespace ISFF
         #region DataClass
 
         private bool isReadOnly;
-        private Employee selectedEmployee;
-        public ObservableCollection<Employee> Employees { get; set; }
+        private string login;
+        private string password;
 
         #endregion
 
@@ -51,6 +53,9 @@ namespace ISFF
         // Open orders window
         public CommonRelayCommand OpenOrdersWindowCommand { get; }
 
+        // Authorization
+        public ExtendedRelayCommand AuthorizationCommand { get; }
+
         #endregion
 
         //_______________________________
@@ -67,12 +72,22 @@ namespace ISFF
             }
         }
 
-        public Employee SelectedEmployee
+        public string Login
         {
-            get { return selectedEmployee; }
+            get { return login; }
             set
             {
-                selectedEmployee = value;
+                login = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Password
+        {
+            get { return password; }
+            set
+            {
+                password = value;
                 OnPropertyChanged();
             }
         }

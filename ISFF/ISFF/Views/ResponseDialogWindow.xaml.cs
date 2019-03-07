@@ -17,11 +17,11 @@ namespace ISFF
     /// <summary>
     /// Логика взаимодействия для DialogWindow.xaml
     /// </summary>
-    public partial class DialogWindow : Window
+    public partial class ResponseDialogWindow : Window
     {
         public int Answer { get; set; }
 
-        public DialogWindow(string text_message)
+        public ResponseDialogWindow(string text_message)
         {
             InitializeComponent();
             DataContext = new DialogViewModel(text_message);

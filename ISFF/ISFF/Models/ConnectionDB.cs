@@ -19,5 +19,6 @@ namespace ISFF
 		public DbSet<Order> Orders { get; set; } // Таблица Заказы
         public DbSet<DoseIngredient> DoseIngredients { get; set; } // Таблица Дозы ингредиентов
         public DbSet<DoseProduct> DoseProducts { get; set; } // Таблица Дозы товаров
+        public DbSet<User> Users { get; set; } // Таблица пользователей
 	}
 }
