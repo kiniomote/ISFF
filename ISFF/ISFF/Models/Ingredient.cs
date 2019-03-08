@@ -4,13 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ISFF
 {
 	public class Ingredient : INameable, IDataErrorInfo
-	{
-		// Название столбцов в таблице Ингредиенты
-		public int Id { get; set; }
+    {
+        #region Constant
+
+        const string NAME = "Name";
+        const string AMOUNT_NOW = "AmountNow";
+        const string AMOUNT_USED = "AmountUsed";
+        const string QUANTILY = "Quantily";
+        const string PRICE = "Price";
+
+        #endregion
+
+        #region DataEntity
+        // Название столбцов в таблице Ингредиенты
+        public int Id { get; set; }
 		public string Name { get; set; }
 		public double AmountNow { get; set; }
 		public double AmountUsed { get; set; }
@@ -23,7 +35,18 @@ namespace ISFF
 		public Ingredient()
 		{
             DoseIngredients = new List<DoseIngredient>();
-		}
+            CorrectData = new CorrectDataService(new Dictionary<string, bool>
+            {
+                { NAME, false }, { AMOUNT_NOW, false}, { AMOUNT_USED, false}, { QUANTILY, false }, { PRICE, false}
+            });
+        }
+
+        #endregion
+
+        #region Validation
+
+        [NotMapped]
+        public CorrectDataService CorrectData { get; set; }
 
         public string this[string columnName]
         {
@@ -32,19 +55,28 @@ namespace ISFF
                 string error = string.Empty;
                 switch (columnName)
                 {
-                    case "AmountNow":
+                    case NAME:
+                        if (Name == null || Name == string.Empty )
+                            error = "Поле должно быть заполнено";
+                        break;
+                    case QUANTILY:
+                        if (Quantily == null || Quantily == string.Empty )
+                            error = "Поле должно быть заполнено";
+                        break;
+                    case AMOUNT_NOW:
                         if (AmountNow < 0)
                             error = "Некорректное указанное количество";
                         break;
-                    case "AmountUsed":
+                    case AMOUNT_USED:
                         if (AmountUsed < 0)
                             error = "Некорректное указанное количество";
                         break;
-                    case "Price":
+                    case PRICE:
                         if (Price <= 0)
                             error = "Цена не может быть отрицательной или нулевой";
                         break;
                 }
+                CorrectData.CheckCorrect(columnName, error);
                 return error;
             }
         }
@@ -53,6 +85,14 @@ namespace ISFF
         {
             get { throw new NotImplementedException(); }
         }
+
+        #endregion
+
+        #region Methods
+
+        #endregion
+
+        #region CopyMethods
 
         public static Ingredient Copy(Ingredient ingredient_copy)
         {
@@ -77,5 +117,7 @@ namespace ISFF
             ingredient.Quantily = ingredient_copy.Quantily;
             ingredient.Price = ingredient_copy.Price;
         }
+
+        #endregion
     }
 }

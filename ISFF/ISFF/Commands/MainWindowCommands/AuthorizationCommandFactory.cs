@@ -38,7 +38,7 @@ namespace ISFF
                     kitParametrs.AuthorizationCommand.TextCommand = ALTERNATIVE_TEXT_COMMAND;
                     kitParametrs.AuthorizationCommand.State = ExtendedRelayCommand.STATE_ALTERNATIVE;
                     kitParametrs.IsEnable = false;
-                    kitParametrs.Password = "";
+                    kitParametrs.Password = string.Empty;
                 }
             };
         }
@@ -50,7 +50,7 @@ namespace ISFF
                 if (DialogWindowService.OpenDialogWindowYesNo(TEXT_DIALOG_WINDOW) == false)
                     return;
                 KitParametrsMainWindow kitParametrs = param as KitParametrsMainWindow;
-                kitParametrs.Login = "";
+                kitParametrs.Login = string.Empty;
                 kitParametrs.AuthorizationCommand.TextCommand = TEXT_COMMAND;
                 kitParametrs.AuthorizationCommand.State = ExtendedRelayCommand.STATE_NORMAL;
                 kitParametrs.IsEnable = true;

@@ -42,6 +42,11 @@ namespace ISFF
                 int answer = DialogWindowService.OpenResponseDialogWindow(TEXT_DIALOG_WINDOW);
                 if (answer == DialogViewModel.ANSWER_YES)
                 {
+                    if (!kitParametrs.SelectedEmployee.CorrectData.IsCorrect())
+                    {
+                        DialogWindowService.OpenDialogWindow(DialogWindowService.MESSAGE_INCORRECT_DATA);
+                        return;
+                    }
                     kitParametrs.IsReadOnly = true;
                     kitParametrs.IsEnableCollection = true;
                     kitParametrs.IsBusy = false;

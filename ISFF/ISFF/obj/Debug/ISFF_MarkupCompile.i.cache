@@ -12,9 +12,9 @@ DEBUG;TRACE
 C:\Program Files\Git\ISFF\ISFF\ISFF\Views\App.xaml
 121883879964
 
-65-431938988
+67-31161656
 25481250343
 Views\MessageWindow.xaml;Views\CommonDialogWindow.xaml;Views\ChoseDoseWindow.xaml;Views\ResponseDialogWindow.xaml;Styles\StyleButtons.xaml;Styles\StyleOrange.xaml;Styles\StyleTextblocks.xaml;Views\MainWindow.xaml;Views\WindowEmployees.xaml;Views\WindowIngredients.xaml;Views\WindowProducts.xaml;Views\WindowOrders.xaml;
 
-False
+True
 

@@ -8,6 +8,8 @@ namespace ISFF
 {
     public static class DialogWindowService
     {
+        public const string MESSAGE_INCORRECT_DATA = "Не все поля заполнены правильно";
+
         public static int OpenResponseDialogWindow(string text)
         {
             ResponseDialogWindow responseDialog = new ResponseDialogWindow(text);

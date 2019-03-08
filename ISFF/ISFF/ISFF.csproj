@@ -88,6 +88,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\MainWindowCommands\AuthorizationCommandFactory.cs" />
+    <Compile Include="Services\CorrectDataService.cs" />
+    <Compile Include="Interfaces\ICorrect.cs" />
     <Compile Include="Services\DependecyPropertyBehavior.cs" />
     <Compile Include="Views\MessageWindow.xaml.cs">
       <DependentUpon>MessageWindow.xaml</DependentUpon>

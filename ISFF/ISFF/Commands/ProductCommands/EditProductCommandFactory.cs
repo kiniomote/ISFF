@@ -41,6 +41,11 @@ namespace ISFF
                 int answer = DialogWindowService.OpenResponseDialogWindow(TEXT_DIALOG_WINDOW);
                 if (answer == DialogViewModel.ANSWER_YES)
                 {
+                    if (!kitParametrs.SelectedProduct.CorrectData.IsCorrect())
+                    {
+                        DialogWindowService.OpenDialogWindow(DialogWindowService.MESSAGE_INCORRECT_DATA);
+                        return;
+                    }
                     kitParametrs.IsReadOnly = true;
                     kitParametrs.EditProductExtendedCommand.TextCommand = TEXT_COMMAND;
                     kitParametrs.EditProductExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;

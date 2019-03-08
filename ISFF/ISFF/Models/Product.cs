@@ -9,14 +9,24 @@ using System.ComponentModel;
 namespace ISFF
 {
 	public class Product : INameable, IDataErrorInfo
-	{
-		// Название столбцов в таблице Товары
-		public int Id { get; set; } // Первичный ключ
+    {
+        #region Constant
+
+        const string NAME = "Name";
+        const string TIME_COOK = "TimeCook";
+        const string WEIGHT = "Weight";
+        const string PRICE = "Price";
+
+        #endregion
+
+        #region DataEntity
+        // Название столбцов в таблице Товары
+        public int Id { get; set; } // Первичный ключ
 		public string Name { get; set; }
 		public double Price { get; set; }
 		public double TimeCook { get; set; }
 		public int Weight { get; set; }
-		public string NameImage { get; set; }
+		public byte[] Image { get; set; }
 
         [NotMapped]
         public string Quantily { get; set; }
@@ -32,7 +42,18 @@ namespace ISFF
             DoseIngredients = new List<DoseIngredient>();
             DoseProducts = new List<DoseProduct>();
             Quantily = "шт";
-		}
+            CorrectData = new CorrectDataService(new Dictionary<string, bool>
+            {
+                { NAME, false }, { TIME_COOK, false}, { WEIGHT, false}, { PRICE, false}
+            });
+        }
+
+        #endregion
+
+        #region Validation
+
+        [NotMapped]
+        public CorrectDataService CorrectData { get; set; }
 
         public string this[string columnName]
         {
@@ -41,19 +62,24 @@ namespace ISFF
                 string error = string.Empty;
                 switch (columnName)
                 {
-                    case "Price":
+                    case NAME:
+                        if(Name == null || Name == string.Empty)
+                            error = "Поле должно быть заполнено";
+                        break;
+                    case PRICE:
                         if (Price <= 0)
                             error = "Цена не может быть отрицательной или нулевой";
                         break;
-                    case "TimeCook":
+                    case TIME_COOK:
                         if (TimeCook < 0)
                             error = "Время готовки не может быть отрицательным";
                         break;
-                    case "Weight":
+                    case WEIGHT:
                         if (Weight <= 0)
                             error = "Вес не может быть отрицательным или нулевым";
                         break;
                 }
+                CorrectData.CheckCorrect(columnName, error);
                 return error;
             }
         }
@@ -62,6 +88,14 @@ namespace ISFF
         {
             get { throw new NotImplementedException(); }
         }
+
+        #endregion
+
+        #region Methods
+
+        #endregion
+
+        #region CopyMethods
 
         public static Product Copy(Product product_copy)
         {
@@ -72,7 +106,7 @@ namespace ISFF
                 Price = product_copy.Price,
                 TimeCook = product_copy.TimeCook,
                 Weight = product_copy.Weight,
-                NameImage = product_copy.NameImage,
+                Image = product_copy.Image,
                 DoseIngredients = DeepCopyCollection<DoseIngredient>.CopyToList(product_copy.DoseIngredients),
                 DoseProducts = DeepCopyCollection<DoseProduct>.CopyToList(product_copy.DoseProducts)
             };
@@ -86,7 +120,9 @@ namespace ISFF
             product.Price = product_copy.Price;
             product.TimeCook = product_copy.TimeCook;
             product.Weight = product_copy.Weight;
-            product.NameImage = product_copy.NameImage;
+            product.Image = product_copy.Image;
         }
+
+        #endregion
     }
 }

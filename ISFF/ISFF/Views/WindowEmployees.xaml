@@ -46,9 +46,25 @@
         <!-- Центральная часть-->
         <StackPanel Grid.Row="1" VerticalAlignment="Center" DataContext="{Binding KitParametrsEmployees}">
             <TextBlock Text="ФИО"/>
-            <TextBox Width="400" Text="{Binding SelectedEmployee.Fio}"/>
+            <TextBox Width="400">
+                <TextBox.Text>
+                    <Binding Path="SelectedEmployee.Fio">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <TextBlock Text="Должность"/>
-            <TextBox Width="400" Text="{Binding SelectedEmployee.Post}"/>
+            <TextBox Width="400">
+                <TextBox.Text>
+                    <Binding Path="SelectedEmployee.Post">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <TextBlock Text="Ид. номер"/>
             <TextBox Width="250">
                 <TextBox.Text>
