@@ -32,7 +32,8 @@
                         <TextBlock Style="{StaticResource TextblockStyle}" Text="Login:" TextAlignment="Left" FontSize="18" Grid.Column="0"/>
                         <TextBox Style="{StaticResource TextboxStyle}" Background="White" 
                                  BorderThickness="1" Grid.Column="1"
-                                 Text="{Binding KitParametrsMainWindow.Login}"/>
+                                 Text="{Binding KitParametrsMainWindow.Login}"
+                                 IsEnabled="{Binding KitParametrsMainWindow.IsEnable}" />
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -42,7 +43,8 @@
                         <TextBlock Style="{StaticResource TextblockStyle}" Text="Password:" TextAlignment="Left" FontSize="18" Grid.Column="0"/>
                         <PasswordBox Style="{StaticResource PasswordboxStyle}"  Background="White" 
                                      BorderThickness="1" Grid.Column="1"
-                                     PasswordChar="*">
+                                     PasswordChar="*"
+                                     IsEnabled="{Binding KitParametrsMainWindow.IsEnable}">
                             <i:Interaction.Behaviors>
                                 <local:DependecyPropertyBehavior 
                                     UpdateEvent="PasswordChanged"

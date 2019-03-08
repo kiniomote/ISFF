@@ -37,6 +37,8 @@ namespace ISFF
                 {
                     kitParametrs.AuthorizationCommand.TextCommand = ALTERNATIVE_TEXT_COMMAND;
                     kitParametrs.AuthorizationCommand.State = ExtendedRelayCommand.STATE_ALTERNATIVE;
+                    kitParametrs.IsEnable = false;
+                    kitParametrs.Password = "";
                 }
             };
         }
@@ -49,9 +51,9 @@ namespace ISFF
                     return;
                 KitParametrsMainWindow kitParametrs = param as KitParametrsMainWindow;
                 kitParametrs.Login = "";
-                kitParametrs.Password = "";
                 kitParametrs.AuthorizationCommand.TextCommand = TEXT_COMMAND;
                 kitParametrs.AuthorizationCommand.State = ExtendedRelayCommand.STATE_NORMAL;
+                kitParametrs.IsEnable = true;
                 CheckUserAccessService.AuthorizationDefault();
             };
         }

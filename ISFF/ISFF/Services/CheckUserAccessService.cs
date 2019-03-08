@@ -48,5 +48,41 @@ namespace ISFF
         {
             return User.Role == User.UserRole.Customer;
         }
+
+        public static bool IsNotAdministrator()
+        {
+            return User.Role != User.UserRole.Administrator;
+        }
+
+        public static bool IsNotEmployee()
+        {
+            return User.Role != User.UserRole.Employee;
+        }
+        
+        public static bool IsNotCustomer()
+        {
+            return User.Role != User.UserRole.Customer;
+        }
+
+        public static bool CanOpenWindow(int window)
+        {
+            if (IsNotCustomer())
+                return true;
+            if (IsCustomer())
+            {
+                switch (window)
+                {
+                    case OpenWindowCommandFactory.WINDOW_EMPLOYEES:
+                        return false;
+                    case OpenWindowCommandFactory.WINDOW_INGREDIENTS:
+                        return false;
+                    case OpenWindowCommandFactory.WINDOW_PRODUCTS:
+                        return true;
+                    case OpenWindowCommandFactory.WINDOW_ORDERS:
+                        return false;
+                }
+            }
+            return false;
+        }
     }
 }

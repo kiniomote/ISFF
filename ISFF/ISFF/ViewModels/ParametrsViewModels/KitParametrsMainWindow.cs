@@ -18,7 +18,7 @@ namespace ISFF
             //StaticControlDbService.LoadDataBase();
             //StaticControlDbService.SaveChangesDataBase();
             CheckUserAccessService.AuthorizationDefault();
-            IsReadOnly = true;
+            IsEnable = true;
             OpenEmployeesWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_EMPLOYEES));
             OpenIngredientsWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_INGREDIENTS));
             OpenProductsWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_PRODUCTS));
@@ -31,7 +31,7 @@ namespace ISFF
 
         #region DataClass
 
-        private bool isReadOnly;
+        private bool isEnable;
         private string login;
         private string password;
 
@@ -62,12 +62,12 @@ namespace ISFF
 
         #region Propertyes
 
-        public bool IsReadOnly
+        public bool IsEnable
         {
-            get { return isReadOnly; }
+            get { return isEnable; }
             set
             {
-                isReadOnly = value;
+                isEnable = value;
                 OnPropertyChanged();
             }
         }

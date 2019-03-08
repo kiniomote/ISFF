@@ -27,6 +27,8 @@ namespace ISFF
         {
             return param =>
             {
+                if (CheckUserAccessService.IsCustomer())
+                    return false;
                 bool enable = true;
                 if (param is KitParametrsOrders kitParametrs && (kitParametrs.SelectedOrder == null || kitParametrs.SelectedOrder.Ready == true))
                 {

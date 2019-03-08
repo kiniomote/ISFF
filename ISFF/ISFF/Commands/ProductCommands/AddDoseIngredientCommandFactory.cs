@@ -35,6 +35,8 @@ namespace ISFF
         {
             return param =>
             {
+                if (CheckUserAccessService.IsNotAdministrator())
+                    return false;
                 bool enable = true;
                 if (param is KitParametrsProducts kitParametrs)
                 {

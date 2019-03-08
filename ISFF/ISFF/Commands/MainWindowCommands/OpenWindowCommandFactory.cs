@@ -16,6 +16,7 @@ namespace ISFF
         public const int WINDOW_INGREDIENTS = 1;
         public const int WINDOW_PRODUCTS = 2;
         public const int WINDOW_ORDERS = 3;
+        public const string ACCESS_ERROR = "У вас не прав доступа";
 
         #endregion
 
@@ -30,7 +31,12 @@ namespace ISFF
         {
             return param =>
             {
-
+                if (!CheckUserAccessService.CanOpenWindow(OpenWindow))
+                {
+                    DialogWindowService.OpenDialogWindow(ACCESS_ERROR);
+                    return;
+                }
+                    
                 Window window = null;
                 switch (OpenWindow)
                 {
