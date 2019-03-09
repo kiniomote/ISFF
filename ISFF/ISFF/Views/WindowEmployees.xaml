@@ -77,7 +77,7 @@
             </TextBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
                 <TextBlock Text="Стаж"/>
-                <TextBox Width="100">
+                <TextBox Width="60">
                     <TextBox.Text>
                         <Binding Path="SelectedEmployee.Exp">
                             <Binding.ValidationRules>
@@ -86,8 +86,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
+                <TextBlock Text="(года)" Margin="0 2 25 2"/>
                 <TextBlock Text="Зарплата"/>
-                <TextBox Width="169">
+                <TextBox Width="129">
                     <TextBox.Text>
                         <Binding Path="SelectedEmployee.Salary">
                             <Binding.ValidationRules>
@@ -96,6 +97,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
+                <TextBlock Text="р."/>
             </StackPanel>
         </StackPanel>
 

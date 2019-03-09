@@ -75,8 +75,7 @@
                                     <TextBlock Text="{Binding Path=Ingredient.Quantily}"/>
                                     <TextBlock Text=" "/>
                                     <TextBlock Text="{Binding Path=Ingredient.Price}"/>
-                                    <TextBlock Text=". Есть "/>
-                                    <TextBlock Text="{Binding Path=Ingredient.AmountNow}"/>
+                                    <TextBlock Text="р."/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGrid.RowDetailsTemplate>
@@ -116,6 +115,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="6*"/>
                             <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" HorizontalAlignment="Left">
                             <TextBlock Text="Время готовки"/>
@@ -125,7 +125,7 @@
                             <TextBlock Text="Вес ингредиентов"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" HorizontalAlignment="Right">
-                            <TextBox Width="80">
+                            <TextBox Width="70">
                                 <TextBox.Text>
                                     <Binding Path="SelectedProduct.TimeCook">
                                         <Binding.ValidationRules>
@@ -134,7 +134,7 @@
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
-                            <TextBox Width="80">
+                            <TextBox Width="70">
                                 <TextBox.Text>
                                     <Binding Path="SelectedProduct.Price">
                                         <Binding.ValidationRules>
@@ -143,8 +143,8 @@
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
-                            <TextBox Width="80" Text="{Binding SelectedProduct.Price}" IsReadOnly="True"/>
-                            <TextBox Width="80">
+                            <TextBox Width="70" Text="{Binding SelectedProduct.Price}" IsReadOnly="True"/>
+                            <TextBox Width="70">
                                 <TextBox.Text>
                                     <Binding Path="SelectedProduct.Weight">
                                         <Binding.ValidationRules>
@@ -153,7 +153,14 @@
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
-                            <TextBox Width="80" Text="{Binding SelectedProduct.Weight}" IsReadOnly="True"/>
+                            <TextBox Width="70" Text="{Binding SelectedProduct.Weight}" IsReadOnly="True"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                            <TextBlock Text="c."/>
+                            <TextBlock Text="р."/>
+                            <TextBlock Text="р."/>
+                            <TextBlock Text="гр."/>
+                            <TextBlock Text="гр."/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
