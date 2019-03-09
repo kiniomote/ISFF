@@ -32,7 +32,7 @@ namespace ISFF
         public static KitParametrsDose OpenDoseDialogWindow(List<INameable> items, INameable selected = null, int count = 0)
         {
             KitParametrsDose kitDose = null;
-            ChoseDoseWindow choseDoseWindow = new ChoseDoseWindow(items);
+            ChoseDoseWindow choseDoseWindow = new ChoseDoseWindow(items, selected, count);
             if (choseDoseWindow.ShowDialog() == false)
                 return kitDose;
             DoseViewModel doseViewModel = choseDoseWindow.DataContext as DoseViewModel;

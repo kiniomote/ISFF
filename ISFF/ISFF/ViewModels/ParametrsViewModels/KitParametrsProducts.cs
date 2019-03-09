@@ -25,6 +25,7 @@ namespace ISFF
             db.DoseIngredients.Load();
             Products = DeepCopyCollection<Product>.CopyToObservableCollectionFromDb(db.Products);
             DoseIngredients = new ObservableCollection<DoseIngredient>();
+            IdElementsForRemove = new List<int>();
             AddProductExtendedCommand = new ExtendedRelayCommand(new AddProductCommandFactory());
             EditProductExtendedCommand = new ExtendedRelayCommand(new EditProductCommandFactory());
             RemoveProductCommand = new CommonRelayCommand(new RemoveProductCommandFactory());
@@ -49,6 +50,7 @@ namespace ISFF
         public Product ReservedCopySelectedProduct { get; set; }
         public ObservableCollection<Product> Products { get; set; }
         public ObservableCollection<DoseIngredient> DoseIngredients { get; set; }
+        public List<int> IdElementsForRemove { get; set; }
 
         #endregion
 

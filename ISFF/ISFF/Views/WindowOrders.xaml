@@ -71,9 +71,9 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Цена за 1 ед. "/>
                                 <TextBlock Text="{Binding Path=Product.Price}"/>
-                                <TextBlock Text=" р. "/>
-                                <TextBlock Text="время готовки "/>
+                                <TextBlock Text=" р. время готовки "/>
                                 <TextBlock Text="{Binding Path=Product.TimeCook}"/>
+                                <TextBlock Text=" c."/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGrid.RowDetailsTemplate>
@@ -86,18 +86,20 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="6*"/>
                         <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" HorizontalAlignment="Left">
-                        <TextBlock Text="Номер заказа"/>
-                        <TextBlock Text="Цена заказа"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" HorizontalAlignment="Right">
-                        <TextBox Width="100" Text="{Binding SelectedOrder.Id}"/>
-                        <TextBox Width="100" Text="{Binding SelectedOrder.Price}"/>
-                    </StackPanel>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Номер заказа" Grid.Row="0"/>
+                    <TextBlock Text="Цена заказа" Grid.Row="1"/>
+                    <TextBox Width="100" Text="{Binding SelectedOrder.Id}" Grid.Row="0" Grid.Column="1"/>
+                    <TextBox Width="100" Text="{Binding SelectedOrder.Price}" Grid.Row="1" Grid.Column="1"/>
+                    <TextBlock Text="р." Grid.Row="1" Grid.Column="2"/>
                 </Grid>
                 <TextBlock Text="Крайний срок" HorizontalAlignment="Center"/>
-                <TextBox Width="200" Text="{Binding KitParametrsOrders.SelectedOrder.Time}"
+                <TextBox Width="200" Text="{Binding KitParametrsOrders.SelectedOrder.TimeString}"
                          Margin="0 0 0 0" IsReadOnly="True"/>
                 <TextBlock Text="Текущее время" HorizontalAlignment="Center"/>
                 <TextBox Width="200" Text="{Binding KitParametrsOrders.CurrentTime}"

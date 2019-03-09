@@ -16,5 +16,27 @@ namespace ISFF
 
         public int OrderId { get; set; }
         public Order Order { get; set; }
+
+
+        public bool CanCook()
+        {
+            bool canReady = true;
+            foreach (DoseIngredient doseIngredient in Product.DoseIngredients)
+            {
+                if (doseIngredient.Ingredient.AmountNow < doseIngredient.CountIngredient * CountProduct)
+                    canReady = false;
+            }
+            return canReady;
+        }
+
+        public void Cook()
+        {
+            foreach (DoseIngredient doseIngredient in Product.DoseIngredients)
+            {
+                doseIngredient.Ingredient.AmountNow -= doseIngredient.CountIngredient * CountProduct;
+                doseIngredient.Ingredient.AmountUsed += doseIngredient.CountIngredient * CountProduct;
+            }
+        }
+
     }
 }

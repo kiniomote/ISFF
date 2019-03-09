@@ -17,6 +17,7 @@ namespace ISFF
         const string AMOUNT_USED = "AmountUsed";
         const string QUANTILY = "Quantily";
         const string PRICE = "Price";
+        const string WEIGHT = "Weight";
 
         #endregion
 
@@ -27,6 +28,7 @@ namespace ISFF
 		public double AmountNow { get; set; }
 		public double AmountUsed { get; set; }
 		public string Quantily { get; set; }
+        public int Weight { get; set; }
 		public double Price { get; set; }
 
         // Внешний ключ с DoseIngredient, связь один ко многим
@@ -37,7 +39,7 @@ namespace ISFF
             DoseIngredients = new List<DoseIngredient>();
             CorrectData = new CorrectDataService(new Dictionary<string, bool>
             {
-                { NAME, false }, { AMOUNT_NOW, false}, { AMOUNT_USED, false}, { QUANTILY, false }, { PRICE, false}
+                { NAME, false }, { AMOUNT_NOW, false}, { AMOUNT_USED, false}, { QUANTILY, false }, { PRICE, false}, {WEIGHT, false}
             });
         }
 
@@ -75,6 +77,10 @@ namespace ISFF
                         if (Price <= 0)
                             error = "Цена не может быть отрицательной или нулевой";
                         break;
+                    case WEIGHT:
+                        if (Weight <= 0)
+                            error = "Вес не может быть отрицательным или нулевым";
+                        break;
                 }
                 CorrectData.CheckCorrect(columnName, error);
                 return error;
@@ -103,7 +109,8 @@ namespace ISFF
                 AmountNow = ingredient_copy.AmountNow,
                 AmountUsed = ingredient_copy.AmountUsed,
                 Quantily = ingredient_copy.Quantily,
-                Price = ingredient_copy.Price
+                Price = ingredient_copy.Price,
+                Weight = ingredient_copy.Weight
             };
             return ingredient;
         }
@@ -116,6 +123,7 @@ namespace ISFF
             ingredient.AmountUsed = ingredient_copy.AmountUsed;
             ingredient.Quantily = ingredient_copy.Quantily;
             ingredient.Price = ingredient_copy.Price;
+            ingredient.Weight = ingredient_copy.Weight;
         }
 
         #endregion

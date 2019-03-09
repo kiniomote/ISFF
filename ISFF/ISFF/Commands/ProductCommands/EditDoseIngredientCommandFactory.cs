@@ -22,9 +22,12 @@ namespace ISFF
                 KitParametrsDose kitParametrsDose = DialogWindowService.OpenDoseDialogWindow(items,
                     kitParametrs.SelectedDoseIngredient.Ingredient,
                     kitParametrs.SelectedDoseIngredient.CountIngredient);
-                if (kitParametrsDose == null)
+                if (kitParametrsDose == null || kitParametrsDose.CountItems <= 0)
                     return;
                 DoseIngredient doseIngredient = DoseIngredient.Copy(kitParametrs.SelectedDoseIngredient);
+                if (kitParametrs.db.DoseIngredients.SingleOrDefault(c => c.Id == kitParametrs.SelectedDoseIngredient.Id) != null &&
+                    !kitParametrs.IdElementsForRemove.Contains(kitParametrs.SelectedDoseIngredient.Id))
+                    kitParametrs.IdElementsForRemove.Add(kitParametrs.SelectedDoseIngredient.Id);
                 kitParametrs.DoseIngredients.Remove(kitParametrs.SelectedDoseIngredient);
                 doseIngredient.Ingredient = (Ingredient)kitParametrsDose.SelectedItem;
                 doseIngredient.CountIngredient = kitParametrsDose.CountItems;

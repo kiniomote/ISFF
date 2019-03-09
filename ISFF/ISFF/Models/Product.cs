@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ISFF
 {
@@ -16,6 +17,7 @@ namespace ISFF
         const string TIME_COOK = "TimeCook";
         const string WEIGHT = "Weight";
         const string PRICE = "Price";
+        const string DEFAULT_QANTILY = "шт.";
 
         #endregion
 
@@ -41,7 +43,7 @@ namespace ISFF
 		{
             DoseIngredients = new List<DoseIngredient>();
             DoseProducts = new List<DoseProduct>();
-            Quantily = "шт";
+            Quantily = DEFAULT_QANTILY;
             CorrectData = new CorrectDataService(new Dictionary<string, bool>
             {
                 { NAME, false }, { TIME_COOK, false}, { WEIGHT, false}, { PRICE, false}
@@ -92,7 +94,37 @@ namespace ISFF
         #endregion
 
         #region Methods
+        
+        [NotMapped]
+        public double PriceIngredients
+        {
+            get
+            {
+                double priceIngredients = 0;
+                foreach (DoseIngredient doseIngredient in DoseIngredients)
+                {
+                    priceIngredients += doseIngredient.Ingredient.Price * doseIngredient.CountIngredient;
+                }
+                return priceIngredients;
+            }
+            set { }
+        }
 
+        [NotMapped]
+        public int WeightIngredients
+        {
+            get
+            {
+                int weightIngredients = 0;
+                foreach (DoseIngredient doseIngredient in DoseIngredients)
+                {
+                    weightIngredients += doseIngredient.Ingredient.Weight * doseIngredient.CountIngredient;
+                }
+                return weightIngredients;
+            }
+            set { }
+        }
+        
         #endregion
 
         #region CopyMethods

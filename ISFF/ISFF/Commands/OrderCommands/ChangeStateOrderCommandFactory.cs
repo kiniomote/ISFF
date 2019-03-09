@@ -13,6 +13,11 @@ namespace ISFF
             return param =>
             {
                 KitParametrsOrders kitParametrs = param as KitParametrsOrders;
+                if (!kitParametrs.SelectedOrder.TryCompleteOrder())
+                {
+                    return;
+                }
+                kitParametrs.db.SaveChanges();
                 kitParametrs.SelectedOrder.Ready = true;
                 Order searchOrder = kitParametrs.db.Orders.SingleOrDefault(c => c.Id == kitParametrs.SelectedOrder.Id);
                 searchOrder.Ready = kitParametrs.SelectedOrder.Ready;

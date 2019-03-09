@@ -70,11 +70,13 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Количество в наличии" Grid.Column="0" Grid.Row="0"/>
                 <TextBlock Text="Количество потраченных за день" Grid.Column="0" Grid.Row="1"/>
                 <TextBlock Text="Величина измерения" Grid.Column="0" Grid.Row="2"/>
                 <TextBlock Text="Цена за 1 ед." Grid.Column="0" Grid.Row="3"/>
+                <TextBlock Text="Вес 1 ед. в граммах " Grid.Column="0" Grid.Row="4"/>
                 <TextBox Width="100" Grid.Column="1" Grid.Row="0">
                     <TextBox.Text>
                         <Binding Path="SelectedIngredient.AmountNow">
@@ -111,7 +113,17 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
+                <TextBox Width="100" Grid.Column="1" Grid.Row="4">
+                    <TextBox.Text>
+                        <Binding Path="SelectedIngredient.Weight">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <TextBlock Text="р." Grid.Column="2" Grid.Row="3"/>
+                <TextBlock Text="гр." Grid.Column="2" Grid.Row="4"/>
             </Grid>
         </StackPanel>
 

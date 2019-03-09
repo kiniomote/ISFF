@@ -24,6 +24,8 @@ namespace ISFF
             db.Products.Load();
             db.Orders.Load();
             db.DoseProducts.Load();
+            db.Ingredients.Load();
+            db.DoseIngredients.Load();
             LoadOrders();
             ChangeStateOrderCommand = new CommonRelayCommand(new ChangeStateOrderCommandFactory());
             SelectedOrder = null;
@@ -36,7 +38,7 @@ namespace ISFF
             };
             currentTimer.Tick += (o, e) => 
             {
-                CurrentTime = DateTime.Now.ToString();
+                CurrentTime = DateTime.Now.ToLongTimeString();
             };
             currentTimer.Start();
         }
@@ -107,7 +109,7 @@ namespace ISFF
             set
             {
                 selectedOrder = value;
-                if(selectedOrder != null)
+                if (selectedOrder != null)
                     ColorStateOrder = selectedOrder.Ready ? new SolidColorBrush(Order.COLOR_READY) : new SolidColorBrush(Order.COLOR_NOT_READY);
                 OnPropertyChanged();
             }

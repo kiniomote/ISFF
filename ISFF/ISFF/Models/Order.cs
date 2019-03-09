@@ -14,6 +14,7 @@ namespace ISFF
         public static Color COLOR_READY = Colors.Green; // Green
         [NotMapped]
         public static Color COLOR_NOT_READY = Colors.Red; // Red
+        const string TEXT_NOT_ENOUGH = "Нехватает ингредиентов!";
 
 		// Название столбцов в таблице Заказы
 		public int Id { get; set; }
@@ -28,5 +29,32 @@ namespace ISFF
 		{
             DoseProducts = new List<DoseProduct>();
 		}
+
+        [NotMapped]
+        public string TimeString
+        {
+            get { return Time.ToLongTimeString(); }
+            set { }
+        }
+
+        public bool TryCompleteOrder()
+        {
+            bool canReady = true;
+            foreach(DoseProduct doseProduct in DoseProducts)
+            {
+                if (!doseProduct.CanCook())
+                    canReady = false;
+            }
+            if (!canReady)
+            {
+                DialogWindowService.OpenDialogWindow(TEXT_NOT_ENOUGH);
+                return canReady;
+            }
+            foreach (DoseProduct doseProduct in DoseProducts)
+            {
+                doseProduct.Cook();
+            }
+            return canReady;
+        }
 	}
 }

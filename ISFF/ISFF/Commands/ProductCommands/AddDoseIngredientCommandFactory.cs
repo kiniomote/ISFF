@@ -21,7 +21,7 @@ namespace ISFF
                 }
 
                 KitParametrsDose kitParametrsDose = DialogWindowService.OpenDoseDialogWindow(items);
-                if (kitParametrsDose == null)
+                if (kitParametrsDose == null || kitParametrsDose.CountItems <= 0)
                     return;
                 kitParametrs.DoseIngredients.Add(new DoseIngredient()
                 {
