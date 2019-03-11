@@ -66,6 +66,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -88,6 +90,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\MainWindowCommands\AuthorizationCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\LoadImageCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\RemoveImageCommandFactory.cs" />
+    <Compile Include="Interfaces\ILogerService.cs" />
+    <Compile Include="Services\JsonLogerService.cs" />
+    <Compile Include="Models\Record.cs" />
+    <Compile Include="Services\ConverterByteImage.cs" />
+    <Compile Include="Interfaces\IDialogService.cs" />
+    <Compile Include="Services\LoadImageDialogService.cs" />
     <Compile Include="Services\CorrectDataService.cs" />
     <Compile Include="Interfaces\ICorrect.cs" />
     <Compile Include="Services\DependecyPropertyBehavior.cs" />
@@ -248,7 +258,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\None_image.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Figure.png" />
   </ItemGroup>

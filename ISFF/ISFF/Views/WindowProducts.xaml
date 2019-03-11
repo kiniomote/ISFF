@@ -166,11 +166,23 @@
                 </StackPanel>
 
                 <!-- Картинка продукта-->
-                <Rectangle x:Name="ImageProduct" Width="200" Height="250" Grid.Column="2">
-                    <Rectangle.Fill>
-                        <ImageBrush ImageSource="/Resources/Image.jpg" Stretch="Uniform"/>
-                    </Rectangle.Fill>
-                </Rectangle>
+                <StackPanel Grid.Column="2">
+                    <Rectangle x:Name="ImageProduct" Width="200" Height="250">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="{Binding KitParametrsProducts.Image}" Stretch="Uniform"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="buttonLoad" Style="{StaticResource SmallButtonStyle}"
+                                Content="Загрузить" Margin="0 5 0 5"
+                                Command="{Binding KitParametrsProducts.LoadImageCommand}"
+                                CommandParameter="{Binding KitParametrsProducts}"/>
+                        <Button x:Name="buttonRemove" Style="{StaticResource SmallButtonStyle}"
+                                Content="Удалить" Margin="0 5 0 5"
+                                Command="{Binding KitParametrsProducts.RemoveImageCommand}"
+                                CommandParameter="{Binding KitParametrsProducts}"/>
+                    </StackPanel>
+                </StackPanel>
             </Grid>
         </StackPanel>
 

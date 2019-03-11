@@ -30,6 +30,7 @@ namespace ISFF
                 kitParametrs.AddProductExtendedCommand.State = ExtendedRelayCommand.STATE_ALTERNATIVE;
                 kitParametrs.Products.Insert(0, new Product());
                 kitParametrs.SelectedProduct = kitParametrs.Products.First();
+                kitParametrs.Image = ConverterByteImage.ToBitmapImage(Properties.Resources.None_image);
                 kitParametrs.IsEnableCollection = false;
                 kitParametrs.IsBusy = true;
             };

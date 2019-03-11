@@ -48,6 +48,7 @@ namespace ISFF
             {
                 { NAME, false }, { TIME_COOK, false}, { WEIGHT, false}, { PRICE, false}
             });
+            Image = ConverterByteImage.ImageToByte(ConverterByteImage.ToBitmapImage(Properties.Resources.None_image));
         }
 
         #endregion

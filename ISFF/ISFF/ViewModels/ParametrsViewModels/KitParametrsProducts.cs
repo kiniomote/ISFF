@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using System.Windows.Media.Imaging;
 using System.Data.Entity;
 
 namespace ISFF
@@ -32,8 +33,11 @@ namespace ISFF
             AddDoseIngredientCommand = new CommonRelayCommand(new AddDoseIngredientCommandFactory());
             EditDoseIngredientCommand = new CommonRelayCommand(new EditDoseIngredientCommandFactory());
             RemoveDoseIngredientCommand = new CommonRelayCommand(new RemoveDoseIngredientCommandFactory());
+            LoadImageCommand = new CommonRelayCommand(new LoadImageCommandFactory());
+            RemoveImageCommand = new CommonRelayCommand(new RemoveImageCommandFactory());
             SelectedProduct = null;
             SelectedDoseIngredient = null;
+            Image = ConverterByteImage.ToBitmapImage(Properties.Resources.None_image);
         }
 
         //_______________________________
@@ -47,6 +51,7 @@ namespace ISFF
         private bool isBusy;
         private Product selectedProduct;
         private DoseIngredient selectedDoseIngredient;
+        private BitmapImage image;
         public Product ReservedCopySelectedProduct { get; set; }
         public ObservableCollection<Product> Products { get; set; }
         public ObservableCollection<DoseIngredient> DoseIngredients { get; set; }
@@ -75,6 +80,12 @@ namespace ISFF
 
         // Command remove dose ingredient in product
         public CommonRelayCommand RemoveDoseIngredientCommand { get; }
+
+        // Command load image product from file
+        public CommonRelayCommand LoadImageCommand { get; }
+
+        // Command remove image selected product
+        public CommonRelayCommand RemoveImageCommand { get; }
         
         #endregion
 
@@ -122,6 +133,7 @@ namespace ISFF
                     return;
                 DeepCopyCollection<DoseIngredient>.CopyElementsFromCollection(DoseIngredients, selectedProduct.DoseIngredients);
                 OnPropertyChanged();
+                Image = ConverterByteImage.ByteToImage(selectedProduct.Image);
             }
         }
 
@@ -131,6 +143,18 @@ namespace ISFF
             set
             {
                 selectedDoseIngredient = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public BitmapImage Image
+        {
+            get { return image; }
+            set
+            {
+                image = value;
+                if (value != null && SelectedProduct != null)
+                    SelectedProduct.Image = ConverterByteImage.ImageToByte(value);
                 OnPropertyChanged();
             }
         }
