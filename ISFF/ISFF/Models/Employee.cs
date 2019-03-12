@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ISFF
 {
-	public class Employee : IDataErrorInfo
+	public class Employee : IDataErrorInfo, ILogable
 	{
         #region Constant
 
@@ -85,6 +85,11 @@ namespace ISFF
         #endregion
 
         #region Methods
+
+        public override string ToString()
+        {
+            return Fio;
+        }
 
         #endregion
 

@@ -25,6 +25,8 @@ namespace ISFF
                 kitParametrs.ReadyOrders.Remove(kitParametrs.SelectedOrder);
                 kitParametrs.SelectedOrder = kitParametrs.FinishedOrders.Last();
                 kitParametrs.db.SaveChanges();
+                Record record = new Record(kitParametrs.SelectedOrder, Record.Action.Ready);
+                record.WriteRecordToFile(new JsonLogerService<Record>(JsonLogerService<Record>.FILE_NAME_ORDER));
             };
         }
 

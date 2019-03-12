@@ -47,3 +47,5 @@ C:\Program Files\Git\ISFF\ISFF\ISFF\bin\Debug\Microsoft.Expression.Prototyping.S
 C:\Program Files\Git\ISFF\ISFF\ISFF\bin\Debug\Microsoft.SDK.Expression.Blend.dll
 C:\Program Files\Git\ISFF\ISFF\ISFF\bin\Debug\System.Windows.Interactivity.dll
 C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\LogWindow.g.cs
+C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\Views\LogWindow.baml

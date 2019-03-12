@@ -54,6 +54,8 @@ namespace ISFF
                     kitParametrs.AddIngredientExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
                     kitParametrs.db.Ingredients.Add(kitParametrs.SelectedIngredient);
                     kitParametrs.db.SaveChanges();
+                    Record record = new Record(kitParametrs.SelectedIngredient, Record.Action.Add);
+                    record.WriteRecordToFile(new JsonLogerService<Record>(JsonLogerService<Record>.FILE_NAME_INGREDIENT));
                 }
                 else
                 {

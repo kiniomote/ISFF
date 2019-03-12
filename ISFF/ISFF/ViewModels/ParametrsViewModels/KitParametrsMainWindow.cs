@@ -24,7 +24,12 @@ namespace ISFF
             OpenProductsWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_PRODUCTS));
             OpenOrdersWindowCommand = new CommonRelayCommand(new OpenWindowCommandFactory(OpenWindowCommandFactory.WINDOW_ORDERS));
             AuthorizationCommand = new ExtendedRelayCommand(new AuthorizationCommandFactory());
+            LogShowCommand = new CommonRelayCommand(new LogShowCommandFactory());
             Login = "user";
+            Employee = new Employee();
+            Ingredient = new Ingredient();
+            Product = new Product();
+            Order = new Order();
         }
 
         //_______________________________
@@ -34,6 +39,11 @@ namespace ISFF
         private bool isEnable;
         private string login;
         private string password;
+
+        public Employee Employee { get; }
+        public Ingredient Ingredient { get; }
+        public Product Product { get; }
+        public Order Order { get; }
 
         #endregion
 
@@ -55,6 +65,9 @@ namespace ISFF
 
         // Authorization
         public ExtendedRelayCommand AuthorizationCommand { get; }
+
+        // Show log
+        public CommonRelayCommand LogShowCommand { get; }
 
         #endregion
 

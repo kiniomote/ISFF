@@ -58,6 +58,8 @@ namespace ISFF
                     kitParametrs.IdElementsForRemove.Clear();
                     kitParametrs.SelectedProduct.DoseIngredients = DeepCopyCollection<DoseIngredient>.CopyToList(kitParametrs.DoseIngredients);
                     kitParametrs.db.SaveChanges();
+                    Record record = new Record(kitParametrs.SelectedProduct, Record.Action.Edit);
+                    record.WriteRecordToFile(new JsonLogerService<Record>(JsonLogerService<Record>.FILE_NAME_PRODUCT));
                 }
                 else
                 {

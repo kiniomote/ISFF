@@ -56,6 +56,8 @@ namespace ISFF
                     kitParametrs.SelectedProduct.DoseIngredients = DeepCopyCollection<DoseIngredient>.CopyToList(kitParametrs.DoseIngredients);
                     kitParametrs.db.Products.Add(kitParametrs.SelectedProduct);
                     kitParametrs.db.SaveChanges();
+                    Record record = new Record(kitParametrs.SelectedProduct, Record.Action.Add);
+                    record.WriteRecordToFile(new JsonLogerService<Record>(JsonLogerService<Record>.FILE_NAME_PRODUCT));
                 }
                 else
                 {

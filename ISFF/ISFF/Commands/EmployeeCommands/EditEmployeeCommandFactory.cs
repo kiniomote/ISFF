@@ -54,6 +54,8 @@ namespace ISFF
                     Employee editEmployee = kitParametrs.db.Employees.SingleOrDefault(c => c.Id == kitParametrs.SelectedEmployee.Id);
                     editEmployee = kitParametrs.SelectedEmployee;
                     kitParametrs.db.SaveChanges();
+                    Record record = new Record(kitParametrs.SelectedEmployee, Record.Action.Edit);
+                    record.WriteRecordToFile(new JsonLogerService<Record>(JsonLogerService<Record>.FILE_NAME_EMPLOYEE));
                 }
                 else
                 {

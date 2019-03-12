@@ -54,6 +54,8 @@ namespace ISFF
                     Ingredient editIngredient = kitParametrs.db.Ingredients.SingleOrDefault(c => c.Id == kitParametrs.SelectedIngredient.Id);
                     editIngredient = kitParametrs.SelectedIngredient;
                     kitParametrs.db.SaveChanges();
+                    Record record = new Record(kitParametrs.SelectedIngredient, Record.Action.Edit);
+                    record.WriteRecordToFile(new JsonLogerService<Record>(JsonLogerService<Record>.FILE_NAME_INGREDIENT));
                 }
                 else
                 {

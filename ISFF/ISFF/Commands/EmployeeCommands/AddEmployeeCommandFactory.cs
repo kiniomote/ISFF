@@ -54,6 +54,8 @@ namespace ISFF
                     kitParametrs.AddEmployeeExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
                     kitParametrs.db.Employees.Add(kitParametrs.SelectedEmployee);
                     kitParametrs.db.SaveChanges();
+                    Record record = new Record(kitParametrs.SelectedEmployee, Record.Action.Add);
+                    record.WriteRecordToFile(new JsonLogerService<Record>(JsonLogerService<Record>.FILE_NAME_EMPLOYEE));
                 }
                 else
                 {

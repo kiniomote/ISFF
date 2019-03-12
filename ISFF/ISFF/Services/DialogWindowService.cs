@@ -40,6 +40,10 @@ namespace ISFF
             return kitDose;
         }
 
-
+        public static void OpenLogWindow(ILogable element)
+        {
+            LogWindow logWindow = new LogWindow(element);
+            logWindow.ShowDialog();
+        }
     }
 }

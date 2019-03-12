@@ -8,7 +8,7 @@ namespace ISFF
 {
     public interface ILogerService<T>
     {
-        List<T> ReadFromFile(string file_name);
-        void WriteToFile(List<T> elements, string file_name);
+        List<T> ReadFromFile();
+        void WriteToFile(T element);
     }
 }

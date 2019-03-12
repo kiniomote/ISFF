@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ISFF
 {
-	public class Order
+	public class Order : ILogable
 	{
         [NotMapped]
         public static Color COLOR_READY = Colors.Green; // Green
@@ -29,6 +29,11 @@ namespace ISFF
 		{
             DoseProducts = new List<DoseProduct>();
 		}
+
+        public override string ToString()
+        {
+            return "заказ №" + Id;
+        }
 
         [NotMapped]
         public string TimeString

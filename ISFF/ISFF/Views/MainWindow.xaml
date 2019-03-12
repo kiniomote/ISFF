@@ -72,25 +72,29 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
                 <Button Command="{Binding OpenEmployeesWindowCommand}" Style="{StaticResource BigButtonStyle}" Content="Сотрудники" Margin="15 5 15 5"/>
-                <Button x:Name="buttonEmployeesLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
-                <Button x:Name="buttonEmployeesReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>
+                <Button Command="{Binding LogShowCommand}" CommandParameter="{Binding Employee}"
+                        Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
+                <!--<Button x:Name="buttonEmployeesReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>-->
             </StackPanel>
-            <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
                 <Button Command="{Binding OpenIngredientsWindowCommand}" Style="{StaticResource BigButtonStyle}" Content="Ингредиенты" Margin="15 5 15 5"/>
-                <Button x:Name="buttonIngredientsLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
-                <Button x:Name="buttonIngredientsReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>
+                <Button Command="{Binding LogShowCommand}" CommandParameter="{Binding Ingredient}"
+                        Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
+                <!--<Button x:Name="buttonIngredientsReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>-->
             </StackPanel>
-            <StackPanel Grid.Column="2">
+            <StackPanel Grid.Column="2" VerticalAlignment="Center">
                 <Button Command="{Binding OpenProductsWindowCommand}" Style="{StaticResource BigButtonStyle}" Content="Товары" Margin="15 5 15 5"/>
-                <Button x:Name="buttonProductsLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
-                <Button x:Name="buttonProductsReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>
+                <Button Command="{Binding LogShowCommand}" CommandParameter="{Binding Product}"
+                        Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
+                <!--<Button x:Name="buttonProductsReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>-->
             </StackPanel>
-            <StackPanel Grid.Column="3">
+            <StackPanel Grid.Column="3" VerticalAlignment="Center">
                 <Button Command="{Binding OpenOrdersWindowCommand}" Style="{StaticResource BigButtonStyle}" Content="Заказы" Margin="15 5 15 5"/>
-                <Button x:Name="buttonOrdersLog" Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
-                <Button x:Name="buttonOrdersReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>
+                <Button Command="{Binding LogShowCommand}" CommandParameter="{Binding Order}"
+                        Style="{StaticResource SmallButtonStyle}" Content="история" Margin="35 0 35 0"/>
+                <!--<Button x:Name="buttonOrdersReport" Style="{StaticResource SmallButtonStyle}" Content="отчёт" Margin="35 5 35 5"/>-->
             </StackPanel>
         </Grid>
 

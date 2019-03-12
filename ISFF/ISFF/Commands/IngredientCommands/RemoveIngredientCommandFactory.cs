@@ -13,6 +13,8 @@ namespace ISFF
             return param =>
             {
                 KitParametrsIngredients kitParametrs = param as KitParametrsIngredients;
+                Record record = new Record(kitParametrs.SelectedIngredient, Record.Action.Remove);
+                record.WriteRecordToFile(new JsonLogerService<Record>(JsonLogerService<Record>.FILE_NAME_INGREDIENT));
                 kitParametrs.db.Ingredients.Remove(kitParametrs.SelectedIngredient);
                 kitParametrs.Ingredients.Remove(kitParametrs.SelectedIngredient);
                 kitParametrs.db.SaveChanges();

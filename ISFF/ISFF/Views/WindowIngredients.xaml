@@ -73,7 +73,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Количество в наличии" Grid.Column="0" Grid.Row="0"/>
-                <TextBlock Text="Количество потраченных за день" Grid.Column="0" Grid.Row="1"/>
+                <TextBlock Text="Количество потраченных" Grid.Column="0" Grid.Row="1"/>
                 <TextBlock Text="Величина измерения" Grid.Column="0" Grid.Row="2"/>
                 <TextBlock Text="Цена за 1 ед." Grid.Column="0" Grid.Row="3"/>
                 <TextBlock Text="Вес 1 ед. в граммах " Grid.Column="0" Grid.Row="4"/>

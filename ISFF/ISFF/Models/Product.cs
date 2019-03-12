@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 namespace ISFF
 {
-	public class Product : INameable, IDataErrorInfo
+	public class Product : INameable, IDataErrorInfo, ILogable
     {
         #region Constant
 
@@ -95,7 +95,12 @@ namespace ISFF
         #endregion
 
         #region Methods
-        
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
         [NotMapped]
         public double PriceIngredients
         {

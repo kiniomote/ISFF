@@ -13,6 +13,8 @@ namespace ISFF
             return param =>
             {
                 KitParametrsEmployees kitParametrs = param as KitParametrsEmployees;
+                Record record = new Record(kitParametrs.SelectedEmployee, Record.Action.Remove);
+                record.WriteRecordToFile(new JsonLogerService<Record>(JsonLogerService<Record>.FILE_NAME_EMPLOYEE));
                 kitParametrs.db.Employees.Remove(kitParametrs.SelectedEmployee);
                 kitParametrs.Employees.Remove(kitParametrs.SelectedEmployee);
                 kitParametrs.db.SaveChanges();
