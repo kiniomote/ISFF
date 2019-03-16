@@ -20,10 +20,10 @@ namespace ISFF
 
         public static void Authorization(string login, string password)
         {
-            using(ConnectionDB db = new ConnectionDB())
+            using(IGenericRepository db = new EFGenericRepository())
             {
-                db.Users.Load();
-                User = db.Users.SingleOrDefault(user => user.Login == login && user.Password == password);
+                User user = new User() { Login = login, Password = password };
+                User = db.Users.GetItem(user);
                 if (User == null)
                     AuthorizationDefault();
             }

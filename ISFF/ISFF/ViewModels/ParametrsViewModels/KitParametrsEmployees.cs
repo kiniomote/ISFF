@@ -14,14 +14,13 @@ namespace ISFF
     {
         //_______________________________
 
-        public KitParametrsEmployees()
+        public KitParametrsEmployees(IGenericRepository db)
         {
             IsReadOnly = true;
             IsEnableCollection = true;
             IsBusy = false;
-            db = new ConnectionDB();
-            db.Employees.Load();
-            Employees = DeepCopyCollection<Employee>.CopyToObservableCollectionFromDb(db.Employees);
+            this.db = db;
+            Employees = DeepCopyCollection<Employee>.CopyToObservableCollection(db.Employees.ToCollection());
             AddEmployeeExtendedCommand = new ExtendedRelayCommand(new AddEmployeeCommandFactory());
             EditEmployeeExtendedCommand = new ExtendedRelayCommand(new EditEmployeeCommandFactory());
             RemoveEmployeeCommand = new CommonRelayCommand(new RemoveEmployeeCommandFactory());
@@ -33,7 +32,7 @@ namespace ISFF
 
         #region DataClass
 
-        public ConnectionDB db;
+        public IGenericRepository db;
         
         private bool isReadOnly;
         private bool isEnableCollection;

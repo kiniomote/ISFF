@@ -14,14 +14,13 @@ namespace ISFF
     {
         //_______________________________
 
-        public KitParametrsIngredients()
+        public KitParametrsIngredients(IGenericRepository db)
         {
             IsReadOnly = true;
             IsEnableCollection = true;
             IsBusy = false;
-            db = new ConnectionDB();
-            db.Ingredients.Load();
-            Ingredients = DeepCopyCollection<Ingredient>.CopyToObservableCollectionFromDb(db.Ingredients);
+            this.db = db;
+            Ingredients = DeepCopyCollection<Ingredient>.CopyToObservableCollection(db.Ingredients.ToCollection());
             AddIngredientExtendedCommand = new ExtendedRelayCommand(new AddIngredientCommandFactory());
             EditIngredientExtendedCommand = new ExtendedRelayCommand(new EditIngredientCommandFactory());
             RemoveIngredientCommand = new CommonRelayCommand(new RemoveIngredientCommandFactory());
@@ -32,7 +31,7 @@ namespace ISFF
 
         #region DataClass
 
-        public ConnectionDB db;
+        public IGenericRepository db;
 
         private bool isReadOnly;
         private bool isEnableCollection;

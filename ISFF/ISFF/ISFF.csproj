@@ -94,6 +94,7 @@
     <Compile Include="Commands\ProductCommands\RemoveImageCommandFactory.cs" />
     <Compile Include="DbRepository\EFDbSet.cs" />
     <Compile Include="DbRepository\EFGenericRepository.cs" />
+    <Compile Include="DbRepository\EFDbSetUser.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\IGenericRepository.cs" />
     <Compile Include="Interfaces\ILogable.cs" />
@@ -164,7 +165,6 @@
     <Compile Include="Models\DoseProduct.cs" />
     <Compile Include="Models\DoseIngredient.cs" />
     <Compile Include="Services\StaticControlDbService.cs" />
-    <Compile Include="Services\StaticJsonLogService.cs" />
     <Compile Include="Views\WindowEmployees.xaml.cs">
       <DependentUpon>WindowEmployees.xaml</DependentUpon>
     </Compile>

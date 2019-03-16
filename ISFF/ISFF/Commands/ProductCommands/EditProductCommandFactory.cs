@@ -53,7 +53,7 @@ namespace ISFF
                     kitParametrs.IsBusy = false;
                     foreach(int id in kitParametrs.IdElementsForRemove)
                     {
-                        kitParametrs.db.DoseIngredients.Remove(kitParametrs.db.DoseIngredients.Find(id));
+                        kitParametrs.db.DoseIngredients.Remove(kitParametrs.db.DoseIngredients.GetItem(id));
                     }
                     kitParametrs.IdElementsForRemove.Clear();
                     kitParametrs.SelectedProduct.DoseIngredients = DeepCopyCollection<DoseIngredient>.CopyToList(kitParametrs.DoseIngredients);

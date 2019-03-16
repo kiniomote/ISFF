@@ -19,10 +19,10 @@ namespace ISFF
     /// </summary>
     public partial class WindowIngredients : Window
     {
-        public WindowIngredients()
+        public WindowIngredients(IGenericRepository db)
         {
             InitializeComponent();
-            DataContext = new IngredientsViewModel();
+            DataContext = new IngredientsViewModel(db);
         }
     }
 }

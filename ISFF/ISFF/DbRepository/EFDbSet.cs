@@ -10,7 +10,7 @@ namespace ISFF
     public class EFDbSet<T> : IDbSet<T>
         where T : class, IEntity
     {
-        private DbSet<T> _collectionElement;
+        protected DbSet<T> _collectionElement;
 
         public EFDbSet(DbSet<T> dbset)
         {
@@ -27,7 +27,7 @@ namespace ISFF
             return _collectionElement.Find(id);
         }
 
-        public T GetItem(T obj)
+        public virtual T GetItem(T obj)
         {
             return _collectionElement.Find(obj.Id);
         }

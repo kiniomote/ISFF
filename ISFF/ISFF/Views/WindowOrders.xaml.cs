@@ -19,10 +19,10 @@ namespace ISFF
     /// </summary>
     public partial class WindowOrders : Window
     {
-        public WindowOrders()
+        public WindowOrders(IGenericRepository db)
         {
             InitializeComponent();
-            DataContext = new OrdersViewModel();
+            DataContext = new OrdersViewModel(db);
         }
     }
 }

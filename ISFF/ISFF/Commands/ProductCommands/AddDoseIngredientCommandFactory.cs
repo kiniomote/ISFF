@@ -15,7 +15,7 @@ namespace ISFF
                 KitParametrsProducts kitParametrs = param as KitParametrsProducts;
 
                 List<INameable> items = new List<INameable>();
-                foreach (Ingredient ingredient in kitParametrs.db.Ingredients)
+                foreach (Ingredient ingredient in kitParametrs.db.Ingredients.ToCollection())
                 {
                     items.Add(ingredient);
                 }

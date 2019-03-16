@@ -34,14 +34,19 @@ namespace ISFF
             Ingredients = new EFDbSet<Ingredient>(db.Ingredients);
             Products = new EFDbSet<Product>(db.Products);
             Orders = new EFDbSet<Order>(db.Orders);
-            Users = new EFDbSet<User>(db.Users);
             DoseIngredients = new EFDbSet<DoseIngredient>(db.DoseIngredients);
             DoseProducts = new EFDbSet<DoseProduct>(db.DoseProducts);
+            Users = new EFDbSetUser(db.Users);
         }
 
-        public void Save()
+        public void SaveChanges()
         {
             db.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            db.Dispose();
         }
     }
 }

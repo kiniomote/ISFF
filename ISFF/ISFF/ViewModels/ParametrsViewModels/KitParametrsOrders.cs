@@ -16,16 +16,11 @@ namespace ISFF
     {
         //_______________________________
 
-        public KitParametrsOrders()
+        public KitParametrsOrders(IGenericRepository db)
         {
             IsReadOnly = true;
             ColorStateOrder = new SolidColorBrush(Colors.Transparent);
-            db = new ConnectionDB();
-            db.Products.Load();
-            db.Orders.Load();
-            db.DoseProducts.Load();
-            db.Ingredients.Load();
-            db.DoseIngredients.Load();
+            this.db = db;
             LoadOrders();
             ChangeStateOrderCommand = new CommonRelayCommand(new ChangeStateOrderCommandFactory());
             SelectedOrder = null;
@@ -47,7 +42,7 @@ namespace ISFF
 
         #region DataClass
 
-        public ConnectionDB db;
+        public IGenericRepository db;
         private DispatcherTimer currentTimer;
         
         private bool isReadOnly;
@@ -139,7 +134,7 @@ namespace ISFF
         {
             FinishedOrders = new ObservableCollection<Order>();
             ReadyOrders = new ObservableCollection<Order>();
-            foreach(Order order in db.Orders)
+            foreach(Order order in db.Orders.ToCollection())
             {
                 if (order.Ready)
                 {

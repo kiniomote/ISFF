@@ -12,9 +12,9 @@ namespace ISFF
 
         #region Conctruct
 
-        public ProductsViewModel()
+        public ProductsViewModel(IGenericRepository db)
         {
-            KitParametrsProducts = new KitParametrsProducts();
+            KitParametrsProducts = new KitParametrsProducts(db);
         }
 
         #endregion

@@ -41,16 +41,16 @@ namespace ISFF
                 switch (OpenWindow)
                 {
                     case WINDOW_EMPLOYEES:
-                        window = new WindowEmployees();
+                        window = new WindowEmployees(new EFGenericRepository());
                         break;
                     case WINDOW_INGREDIENTS:
-                        window = new WindowIngredients();
+                        window = new WindowIngredients(new EFGenericRepository());
                         break;
                     case WINDOW_PRODUCTS:
-                        window = new WindowProducts();
+                        window = new WindowProducts(new EFGenericRepository());
                         break;
                     case WINDOW_ORDERS:
-                        window = new WindowOrders();
+                        window = new WindowOrders(new EFGenericRepository());
                         break;
                 }
                 window.ShowDialog();

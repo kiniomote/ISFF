@@ -12,9 +12,9 @@ namespace ISFF
 
         #region Conctruct
 
-        public EmployeesViewModel()
+        public EmployeesViewModel(IGenericRepository db)
         {
-            KitParametrsEmployees = new KitParametrsEmployees();
+            KitParametrsEmployees = new KitParametrsEmployees(db);
         }
 
         #endregion

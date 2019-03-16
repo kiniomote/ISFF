@@ -19,10 +19,10 @@ namespace ISFF
     /// </summary>
     public partial class WindowEmployees : Window
     {
-        public WindowEmployees()
+        public WindowEmployees(IGenericRepository db)
         {
             InitializeComponent();
-            DataContext = new EmployeesViewModel();
+            DataContext = new EmployeesViewModel(db);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace ISFF
                 KitParametrsProducts kitParametrs = param as KitParametrsProducts;
 
                 List<INameable> items = new List<INameable>();
-                foreach (Ingredient ingredient in kitParametrs.db.Ingredients.ToList())
+                foreach (Ingredient ingredient in kitParametrs.db.Ingredients.ToCollection())
                 {
                     items.Add(ingredient);
                 }
@@ -25,7 +25,7 @@ namespace ISFF
                 if (kitParametrsDose == null || kitParametrsDose.CountItems <= 0)
                     return;
                 DoseIngredient doseIngredient = DoseIngredient.Copy(kitParametrs.SelectedDoseIngredient);
-                if (kitParametrs.db.DoseIngredients.SingleOrDefault(c => c.Id == kitParametrs.SelectedDoseIngredient.Id) != null &&
+                if (kitParametrs.db.DoseIngredients.GetItem(kitParametrs.SelectedDoseIngredient.Id) != null &&
                     !kitParametrs.IdElementsForRemove.Contains(kitParametrs.SelectedDoseIngredient.Id))
                     kitParametrs.IdElementsForRemove.Add(kitParametrs.SelectedDoseIngredient.Id);
                 kitParametrs.DoseIngredients.Remove(kitParametrs.SelectedDoseIngredient);

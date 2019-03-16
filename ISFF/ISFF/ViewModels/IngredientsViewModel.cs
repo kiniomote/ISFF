@@ -12,9 +12,9 @@ namespace ISFF
 
         #region Conctruct
 
-        public IngredientsViewModel()
+        public IngredientsViewModel(IGenericRepository db)
         {
-            KitParametrsIngredients = new KitParametrsIngredients();
+            KitParametrsIngredients = new KitParametrsIngredients(db);
         }
 
         #endregion

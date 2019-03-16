@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ISFF
 {
-    public interface IGenericRepository
+    public interface IGenericRepository : IDisposable
     {
         IDbSet<Employee> Employees { get; set; }
         IDbSet<Ingredient> Ingredients { get; set; }
@@ -15,6 +15,6 @@ namespace ISFF
         IDbSet<User> Users { get; set; }
         IDbSet<DoseIngredient> DoseIngredients { get; set; }
         IDbSet<DoseProduct> DoseProducts { get; set; }
-        void Save();
+        void SaveChanges();
     }
 }

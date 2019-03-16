@@ -19,8 +19,7 @@ namespace ISFF
                 }
                 kitParametrs.db.SaveChanges();
                 kitParametrs.SelectedOrder.Ready = true;
-                Order searchOrder = kitParametrs.db.Orders.SingleOrDefault(c => c.Id == kitParametrs.SelectedOrder.Id);
-                searchOrder.Ready = kitParametrs.SelectedOrder.Ready;
+                kitParametrs.db.Orders.Update(kitParametrs.SelectedOrder);
                 kitParametrs.FinishedOrders.Add(kitParametrs.SelectedOrder);
                 kitParametrs.ReadyOrders.Remove(kitParametrs.SelectedOrder);
                 kitParametrs.SelectedOrder = kitParametrs.FinishedOrders.Last();

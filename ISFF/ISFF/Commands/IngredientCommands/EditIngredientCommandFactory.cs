@@ -51,8 +51,7 @@ namespace ISFF
                     kitParametrs.EditIngredientExtendedCommand.State = ExtendedRelayCommand.STATE_NORMAL;
                     kitParametrs.IsEnableCollection = true;
                     kitParametrs.IsBusy = false;
-                    Ingredient editIngredient = kitParametrs.db.Ingredients.SingleOrDefault(c => c.Id == kitParametrs.SelectedIngredient.Id);
-                    editIngredient = kitParametrs.SelectedIngredient;
+                    kitParametrs.db.Ingredients.Update(kitParametrs.SelectedIngredient);
                     kitParametrs.db.SaveChanges();
                     Record record = new Record(kitParametrs.SelectedIngredient, Record.Action.Edit);
                     record.WriteRecordToFile(new JsonLogerService<Record>(JsonLogerService<Record>.FILE_NAME_INGREDIENT));
