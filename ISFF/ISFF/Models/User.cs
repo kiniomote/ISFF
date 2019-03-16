@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ISFF
 {
-    public class User
+    public class User : IEntity
     {
         public enum UserRole : byte
         {

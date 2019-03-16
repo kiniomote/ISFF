@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 namespace ISFF
 {
-	public class Product : INameable, IDataErrorInfo, ILogable
+	public class Product : INameable, IDataErrorInfo, ILogable, IEntity
     {
         #region Constant
 

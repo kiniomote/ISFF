@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ISFF
 {
-	public class Employee : IDataErrorInfo, ILogable
+	public class Employee : IDataErrorInfo, ILogable, IEntity
 	{
         #region Constant
 

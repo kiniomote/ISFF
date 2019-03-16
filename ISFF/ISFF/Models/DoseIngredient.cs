@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ISFF
 {
-    public class DoseIngredient
+    public class DoseIngredient : IEntity
     {
         public int Id { get; set; }
         public int CountIngredient { get; set; }

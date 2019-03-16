@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ISFF
 {
-	public class Order : ILogable
+	public class Order : ILogable, IEntity
 	{
         [NotMapped]
         public static Color COLOR_READY = Colors.Green; // Green
