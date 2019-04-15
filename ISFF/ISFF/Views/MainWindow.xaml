@@ -13,13 +13,17 @@
     </Window.Resources>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="693*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Canvas Grid.Row="0">
+        <Canvas Grid.Row="0" Grid.ColumnSpan="2">
             <GroupBox x:Name="loginGroupbox" Background="{DynamicResource backgroundTextblock}"
                       BorderThickness="2" Padding="2 0 5 0" Canvas.Left="25" Canvas.Top="5" Width="290" Height="125"
                       Header="Авторизация" FontFamily="Cambria" FontSize="16" BorderBrush="{StaticResource borderBrush}">
@@ -53,7 +57,7 @@
                             </i:Interaction.Behaviors>
                         </PasswordBox>
                     </Grid>
-                    
+
                     <Button x:Name="buttonLogin" Style="{StaticResource SmallButtonStyle}" 
                             Content="{Binding KitParametrsMainWindow.AuthorizationCommand.TextCommand}" Margin="70 2 70 0"
                             Command="{Binding KitParametrsMainWindow.AuthorizationCommand}" 
@@ -65,7 +69,7 @@
             <Image Canvas.Top="108" Canvas.Right="35" Style="{StaticResource FigureStyle}"/>
         </Canvas>
 
-        <Grid Grid.Row="1" DataContext="{Binding KitParametrsMainWindow}">
+        <Grid Grid.Row="1" DataContext="{Binding KitParametrsMainWindow}" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -99,6 +103,6 @@
         </Grid>
 
         <Button x:Name="buttonExit" Style="{StaticResource SmallButtonStyle}" Content="Выход"
-                HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Click="ButtonExit_Click"/>
+                HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Click="ButtonExit_Click" Grid.Column="1" Margin="217,0,332,0"/>
     </Grid>
 </Window>
