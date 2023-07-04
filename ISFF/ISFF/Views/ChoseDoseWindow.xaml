@@ -1,0 +1,50 @@
+﻿<Window x:Class="ISFF.ChoseDoseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ISFF"
+        mc:Ignorable="d"
+        Title="Подтвердждение" MinHeight="150" MinWidth="500" Height="150" Width="500"
+        Style="{StaticResource WindowStyle}" WindowStartupLocation="CenterScreen">
+    <Grid DataContext="{Binding KitParametersDose}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ComboBox x:Name="itemComboBox" Style="{StaticResource ComboboxStyle}"
+                  Width="400" Margin="0 10 0 10" Background="White"
+                  ItemsSource="{Binding Items}" 
+                  SelectedItem="{Binding SelectedItem}"
+                  DisplayMemberPath="Name"
+                  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"/>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBox Style="{StaticResource TextboxStyle}" Width="80">
+                <TextBox.Text>
+                    <Binding Path="CountItems">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock Style="{StaticResource TextblockStyle}" 
+                       Text="{Binding SelectedItem.Quantily}"/>
+        </StackPanel>
+        
+        <Button x:Name="buttonOk" Style="{StaticResource SmallButtonStyle}" Margin="10 5 10 5"
+                Content="Добавить" IsDefault="True"
+                Grid.Row="1" Grid.Column="1"
+                Click="ButtonOk_Click"/>
+        <Button x:Name="buttonCancel" Style="{StaticResource SmallButtonStyle}" Margin="10 5 10 5"
+                Content="Отмена" IsCancel="True"
+                Grid.Row="1" Grid.Column="2"
+                Click="ButtonCancel_Click"/>
+    </Grid>
+</Window>

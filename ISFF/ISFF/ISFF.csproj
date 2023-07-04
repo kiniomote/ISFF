@@ -35,8 +35,42 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Controls, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Effects, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Effects.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Prototyping.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Prototyping.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Prototyping.SketchControls, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Prototyping.SketchControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SDK.Expression.Blend, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.SDK.Expression.Blend.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -51,24 +85,165 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="Views\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Commands\MainWindowCommands\AuthorizationCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\LoadImageCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\RemoveImageCommandFactory.cs" />
+    <Compile Include="DbRepository\EFDbSet.cs" />
+    <Compile Include="DbRepository\EFGenericRepository.cs" />
+    <Compile Include="DbRepository\EFDbSetUser.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Interfaces\IGenericRepository.cs" />
+    <Compile Include="Interfaces\ILogable.cs" />
+    <Compile Include="Interfaces\ILogerService.cs" />
+    <Compile Include="Commands\MainWindowCommands\LogShowCommandFactory.cs" />
+    <Compile Include="Interfaces\IDbSet.cs" />
+    <Compile Include="ViewModels\LogViewModel.cs" />
+    <Compile Include="Views\LogWindow.xaml.cs">
+      <DependentUpon>LogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\JsonLogerService.cs" />
+    <Compile Include="Models\Record.cs" />
+    <Compile Include="Services\ConverterByteImage.cs" />
+    <Compile Include="Interfaces\IDialogService.cs" />
+    <Compile Include="Services\LoadImageDialogService.cs" />
+    <Compile Include="Services\CorrectDataService.cs" />
+    <Compile Include="Interfaces\ICorrect.cs" />
+    <Compile Include="Services\DependecyPropertyBehavior.cs" />
+    <Compile Include="Views\MessageWindow.xaml.cs">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommonDialogWindow.xaml.cs">
+      <DependentUpon>CommonDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\DialogWindowService.cs" />
+    <Compile Include="Services\CheckUserAccessService.cs" />
+    <Compile Include="Commands\OrderCommands\ChangeStateOrderCommandFactory.cs" />
+    <Compile Include="Interfaces\INameable.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="ViewModels\ParametrsViewModels\KitParametrsOrders.cs" />
+    <Compile Include="ViewModels\OrdersViewModel.cs" />
+    <Compile Include="Services\DeepCopyCollection.cs" />
+    <Compile Include="ViewModels\ParametrsViewModels\KitParametrsDose.cs" />
+    <Compile Include="ViewModels\DoseViewModel.cs" />
+    <Compile Include="Views\ChoseDoseWindow.xaml.cs">
+      <DependentUpon>ChoseDoseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\ProductCommands\AddDoseIngredientCommandFactory.cs" />
+    <Compile Include="Commands\IngredientCommands\AddIngredientCommandFactory.cs" />
+    <Compile Include="Commands\EmployeeCommands\AddEmployeeCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\AddProductCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\EditProductCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\RemoveProductCommandFactory.cs" />
+    <Compile Include="Commands\TypeCommand\ExtendedRelayCommandFactory.cs" />
+    <Compile Include="Commands\EmployeeCommands\EditEmployeeCommandFactory.cs" />
+    <Compile Include="Commands\TypeCommand\CommonRelayCommandFactory.cs" />
+    <Compile Include="Commands\EmployeeCommands\RemoveEmployeeCommandFactory.cs" />
+    <Compile Include="Commands\MainWindowCommands\OpenWindowCommandFactory.cs" />
+    <Compile Include="Commands\TypeCommand\CommonRelayCommand.cs" />
+    <Compile Include="Commands\TypeCommand\ExtendedRelayCommand.cs" />
+    <Compile Include="Commands\IngredientCommands\EditIngredientCommandFactory.cs" />
+    <Compile Include="Commands\IngredientCommands\RemoveIngredientCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\RemoveDoseIngredientCommandFactory.cs" />
+    <Compile Include="Commands\ProductCommands\EditDoseIngredientCommandFactory.cs" />
+    <Compile Include="ViewModels\ParametrsViewModels\KitParametrsProducts.cs" />
+    <Compile Include="ViewModels\ProductsViewModel.cs" />
+    <Compile Include="ViewModels\ParametrsViewModels\KitParametrsIngredients.cs" />
+    <Compile Include="ViewModels\IngredientsViewModel.cs" />
+    <Compile Include="ViewModels\ParametrsViewModels\KitParametrsMainWindow.cs" />
+    <Compile Include="ViewModels\ParametrsViewModels\KitParametrsDialog.cs" />
+    <Compile Include="ViewModels\DialogViewModel.cs" />
+    <Compile Include="Views\ResponseDialogWindow.xaml.cs">
+      <DependentUpon>ResponseDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ParametrsViewModels\KitParametrsEmployees.cs" />
+    <Compile Include="ViewModels\EmployeesViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Models\DoseProduct.cs" />
+    <Compile Include="Models\DoseIngredient.cs" />
+    <Compile Include="Services\StaticControlDbService.cs" />
+    <Compile Include="Views\WindowEmployees.xaml.cs">
+      <DependentUpon>WindowEmployees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowIngredients.xaml.cs">
+      <DependentUpon>WindowIngredients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowProducts.xaml.cs">
+      <DependentUpon>WindowProducts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowOrders.xaml.cs">
+      <DependentUpon>WindowOrders.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\LogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CommonDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChoseDoseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ResponseDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\StyleButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\StyleOrange.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\StyleTextblocks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
+    <Compile Include="Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Models\ConnectionDB.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\WindowEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowIngredients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowProducts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +261,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Resources\Audiowide-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +272,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\None_image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Figure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

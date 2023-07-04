@@ -1,0 +1,126 @@
+﻿<Window x:Class="ISFF.WindowOrders"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ISFF"
+        mc:Ignorable="d"
+        Title="Заказы" Height="500" Width="800" MinHeight="500" MinWidth="800"
+        Style="{StaticResource WindowStyle}" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource TextboxStyle}">
+            <Setter Property="IsReadOnly" Value="{Binding IsReadOnly}"/>
+            <Setter Property="Margin" Value="0 7 10 7"/>
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource TextblockStyle}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="0 10 0 10"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Верхняя часть-->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel VerticalAlignment="Center" Margin="0 0 30 0">
+                <TextBlock Text="Текущие заказы" HorizontalAlignment="Center"/>
+                <ComboBox x:Name="comboboxSelectedCurentOrder" Style="{StaticResource ComboboxStyle}"
+                          DataContext="{Binding KitParametrsOrders}"
+                          ItemsSource="{Binding ReadyOrders}" 
+                          SelectedItem="{Binding SelectedOrder}"
+                          DisplayMemberPath="Id"
+                          Width="200" Margin="0 0 0 10" Background="White"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" Margin="30 0 0 0">
+                <TextBlock Text="Завершённые заказы" HorizontalAlignment="Center"/>
+                <ComboBox x:Name="comboboxSelectedFinishedOrder" Style="{StaticResource ComboboxStyle}"
+                          DataContext="{Binding KitParametrsOrders}"
+                          ItemsSource="{Binding FinishedOrders}" 
+                          SelectedItem="{Binding SelectedOrder}"
+                          DisplayMemberPath="Id"
+                          Width="200" Margin="0 0 0 10" Background="White"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Центральная часть-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Список товаров таблица-->
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource TextblockStyle}" Text="Список заказа"/>
+                <DataGrid x:Name="datagridIngredients" Style="{StaticResource DataGridStyle}"
+                          DataContext="{Binding KitParametrsOrders}"
+                          ItemsSource="{Binding SelectedOrder.DoseProducts}"
+                          SelectedItem="{Binding SelectedDoseProduct}"
+                          Height="259">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Product.Name}" Width="8*"/>
+                        <DataGridTextColumn Binding="{Binding Path=CountProduct}" Width="1*"/>
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Цена за 1 ед. "/>
+                                <TextBlock Text="{Binding Path=Product.Price}"/>
+                                <TextBlock Text=" р. время готовки "/>
+                                <TextBlock Text="{Binding Path=Product.TimeCook}"/>
+                                <TextBlock Text=" c."/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                </DataGrid>
+            </StackPanel>
+
+            <!-- Информация о продукте-->
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <Grid Width="263" DataContext="{Binding KitParametrsOrders}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Номер заказа" Grid.Row="0"/>
+                    <TextBlock Text="Цена заказа" Grid.Row="1"/>
+                    <TextBox Width="100" Text="{Binding SelectedOrder.Id}" Grid.Row="0" Grid.Column="1"/>
+                    <TextBox Width="100" Text="{Binding SelectedOrder.Price}" Grid.Row="1" Grid.Column="1"/>
+                    <TextBlock Text="р." Grid.Row="1" Grid.Column="2"/>
+                </Grid>
+                <TextBlock Text="Крайний срок" HorizontalAlignment="Center"/>
+                <TextBox Width="200" Text="{Binding KitParametrsOrders.SelectedOrder.TimeString}"
+                         Margin="0 0 0 0" IsReadOnly="True"/>
+                <TextBlock Text="Текущее время" HorizontalAlignment="Center"/>
+                <TextBox Width="200" Text="{Binding KitParametrsOrders.CurrentTime}"
+                         Margin="0 0 0 0" IsReadOnly="True"/>
+                <TextBlock Text="Состояние" HorizontalAlignment="Center" Margin="0 5 0 0"/>
+                <Rectangle x:Name="inidcatorReady" Width="200" Height="30"
+                           RadiusX="10" RadiusY="10" Fill="{Binding KitParametrsOrders.ColorStateOrder}"
+                           Margin="0 2 0 2"/>
+                <Button x:Name="buttonReady" Style="{StaticResource SmallButtonStyle}"
+                        Margin="60 0 60 0" Content="Готово"
+                        Command="{Binding KitParametrsOrders.ChangeStateOrderCommand}"
+                        CommandParameter="{Binding KitParametrsOrders}"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Нижняя часть-->
+        <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
+            <Image Style="{StaticResource FigureStyle}" Margin="0 10 0 0"/>
+            <Button x:Name="buttonBackToMainWindow" Style="{StaticResource SmallButtonStyle}"
+                    Content="Назад" Margin="180 10 180 5"
+                    IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

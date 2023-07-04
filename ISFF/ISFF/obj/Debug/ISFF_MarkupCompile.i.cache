@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Kain\Desktop\S\C#\My_projects\ISFF\ISFF\obj\Debug\
+C:\Program Files\Git\ISFF\ISFF\ISFF\obj\Debug\
 ISFF
 none
 false
 DEBUG;TRACE
-C:\Users\Kain\Desktop\S\C#\My_projects\ISFF\ISFF\App.xaml
-11151548125
+C:\Program Files\Git\ISFF\ISFF\ISFF\Views\App.xaml
+131211045713
 
-9-288447335
-13781053478
-MainWindow.xaml;
+84-2102355513
+27-443512122
+Views\LogWindow.xaml;Views\MessageWindow.xaml;Views\CommonDialogWindow.xaml;Views\ChoseDoseWindow.xaml;Views\ResponseDialogWindow.xaml;Styles\StyleButtons.xaml;Styles\StyleOrange.xaml;Styles\StyleTextblocks.xaml;Views\MainWindow.xaml;Views\WindowEmployees.xaml;Views\WindowIngredients.xaml;Views\WindowProducts.xaml;Views\WindowOrders.xaml;
 
-True
+False
 
